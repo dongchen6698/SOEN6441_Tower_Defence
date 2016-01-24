@@ -18,6 +18,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 		baseScreenThread.start();
 	}
 	
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		g.clearRect(0, 0, StaticGameInfo.frameWidth, StaticGameInfo.frameHeight);
@@ -25,7 +26,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 		for(int x = 0;x < 14;x++){
 			for(int y = 0;y < 7;y++){
 				g.drawRect(StaticGameInfo.gridSize + (x*StaticGameInfo.gridSize), StaticGameInfo.gridSize + (y*StaticGameInfo.gridSize), StaticGameInfo.gridSize, StaticGameInfo.gridSize);
-			}			
+			}		
 		}
 		g.setColor(Color.green);
 		g.drawRect(focusX, focusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
