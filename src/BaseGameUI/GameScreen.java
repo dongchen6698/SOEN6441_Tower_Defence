@@ -70,10 +70,23 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 	}
 
 	private void drawPath(Graphics g2) {
-		g2.setColor(Color.red);
+
 		for (int i = 0; i < path.length; i++) {
 			for (int j = 0; j < path[i].length; j++) {
 				if (path[i][j] == 1) {
+					g2.setColor(Color.RED);
+					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
+							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
+							StaticGameInfo.gridSize);
+				}
+				if (path[i][j] == 2) {
+					g2.setColor(Color.BLUE);
+					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
+							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
+							StaticGameInfo.gridSize);
+				}
+				if (path[i][j] == 3) {
+					g2.setColor(Color.BLACK);
 					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
 							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
 							StaticGameInfo.gridSize);

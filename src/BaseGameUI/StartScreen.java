@@ -63,7 +63,9 @@ public class StartScreen extends JPanel{
 				JOptionPane.showMessageDialog(null, "The row need to < 7 AND The col need to < 14");
 			}else{
 			CMS.setMaprow(row);
-			CMS.setMapcol(col);		
+			CMS.setMapcol(col);
+			int[][] path = new int[row][col];
+			CMS.setCreatmappath(path);
 			mainscreen.removeAll();
 			mainscreen.add(CMS);
 			mainscreen.validate();
