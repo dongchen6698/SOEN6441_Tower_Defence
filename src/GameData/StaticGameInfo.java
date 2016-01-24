@@ -1,4 +1,4 @@
-package BaseGameUI;
+package GameData;
 
 public class StaticGameInfo {
 	public static final int frameWidth = 800;

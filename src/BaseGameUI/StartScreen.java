@@ -19,12 +19,10 @@ public class StartScreen extends JPanel{
 	private JButton creat,select,exit;
 	public StartScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
-		System.out.println("come to startscreen");
 		init();	
 	}
 
 	public void init(){
-		System.out.println("start init()");
 		this.setLayout(null);
  		this.setBackground(Color.orange);
 		creat = new JButton("Creat Maps");
@@ -39,7 +37,6 @@ public class StartScreen extends JPanel{
 		creat.addMouseListener(new CreatMouseListener());
 		select.addMouseListener(new SelectMouseListener());
 		exit.addMouseListener(new ExitMouseListener());
-		System.out.println("ready to add this");	
 	}
 	
 	public String fileChooser(){
@@ -49,8 +46,10 @@ public class StartScreen extends JPanel{
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jFileChooser.getSelectedFile();
             System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-        } 
-		return null;		
+            return selectedFile.getAbsolutePath();
+        }else{
+        	return null;
+        }
 	}
 		
 	public class CreatMouseListener implements MouseListener{
@@ -58,17 +57,13 @@ public class StartScreen extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			CreatMapScreen CMS = new CreatMapScreen(mainscreen);
-			JOptionPane requireROW = new JOptionPane();
-			JOptionPane requireCOL = new JOptionPane();
-			String row = requireCOL.showInputDialog("输入宽");
-			String col = requireROW.showInputDialog("输入长");
-			int x = Integer.parseInt(row);
-			int y = Integer.parseInt(col);
-			if(x > 7 || y > 14){
-				System.out.println("错误");
+			int row = Integer.parseInt(JOptionPane.showInputDialog("Please input the number of row"));
+			int col = Integer.parseInt(JOptionPane.showInputDialog("Please input the number of col"));
+			if(row > 7 || col > 14){
+				JOptionPane.showMessageDialog(null, "The row need to < 7 AND The col need to < 14");
 			}else{
-			CMS.setMaprow(x);
-			CMS.setMapcol(y);		
+			CMS.setMaprow(row);
+			CMS.setMapcol(col);		
 			mainscreen.removeAll();
 			mainscreen.add(CMS);
 			mainscreen.validate();
@@ -108,16 +103,14 @@ public class StartScreen extends JPanel{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			fileChooser();
-
-			
+			String mappath = fileChooser();
+			GameScreen.map_path = mappath;
+			GameScreen GS = new GameScreen(mainscreen);
 			mainscreen.removeAll();
-			mainscreen.add(new GameScreen(mainscreen));
+			mainscreen.add(GS);
 			mainscreen.validate();
 			mainscreen.repaint();
-			System.out.println("Select Maps");
-			
-			
+			System.out.println("Select Maps");		
 		}
 
 		@Override

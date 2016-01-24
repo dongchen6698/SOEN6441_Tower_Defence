@@ -8,6 +8,8 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
+import GameData.StaticGameInfo;
+
 public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListener, MouseListener{
 	private int maprow;
 	private int mapcol;

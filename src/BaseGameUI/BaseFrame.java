@@ -1,6 +1,8 @@
 package BaseGameUI;
 import javax.swing.JFrame;
 
+import GameData.StaticGameInfo;
+
 public class BaseFrame extends JFrame{
 	
 	private boolean checkFirstTime;
@@ -18,10 +20,6 @@ public class BaseFrame extends JFrame{
 	public void init(){
 		this.add(new MainScreen());
 		this.setVisible(true);
-	}
-
-	public static void main(String[] args) {
-		new BaseFrame();
 	}
 
 }
