@@ -45,9 +45,81 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		this.add(save);
 		this.add(edit);
 		this.add(back);
-		save.setBounds(700,440,100,30);
-		edit.setBounds(700,490,100,30);
-		back.setBounds(700,540,100,30);
+		save.setBounds(700,475,100,30);
+		edit.setBounds(700,515,100,30);
+		back.setBounds(700,550,100,30);
+		save.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					saveMap();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
+		back.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				mainscreen.removeAll();
+				mainscreen.add(new StartScreen(mainscreen));
+				mainscreen.validate();
+				mainscreen.repaint();		
+			}
+		});
 		this.addMouseMotionListener(this);
 		this.addMouseListener(this);
 		creatmapscreen.start();
@@ -187,7 +259,6 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 					+ StaticGameInfo.gridSize;
 			
 			Object[] clicklist = {"Entry Point","Path","Exit Point"};
-			System.out.println(clickfocusX+" "+clickfocusY+" ");
 			String content = (String)JOptionPane.showInputDialog(null,"Which point you want to draw?\n","Draw point",JOptionPane.PLAIN_MESSAGE,null,clicklist,"Path");
 			if(content == "Path"){
 				clickinfo = 1;
@@ -203,19 +274,6 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		} else {
 			clickfocusX = -100;
 			clickfocusY = -100;
-			try {
-				saveMap();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-//			for(int i=0;i<creatmappath.length;i++){
-//					System.out.println("\n");
-//				for(int j=0;j<creatmappath[i].length;j++){
-//					System.out.print(creatmappath[i][j]+" ");
-//				}
-//			}
-			
 		}
 	}
 
