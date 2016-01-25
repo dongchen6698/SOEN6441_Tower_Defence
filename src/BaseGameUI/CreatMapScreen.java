@@ -2,6 +2,7 @@ package BaseGameUI;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -23,19 +25,32 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	private int focusY = -100;
 	private int clickfocusX = -100;
 	private int clickfocusY = -100;
+	private JButton save,edit,back;
 	private int[][] creatmappath;
 	public int clickinfo;
-	int count = 1 ;
+	int count = 1;
 	public MainScreen mainscreen;
-	
 	Thread creatmapscreen = new Thread(this);
 	
 	public CreatMapScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
+		init();
+	}
+	
+	public void init(){
+		this.setLayout(null);
+		save = new JButton("SAVE Maps");
+		edit = new JButton("EDIT Maps");
+		back = new JButton("BACK");
+		this.add(save);
+		this.add(edit);
+		this.add(back);
+		save.setBounds(700,440,100,30);
+		edit.setBounds(700,490,100,30);
+		back.setBounds(700,540,100,30);
 		this.addMouseMotionListener(this);
 		this.addMouseListener(this);
 		creatmapscreen.start();
-
 	}
 	
 	public void paintComponent(Graphics g) {

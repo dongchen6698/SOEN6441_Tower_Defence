@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 import javax.swing.*;
 
+import GameData.MapData;
 import GameData.StaticGameInfo;
 
 
