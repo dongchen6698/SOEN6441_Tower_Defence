@@ -154,122 +154,6 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 			}
 		}
 	}
-	
-	public void getFuturePoint(Fighter f) {
-		int x = (f.getX() - StaticGameInfo.gameLocationX) / StaticGameInfo.gridSize;
-		int y = (f.getY() - StaticGameInfo.gameLocationY) / StaticGameInfo.gridSize;
-		int dir = f.getDirection();
-		if (dir == 1) {
-			if (x - 1 >= 0 && y >= 0 && x - 1 < 7 && y < 12) {
-				if (path[x - 1][y] == 1) {
-					f.setFutureX((x - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(1);
-				}
-			}
-			if (x >= 0 && y - 1 >= 0 && x < 7 && y - 1 < 12) {
-				if (path[x][y - 1] == 1) {
-					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY((y - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(3);
-				}
-			}
-			if (x >= 0 && y + 1 >= 0 && x < 7 && y + 1 < 12) {
-				if (path[x][y + 1] == 1) {
-					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY((y + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(4);
-				}
-			}
-			// if (f.getX() == f.getFutureX() && f.getY() == f.getFutureY()) {
-			// f.setFutureX((x - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-			// f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-			// f.setDirection(1);
-			// }
-		} else if (dir == 2) {
-			if (x + 1 >= 0 && y >= 0 && x + 1 < 7 && y < 12) {
-				if (path[x + 1][y] == 1) {
-					f.setFutureX((x + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(2);
-				}
-			}
-			if (x >= 0 && y - 1 >= 0 && x < 7 && y - 1 < 12) {
-				if (path[x][y - 1] == 1) {
-					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY((y - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(3);
-				}
-			}
-			if (x >= 0 && y + 1 >= 0 && x < 7 && y + 1 < 12) {
-				if (path[x][y + 1] == 1) {
-					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY((y + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(4);
-				}
-			}
-			// if (f.getX() == f.getFutureX() && f.getY() == f.getFutureY()) {
-			// f.setFutureX((x + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-			// f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-			// f.setDirection(2);
-			// }
-		} else if (dir == 3) {
-			if (x - 1 >= 0 && y >= 0 && x - 1 < 7 && y < 12) {
-				if (path[x - 1][y] == 1) {
-					f.setFutureX((x - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(1);
-				}
-			}
-			if (x + 1 >= 0 && y >= 0 && x + 1 < 7 && y < 12) {
-				if (path[x + 1][y] == 1) {
-					f.setFutureX((x + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(2);
-				}
-			}
-			if (x >= 0 && y - 1 >= 0 && x < 7 && y - 1 < 12) {
-				if (path[x][y - 1] == 1) {
-					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY((y - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(3);
-				}
-			}
-			// if (f.getX() == f.getFutureX() && f.getY() == f.getFutureY()) {
-			// f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-			// f.setFutureY((y - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-			// f.setDirection(3);
-			// }
-		} else if (dir == 4) {
-			if (x - 1 >= 0 && y >= 0 && x - 1 < 7 && y < 12) {
-				if (path[x - 1][y] == 1) {
-					f.setFutureX((x - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(1);
-				}
-			}
-			if (x + 1 >= 0 && y >= 0 && x + 1 < 7 && y < 12) {
-				if (path[x + 1][y] == 1) {
-					f.setFutureX((x + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(2);
-				}
-			}
-			if (x >= 0 && y + 1 >= 0 && x < 7 && y + 1 < 12) {
-				if (path[x][y + 1] == 1) {
-					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-					f.setFutureY((y + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-					f.setDirection(4);
-				}
-			}
-			// if (f.getX() == f.getFutureX() && f.getY() == f.getFutureY()) {
-			// f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-			// f.setFutureY((y + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-			// f.setDirection(4);
-			// }
-		}
-	}
-
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
@@ -281,8 +165,8 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 	public void mouseMoved(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-		if (x > StaticGameInfo.gameLocationX && x < StaticGameInfo.gameLocationX + 14*StaticGameInfo.gridSize && y > StaticGameInfo.gameLocationY
-				&& y < StaticGameInfo.gameLocationY + 7*StaticGameInfo.gridSize) {
+		if (x > StaticGameInfo.gameLocationX && x < StaticGameInfo.gameLocationX + map_col*StaticGameInfo.gridSize && y > StaticGameInfo.gameLocationY
+				&& y < StaticGameInfo.gameLocationY + map_row*StaticGameInfo.gridSize) {
 			focusX = (x - StaticGameInfo.gameLocationX) / StaticGameInfo.gridSize * StaticGameInfo.gridSize
 					+ StaticGameInfo.gridSize;
 			focusY = (y - StaticGameInfo.gameLocationY) / StaticGameInfo.gridSize * StaticGameInfo.gridSize
@@ -308,6 +192,38 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 
 	public void setFighterList(List<Fighter> fighterList) {
 		this.fighterList = fighterList;
+	}
+
+	public int getEndX() {
+		return endX;
+	}
+
+	public void setEndX(int endX) {
+		this.endX = endX;
+	}
+
+	public int getEndY() {
+		return endY;
+	}
+
+	public void setEndY(int endY) {
+		this.endY = endY;
+	}
+
+	public int getMap_row() {
+		return map_row;
+	}
+
+	public void setMap_row(int map_row) {
+		this.map_row = map_row;
+	}
+
+	public int getMap_col() {
+		return map_col;
+	}
+
+	public void setMap_col(int map_col) {
+		this.map_col = map_col;
 	}
 	
 }

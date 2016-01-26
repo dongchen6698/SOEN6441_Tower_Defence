@@ -7,10 +7,12 @@ import GameData.StaticGameInfo;
 import Model.Fighter;
 
 public class FighterThread implements Runnable{
+	private GameScreen gamescreen;
 	private List<Fighter> fighterList;
 	private int path[][];
 	
 	public FighterThread(GameScreen GS){
+		this.gamescreen = GS;
 		this.path = GS.getPath();
 		this.fighterList = GS.getFighterList();
 	}
@@ -27,10 +29,15 @@ public class FighterThread implements Runnable{
 						getFuturePoint(fighter);
 							fighter.move();	
 					}
-					if(fighter.getX()<StaticGameInfo.gameLocationX || 
-					   fighter.getX()>StaticGameInfo.gameLocationX + StaticGameInfo.gridSize*6 || 
-					   fighter.getY()<StaticGameInfo.gameLocationY || 
-					   fighter.getY() > StaticGameInfo.gameLocationY + StaticGameInfo.gridSize* 11){
+					if(
+						(fighter.getX()==StaticGameInfo.gameLocationX+StaticGameInfo.gridSize*gamescreen.getEndX() 
+						&& fighter.getY()==StaticGameInfo.gameLocationX+StaticGameInfo.gridSize*gamescreen.getEndY())
+						||	
+					   (fighter.getX()<StaticGameInfo.gameLocationX || 
+						fighter.getX()>StaticGameInfo.gameLocationX + StaticGameInfo.gridSize*gamescreen.getMap_row()|| 
+						fighter.getY()<StaticGameInfo.gameLocationY || 
+						fighter.getY() > StaticGameInfo.gameLocationY + StaticGameInfo.gridSize*gamescreen.getMap_col())
+							){
 						System.out.println("remove");
 						fighterList.remove(i);
 						i--;
@@ -49,22 +56,22 @@ public class FighterThread implements Runnable{
 		int y = (f.getY() - StaticGameInfo.gameLocationY) / StaticGameInfo.gridSize;
 		int dir = f.getDirection();
 		if (dir == 1) {
-			if (x - 1 >= 0 && y >= 0 && x - 1 < 7 && y < 12) {
-				if (path[x - 1][y] == 1) {
+			if (x - 1 >= 0 && y >= 0 && x - 1 < gamescreen.getMap_row() && y < gamescreen.getMap_col()) {
+				if (path[x - 1][y] == 1 || path[x - 1][y] == 3) {
 					f.setFutureX((x - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(1);
 				}
 			}
-			if (x >= 0 && y - 1 >= 0 && x < 7 && y - 1 < 12) {
-				if (path[x][y - 1] == 1) {
+			if (x >= 0 && y - 1 >= 0 && x < gamescreen.getMap_row() && y - 1 < gamescreen.getMap_col()) {
+				if (path[x][y - 1] == 1 || path[x][y - 1] == 3) {
 					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY((y - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(3);
 				}
 			}
-			if (x >= 0 && y + 1 >= 0 && x < 7 && y + 1 < 12) {
-				if (path[x][y + 1] == 1) {
+			if (x >= 0 && y + 1 >= 0 && x < gamescreen.getMap_row() && y + 1 < gamescreen.getMap_col()) {
+				if (path[x][y + 1] == 1 || path[x][y + 1] == 3) {
 					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY((y + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(4);
@@ -76,22 +83,22 @@ public class FighterThread implements Runnable{
 			// f.setDirection(1);
 			// }
 		} else if (dir == 2) {
-			if (x + 1 >= 0 && y >= 0 && x + 1 < 7 && y < 12) {
-				if (path[x + 1][y] == 1) {
+			if (x + 1 >= 0 && y >= 0 && x + 1 < gamescreen.getMap_row() && y < gamescreen.getMap_col()) {
+				if (path[x + 1][y] == 1 || path[x + 1][y] == 3) {
 					f.setFutureX((x + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(2);
 				}
 			}
-			if (x >= 0 && y - 1 >= 0 && x < 7 && y - 1 < 12) {
-				if (path[x][y - 1] == 1) {
+			if (x >= 0 && y - 1 >= 0 && x < gamescreen.getMap_row() && y - 1 < gamescreen.getMap_col()) {
+				if (path[x][y - 1] == 1 || path[x][y - 1] == 3) {
 					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY((y - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(3);
 				}
 			}
-			if (x >= 0 && y + 1 >= 0 && x < 7 && y + 1 < 12) {
-				if (path[x][y + 1] == 1) {
+			if (x >= 0 && y + 1 >= 0 && x < gamescreen.getMap_row() && y + 1 < gamescreen.getMap_col()) {
+				if (path[x][y + 1] == 1 || path[x][y + 1] == 3) {
 					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY((y + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(4);
@@ -103,22 +110,22 @@ public class FighterThread implements Runnable{
 			// f.setDirection(2);
 			// }
 		} else if (dir == 3) {
-			if (x - 1 >= 0 && y >= 0 && x - 1 < 7 && y < 12) {
-				if (path[x - 1][y] == 1) {
+			if (x - 1 >= 0 && y >= 0 && x - 1 < gamescreen.getMap_row() && y < gamescreen.getMap_col()) {
+				if (path[x - 1][y] == 1 || path[x - 1][y] == 3) {
 					f.setFutureX((x - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(1);
 				}
 			}
-			if (x + 1 >= 0 && y >= 0 && x + 1 < 7 && y < 12) {
-				if (path[x + 1][y] == 1) {
+			if (x + 1 >= 0 && y >= 0 && x + 1 < gamescreen.getMap_row() && y < gamescreen.getMap_col()) {
+				if (path[x + 1][y] == 1 ||  path[x + 1][y] == 3) {
 					f.setFutureX((x + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(2);
 				}
 			}
-			if (x >= 0 && y - 1 >= 0 && x < 7 && y - 1 < 12) {
-				if (path[x][y - 1] == 1) {
+			if (x >= 0 && y - 1 >= 0 && x < gamescreen.getMap_row() && y - 1 < gamescreen.getMap_col()) {
+				if (path[x][y - 1] == 1 || path[x][y - 1] == 3) {
 					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY((y - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(3);
@@ -130,22 +137,22 @@ public class FighterThread implements Runnable{
 			// f.setDirection(3);
 			// }
 		} else if (dir == 4) {
-			if (x - 1 >= 0 && y >= 0 && x - 1 < 7 && y < 12) {
-				if (path[x - 1][y] == 1) {
+			if (x - 1 >= 0 && y >= 0 && x - 1 < gamescreen.getMap_row() && y < gamescreen.getMap_col()) {
+				if (path[x - 1][y] == 1 || path[x - 1][y] == 3) {
 					f.setFutureX((x - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(1);
 				}
 			}
-			if (x + 1 >= 0 && y >= 0 && x + 1 < 7 && y < 12) {
-				if (path[x + 1][y] == 1) {
+			if (x + 1 >= 0 && y >= 0 && x + 1 < gamescreen.getMap_row() && y < gamescreen.getMap_col()) {
+				if (path[x + 1][y] == 1 || path[x + 1][y] == 3) {
 					f.setFutureX((x + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(2);
 				}
 			}
-			if (x >= 0 && y + 1 >= 0 && x < 7 && y + 1 < 12) {
-				if (path[x][y + 1] == 1) {
+			if (x >= 0 && y + 1 >= 0 && x < gamescreen.getMap_row() && y + 1 < gamescreen.getMap_col()) {
+				if (path[x][y + 1] == 1 || path[x][y + 1] == 3) {
 					f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
 					f.setFutureY((y + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
 					f.setDirection(4);

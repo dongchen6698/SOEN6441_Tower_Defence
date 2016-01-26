@@ -25,18 +25,34 @@ public abstract class Fighter {
 		this.path = GS.getPath();
 		for(int i=0;i<path.length;i++){
 			for(int j=0;j<path[i].length;j++){
-				if(path[i][j] == 2){
-					System.out.println(i+" + "+j);
-					if(path[i-1][j] == 1){
-						direction = 1;
-					}else if(path[i+1][j] == 1){
+				if(path[i][j]==2&&i!=0&&j!=0){        // find entry coordinator 
+					if(path[i-1][j]==1)
+						direction =1 ;
+					if(path[i+1][j]==1)
 						direction = 2;
-					}else if(path[i][j-1] == 1){
-						direction = 3;
-					}else if(path[i][j+1] == 1){
-						direction = 4;
-					}
-					
+					if(path[i][j-1]==1)
+						direction =  3;
+					if(path[i][j+1]==1)
+						direction = 4 ;
+				} else if(path[i][j]==2&&j==0&&i!=0) {
+					if(path[i-1][j]==1)
+						direction =1 ;
+					if(path[i+1][j]==1)
+						direction = 2;
+					if(path[i][j+1]==1)
+						direction = 4 ;	
+				}else if (path[i][j]==2&&i==0&&j!=0){
+					if(path[i+1][j]==1)
+						direction = 2;
+					if(path[i][j-1]==1)
+						direction =  3;
+					if(path[i][j+1]==1)
+						direction = 4 ;
+				}else if (path[i][j]==2&&i==0&&j==0){
+					if(path[i+1][j]==1)
+						direction = 2;
+					if(path[i][j+1]==1)
+						direction = 4 ;
 				}
 			}
 		}
