@@ -11,14 +11,14 @@ public class MapVerification {
 		int numExitPoint = 0;
 		
 		int numFindpath = 0;
-		System.out.println("start map verification");
-		for(int i=0;i<creatmappath.length;i++){
-			System.out.print("\n");
-			for(int j=0;j<creatmappath[i].length;j++){
-			System.out.print(creatmappath[i][j]+" ");
-			}
-		}
-		
+//		System.out.println("start map verification");
+//		for(int i=0;i<creatmappath.length;i++){
+//			System.out.print("\n");
+//			for(int j=0;j<creatmappath[i].length;j++){
+//			System.out.print(creatmappath[i][j]+" ");
+//			}
+//		}
+//		
 		for(int i=0;i<creatmappath.length;i++){
 			for(int j=0;j<creatmappath[i].length;j++){
 				if(creatmappath[i][j] == 1){

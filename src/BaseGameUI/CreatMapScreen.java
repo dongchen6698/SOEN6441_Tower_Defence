@@ -186,10 +186,10 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	}
 	
 	public void paintComponent(Graphics g) {
-		if(count == 1){
+//		if(count == 1){
 		g.clearRect(0, 0, StaticGameInfo.frameWidth, StaticGameInfo.frameHeight);
-		count++;
-		}
+//		count++;
+//		}
 		drawPath(g);
 		drawGrid(g);
 		switch(clickinfo){
@@ -238,11 +238,11 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	
 	public String fileChooser(){
 		JFileChooser jFileChooser = new JFileChooser();
-		jFileChooser.setCurrentDirectory(new File("/Users/AlexChen/Documents/workspace/SOEN6441_Tower_Defence/Maps"));	
+		jFileChooser.setCurrentDirectory(new File("Maps/"));	
         int result = jFileChooser.showOpenDialog(new JFrame());    
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jFileChooser.getSelectedFile();
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+ //           System.out.println("Selected file: " + selectedFile.getAbsolutePath());
             return selectedFile.getAbsolutePath();
         }else{
         	return null;
@@ -282,7 +282,7 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 			}
 			out.write("\n");
 		}
-		System.out.println("\n"+"over save");
+//		System.out.println("\n"+"over save");
 		out.close();
 		
 		mainscreen.removeAll();
@@ -378,7 +378,7 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 					+ StaticGameInfo.gridSize;
 			
 			Object[] clicklist = {"Entry Point","Path","Exit Point","Cancel"};
-			String content = (String)JOptionPane.showInputDialog(null,"Which point you want to draw?\n","Draw point",JOptionPane.PLAIN_MESSAGE,null,clicklist,"Path");
+			String content = (String)JOptionPane.showInputDialog(this,"Which point you want to draw?\n","Draw point",JOptionPane.PLAIN_MESSAGE,null,clicklist,"Path");
 			if(content == "Path"){
 				clickinfo = 1;
 				creatmappath[(clickfocusY/50)-1][(clickfocusX/50)-1] = 1;

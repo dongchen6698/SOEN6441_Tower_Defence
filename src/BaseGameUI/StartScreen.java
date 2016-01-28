@@ -41,11 +41,11 @@ public class StartScreen extends JPanel{
 	
 	public String fileChooser(){
 		JFileChooser jFileChooser = new JFileChooser();
-		jFileChooser.setCurrentDirectory(new File("/Users/AlexChen/Documents/workspace/SOEN6441_Tower_Defence/Maps"));	
+		jFileChooser.setCurrentDirectory(new File("Maps/"));	
         int result = jFileChooser.showOpenDialog(new JFrame());    
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jFileChooser.getSelectedFile();
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+ //           System.out.println("Selected file: " + selectedFile.getAbsolutePath());
             return selectedFile.getAbsolutePath();
         }else{
         	return null;
@@ -111,7 +111,7 @@ public class StartScreen extends JPanel{
 			mainscreen.add(GS);
 			mainscreen.validate();
 			mainscreen.repaint();
-			System.out.println("Select Maps");		
+//			System.out.println("Select Maps");		
 		}
 
 		@Override
