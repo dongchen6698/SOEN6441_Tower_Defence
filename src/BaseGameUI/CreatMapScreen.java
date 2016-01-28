@@ -3,20 +3,31 @@ package BaseGameUI;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.peer.MouseInfoPeer;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Scanner;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import GameData.MapData;
 import GameData.StaticGameInfo;
+import MapVerification.MapVerification;
 
 public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListener, MouseListener{
 	private int maprow;
@@ -25,6 +36,14 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	private int focusY = -100;
 	private int clickfocusX = -100;
 	private int clickfocusY = -100;
+	
+	private CreatMapScreen CMS;
+	private String map_path;
+	private int entryX;
+	private int entryY;
+	private int endX;
+	private int endY;
+	
 	private JButton save,edit,back;
 	private int[][] creatmappath;
 	public int clickinfo;
@@ -34,6 +53,7 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	
 	public CreatMapScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
+		this.CMS = this;
 		init();
 	}
 	
@@ -76,16 +96,56 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(new MapVerification(creatmappath).isState()){
 				try {
 					saveMap();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				JOptionPane.showMessageDialog(null, "Congratulation~!");
+				}
+			}
+		});
+		edit.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String mappath = fileChooser();
+				CMS.map_path = mappath;
+				try {
+					loadMap();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
-		
 		back.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -130,14 +190,41 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		g.clearRect(0, 0, StaticGameInfo.frameWidth, StaticGameInfo.frameHeight);
 		count++;
 		}
+		drawPath(g);
 		drawGrid(g);
 		switch(clickinfo){
 		case 1: clickPath(g);break;
 		case 2: clickEntryPoint(g);break;
 		case 3: clickExitPoint(g);break;
+		case 4: clickCancel(g);break;
 		}
 		g.setColor(Color.green);
 		g.drawRect(focusX, focusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+	}
+	
+	public void drawPath(Graphics g2) {
+		for (int i = 0; i < creatmappath.length; i++) {
+			for (int j = 0; j < creatmappath[i].length; j++) {
+				if (creatmappath[i][j] == 1) {
+					g2.setColor(Color.RED);
+					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
+							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
+							StaticGameInfo.gridSize);
+				}
+				if (creatmappath[i][j] == 2) {
+					g2.setColor(Color.BLUE);
+					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
+							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
+							StaticGameInfo.gridSize);
+				}
+				if (creatmappath[i][j] == 3) {
+					g2.setColor(Color.BLACK);
+					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
+							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
+							StaticGameInfo.gridSize);
+				}
+			}
+		}
 	}
 	
 	public void drawGrid(Graphics g2) {
@@ -149,17 +236,45 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		}
 	}
 	
-	public void saveMap() throws IOException{
-		System.out.println("start savefile");
-		
-		for(int i=0;i<creatmappath.length;i++){
-			System.out.print("\n");
-			for(int j=0;j<creatmappath[i].length;j++){
-			System.out.print(creatmappath[i][j]+" ");
-			}
+	public String fileChooser(){
+		JFileChooser jFileChooser = new JFileChooser();
+		jFileChooser.setCurrentDirectory(new File("/Users/AlexChen/Documents/workspace/SOEN6441_Tower_Defence/Maps"));	
+        int result = jFileChooser.showOpenDialog(new JFrame());    
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = jFileChooser.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+            return selectedFile.getAbsolutePath();
+        }else{
+        	return null;
+        }
+	}
+	
+	public void loadMap() throws FileNotFoundException{
+		MapData mapinfo = new MapData(map_path);
+		maprow = mapinfo.getGridRow();
+		mapcol = mapinfo.getGridCol();
+		this.creatmappath = new int[maprow][mapcol];
+		InputStream in = new FileInputStream(map_path); 
+        Scanner scanner = new Scanner(in);
+        while(scanner.hasNext()){   	
+        	for(int i=0;i < mapinfo.getGridRow();i++){
+        		for(int j=0;j < mapinfo.getGridCol();j++){
+        			creatmappath[i][j] = scanner.nextInt();
+        		}
+        	}
+        }
+       try {
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-		File file = new File("Maps/savefile");
+	}
+	
+	
+	public void saveMap() throws IOException{
+		String filename;
+		filename = JOptionPane.showInputDialog("Please input the name of file!");
+		File file = new File("Maps/"+ filename);
 		FileWriter out = new FileWriter(file);
 		for(int i=0;i<creatmappath.length;i++){
 		for(int j=0;j<creatmappath[i].length;j++){
@@ -175,22 +290,26 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		mainscreen.validate();
 		mainscreen.repaint();
 	}
-	
-	public void clickPath(Graphics g2){
-		g2.setColor(Color.RED);
-		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
-		clickinfo = 0;
-	}
-	
 	public void clickEntryPoint(Graphics g2){
 		g2.setColor(Color.BLUE);
 		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
 		clickinfo = 0;
 	}
 	
+	public void clickPath(Graphics g2){
+		g2.setColor(Color.RED);
+		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+		clickinfo = 0;
+	}
+		
 	public void clickExitPoint(Graphics g2){
 		g2.setColor(Color.BLACK);
 		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+		clickinfo = 0;
+	}
+	
+	public void clickCancel(Graphics g2){
+		g2.clearRect(clickfocusX, clickfocusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
 		clickinfo = 0;
 	}
 	
@@ -258,7 +377,7 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 			clickfocusY = (y - StaticGameInfo.gameLocationY) / StaticGameInfo.gridSize * StaticGameInfo.gridSize
 					+ StaticGameInfo.gridSize;
 			
-			Object[] clicklist = {"Entry Point","Path","Exit Point"};
+			Object[] clicklist = {"Entry Point","Path","Exit Point","Cancel"};
 			String content = (String)JOptionPane.showInputDialog(null,"Which point you want to draw?\n","Draw point",JOptionPane.PLAIN_MESSAGE,null,clicklist,"Path");
 			if(content == "Path"){
 				clickinfo = 1;
@@ -269,6 +388,9 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 			}else if(content == "Exit Point"){
 				clickinfo = 3;
 				creatmappath[(clickfocusY/50)-1][(clickfocusX/50)-1] = 3;
+			}else{
+				clickinfo = 4;
+				creatmappath[(clickfocusY/50)-1][(clickfocusX/50)-1] = 0;
 			}
 			
 		} else {

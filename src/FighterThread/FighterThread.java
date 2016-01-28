@@ -38,7 +38,6 @@ public class FighterThread implements Runnable{
 						fighter.getY()<StaticGameInfo.gameLocationY || 
 						fighter.getY() > StaticGameInfo.gameLocationY + StaticGameInfo.gridSize*gamescreen.getMap_col())
 							){
-						System.out.println("remove");
 						fighterList.remove(i);
 						i--;
 					}
@@ -77,11 +76,6 @@ public class FighterThread implements Runnable{
 					f.setDirection(4);
 				}
 			}
-			// if (f.getX() == f.getFutureX() && f.getY() == f.getFutureY()) {
-			// f.setFutureX((x - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-			// f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-			// f.setDirection(1);
-			// }
 		} else if (dir == 2) {
 			if (x + 1 >= 0 && y >= 0 && x + 1 < gamescreen.getMap_row() && y < gamescreen.getMap_col()) {
 				if (path[x + 1][y] == 1 || path[x + 1][y] == 3) {
@@ -104,11 +98,6 @@ public class FighterThread implements Runnable{
 					f.setDirection(4);
 				}
 			}
-			// if (f.getX() == f.getFutureX() && f.getY() == f.getFutureY()) {
-			// f.setFutureX((x + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-			// f.setFutureY(y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-			// f.setDirection(2);
-			// }
 		} else if (dir == 3) {
 			if (x - 1 >= 0 && y >= 0 && x - 1 < gamescreen.getMap_row() && y < gamescreen.getMap_col()) {
 				if (path[x - 1][y] == 1 || path[x - 1][y] == 3) {
@@ -131,11 +120,6 @@ public class FighterThread implements Runnable{
 					f.setDirection(3);
 				}
 			}
-			// if (f.getX() == f.getFutureX() && f.getY() == f.getFutureY()) {
-			// f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-			// f.setFutureY((y - 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-			// f.setDirection(3);
-			// }
 		} else if (dir == 4) {
 			if (x - 1 >= 0 && y >= 0 && x - 1 < gamescreen.getMap_row() && y < gamescreen.getMap_col()) {
 				if (path[x - 1][y] == 1 || path[x - 1][y] == 3) {
@@ -158,11 +142,6 @@ public class FighterThread implements Runnable{
 					f.setDirection(4);
 				}
 			}
-			// if (f.getX() == f.getFutureX() && f.getY() == f.getFutureY()) {
-			// f.setFutureX(x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX);
-			// f.setFutureY((y + 1) * StaticGameInfo.gridSize + StaticGameInfo.gameLocationY);
-			// f.setDirection(4);
-			// }
 		}
 	}
 

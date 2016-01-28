@@ -2,6 +2,7 @@ package BaseGameUI;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,8 +23,8 @@ import Model.*;
 public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 	public MainScreen mainscreen;
 	Thread gameScreenThread = new Thread(this);
-	private int focusX;
-	private int focusY;
+	private int focusX = -100;
+	private int focusY = -100;
 	public static String map_path;
 	private int map_row;
 	private int map_col;
@@ -33,6 +34,8 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 	private int endY;
 	private int[][] path = new int[100][100];
 	private List<Fighter> fighterList;
+	private JButton start,back;
+	private GameScreen gamescreen;
 	
 	public GameScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
@@ -40,6 +43,82 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 	}
 	
 	public void init(){
+		gamescreen = this;
+		this.setLayout(null);
+		start = new JButton("Start Game");
+		back = new JButton("Back");
+		this.add(start);
+		this.add(back);
+		start.setBounds(700,515,100,30);
+		back.setBounds(700,550,100,30);
+		start.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				gameScreenThread.start();
+				Thread FT = new Thread(new FighterThread(gamescreen));
+				FT.start();			
+			}
+		});
+		back.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				mainscreen.removeAll();
+				mainscreen.add(new StartScreen(mainscreen));
+				mainscreen.validate();
+				mainscreen.repaint();
+				
+			}
+		});
 		fighterList = new ArrayList<Fighter>();
 		this.addMouseMotionListener(this);
 		try {
@@ -47,10 +126,6 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		gameScreenThread.start();
-		FighterThread fighterthread = new FighterThread(this);
-		Thread FT = new Thread(fighterthread);
-		FT.start();
 	
 	}
 	

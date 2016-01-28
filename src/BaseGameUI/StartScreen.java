@@ -70,7 +70,6 @@ public class StartScreen extends JPanel{
 			mainscreen.add(CMS);
 			mainscreen.validate();
 			mainscreen.repaint();
-			System.out.println("Creat Maps");
 			}
 			
 		}
