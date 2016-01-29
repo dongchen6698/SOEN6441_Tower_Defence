@@ -5,8 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class MapData {
-	private int gridRow ;
-	private int gridCol ;
+	
+	private int gridrow ;
+	private int gridcol ;
 	
 	public MapData(String map_path) throws FileNotFoundException{
 		String  thisLine = null;
@@ -18,8 +19,8 @@ public class MapData {
 			countrow++;
 			countcol = thisLine.replace(" ", "").length();
 			}
-		gridRow = countrow;
-		gridCol = countcol;
+		gridrow = countrow;
+		gridcol = countcol;
 		}
 		catch(Exception e){
 		e.printStackTrace();
@@ -27,16 +28,16 @@ public class MapData {
 	}
 	
 	public int getGridRow() {
-		return gridRow;
+		return gridrow;
 	}
 	public void setGridRow(int gridRow) {
-		this.gridRow = gridRow;
+		this.gridrow = gridRow;
 	}
 	public int getGridCol() {
-		return gridCol;
+		return gridcol;
 	}
 	public void setGridCol(int gridCol) {
-		this.gridCol = gridCol;
+		this.gridcol = gridCol;
 	}
 
 }

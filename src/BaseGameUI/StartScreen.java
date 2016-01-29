@@ -36,32 +36,8 @@ public class StartScreen extends JPanel{
 		creat.setBounds(300, 100, 200,100);
 		select.setBounds(300,250,200,100);
 		exit.setBounds(300,400,200,100);
-		creat.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO 自动生成的方法存根
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO 自动生成的方法存根
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO 自动生成的方法存根
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO 自动生成的方法存根
-				
-			}
-			
+		creat.addMouseListener(new MouseListener(){
+
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				CreatMapScreen CMS = new CreatMapScreen(mainscreen);
@@ -78,7 +54,30 @@ public class StartScreen extends JPanel{
 				mainscreen.add(CMS);
 				mainscreen.validate();
 				mainscreen.repaint();
-				}
+				}	
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -86,7 +85,7 @@ public class StartScreen extends JPanel{
 		exit.addMouseListener(new ExitMouseListener());
 	}
 	
-	public String fileChooser(){
+	public String chooseFile(){
 		JFileChooser jFileChooser = new JFileChooser();
 		jFileChooser.setCurrentDirectory(new File("Maps/"));	
         int result = jFileChooser.showOpenDialog(new JFrame());    
@@ -102,7 +101,7 @@ public class StartScreen extends JPanel{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			String mappath = fileChooser();
+			String mappath = chooseFile();
 			GameScreen.MAP_PATH = mappath;
 			GameScreen GS = new GameScreen(mainscreen);
 			mainscreen.removeAll();

@@ -7,8 +7,9 @@ import BaseGameUI.GameScreen;
 import GameData.StaticGameInfo;
 
 public class Ball extends Fighter{
-	public Ball(int x, int y,GameScreen GS) {
-		super(x, y,GS);
+	
+	public Ball(int x, int y,GameScreen gamescreen) {
+		super(x, y,gamescreen);
 	}
 
 	@Override

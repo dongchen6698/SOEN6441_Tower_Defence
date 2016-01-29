@@ -7,6 +7,7 @@ import GameData.MapData;
 import GameData.StaticGameInfo;
 
 public abstract class Fighter {
+	
 	public int x = 0;
 	public int y = 0;
 	public int futureX;
@@ -17,12 +18,12 @@ public abstract class Fighter {
 	public int direction;
 	private int path[][];
 	
-	public Fighter(int x, int y,GameScreen GS) {
+	public Fighter(int x, int y,GameScreen gamescreen) {
 		this.x = x * StaticGameInfo.GRID_SIZE + StaticGameInfo.GAMELOCATION_X;
 		this.y = y * StaticGameInfo.GRID_SIZE + StaticGameInfo.GAMELOCATION_X;
 		this.futureX = this.x;
 		this.futureY = this.y;
-		this.path = GS.getPath();
+		this.path = gamescreen.getPath();
 		for(int i=0;i<path.length;i++){
 			for(int j=0;j<path[i].length;j++){
 				if(path[i][j]==2&&i!=0&&j!=0){        // find entry coordinator 

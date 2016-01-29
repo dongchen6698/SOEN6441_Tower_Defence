@@ -7,14 +7,15 @@ import GameData.StaticGameInfo;
 import Model.Fighter;
 
 public class FighterThread implements Runnable{
+	
 	private GameScreen gamescreen;
 	private List<Fighter> fighterList;
 	private int path[][];
 	
-	public FighterThread(GameScreen GS){
-		this.gamescreen = GS;
-		this.path = GS.getPath();
-		this.fighterList = GS.getFighterList();
+	public FighterThread(GameScreen gamescreen){
+		this.gamescreen = gamescreen;
+		this.path = gamescreen.getPath();
+		this.fighterList = gamescreen.getFighterList();
 	}
 
 	@Override
