@@ -15,8 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class StartScreen extends JPanel{
+
 	private MainScreen mainscreen;
 	private JButton creat,select,exit;
+	
 	public StartScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
 		init();	
@@ -34,7 +36,52 @@ public class StartScreen extends JPanel{
 		creat.setBounds(300, 100, 200,100);
 		select.setBounds(300,250,200,100);
 		exit.setBounds(300,400,200,100);
-		creat.addMouseListener(new CreatMouseListener());
+		creat.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO 自动生成的方法存根
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO 自动生成的方法存根
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO 自动生成的方法存根
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO 自动生成的方法存根
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				CreatMapScreen CMS = new CreatMapScreen(mainscreen);
+				int row = Integer.parseInt(JOptionPane.showInputDialog("Please input the number of row"));
+				int col = Integer.parseInt(JOptionPane.showInputDialog("Please input the number of col"));
+				if(row > 7 || col > 14){
+					JOptionPane.showMessageDialog(null, "The row need to < 7 AND The col need to < 14");
+				}else{
+				CMS.setMaprow(row);
+				CMS.setMapcol(col);
+				int[][] path = new int[row][col];
+				CMS.setCreatmappath(path);
+				mainscreen.removeAll();
+				mainscreen.add(CMS);
+				mainscreen.validate();
+				mainscreen.repaint();
+				}
+				
+			}
+		});
 		select.addMouseListener(new SelectMouseListener());
 		exit.addMouseListener(new ExitMouseListener());
 	}
@@ -45,59 +92,10 @@ public class StartScreen extends JPanel{
         int result = jFileChooser.showOpenDialog(new JFrame());    
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jFileChooser.getSelectedFile();
- //           System.out.println("Selected file: " + selectedFile.getAbsolutePath());
             return selectedFile.getAbsolutePath();
         }else{
         	return null;
         }
-	}
-		
-	public class CreatMouseListener implements MouseListener{
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			CreatMapScreen CMS = new CreatMapScreen(mainscreen);
-			int row = Integer.parseInt(JOptionPane.showInputDialog("Please input the number of row"));
-			int col = Integer.parseInt(JOptionPane.showInputDialog("Please input the number of col"));
-			if(row > 7 || col > 14){
-				JOptionPane.showMessageDialog(null, "The row need to < 7 AND The col need to < 14");
-			}else{
-			CMS.setMaprow(row);
-			CMS.setMapcol(col);
-			int[][] path = new int[row][col];
-			CMS.setCreatmappath(path);
-			mainscreen.removeAll();
-			mainscreen.add(CMS);
-			mainscreen.validate();
-			mainscreen.repaint();
-			}
-			
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
 	}
 	
 	public class SelectMouseListener implements MouseListener{
@@ -110,8 +108,7 @@ public class StartScreen extends JPanel{
 			mainscreen.removeAll();
 			mainscreen.add(GS);
 			mainscreen.validate();
-			mainscreen.repaint();
-//			System.out.println("Select Maps");		
+			mainscreen.repaint();	
 		}
 
 		@Override

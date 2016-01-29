@@ -265,7 +265,6 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 			}
 			out.write("\n");
 		}
-//		System.out.println("\n"+"over save");
 		out.close();
 		
 		mainscreen.removeAll();
