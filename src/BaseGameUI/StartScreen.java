@@ -105,7 +105,7 @@ public class StartScreen extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			String mappath = fileChooser();
-			GameScreen.map_path = mappath;
+			GameScreen.MAP_PATH = mappath;
 			GameScreen GS = new GameScreen(mainscreen);
 			mainscreen.removeAll();
 			mainscreen.add(GS);

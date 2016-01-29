@@ -11,7 +11,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import javax.swing.*;
 
 import FighterThread.FighterThread;
@@ -19,13 +18,10 @@ import GameData.MapData;
 import GameData.StaticGameInfo;
 import Model.*;
 
-
 public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
-	public MainScreen mainscreen;
-	Thread gameScreenThread = new Thread(this);
+	
 	private int focusX = -100;
 	private int focusY = -100;
-	public static String map_path;
 	private int map_row;
 	private int map_col;
 	private int entryX;
@@ -36,14 +32,17 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 	private List<Fighter> fighterList;
 	private JButton start,back;
 	private GameScreen gamescreen;
+	private MainScreen mainscreen;
+	public static String MAP_PATH;
+	Thread GST = new Thread(this);
 	
 	public GameScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
+		gamescreen = this;
 		init();	
 	}
 	
 	public void init(){
-		gamescreen = this;
 		this.setLayout(null);
 		start = new JButton("Start Game");
 		back = new JButton("Back");
@@ -79,7 +78,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				gameScreenThread.start();
+				GST.start();
 				Thread FT = new Thread(new FighterThread(gamescreen));
 				FT.start();			
 			}
@@ -115,8 +114,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 				mainscreen.removeAll();
 				mainscreen.add(new StartScreen(mainscreen));
 				mainscreen.validate();
-				mainscreen.repaint();
-				
+				mainscreen.repaint();		
 			}
 		});
 		fighterList = new ArrayList<Fighter>();
@@ -125,15 +123,14 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 			loadMap();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
-	
+		}	
 	}
 	
 	public void loadMap() throws FileNotFoundException{
-		MapData mapinfo = new MapData(map_path);
+		MapData mapinfo = new MapData(MAP_PATH);
 		map_row = mapinfo.getGridRow();
 		map_col = mapinfo.getGridCol();
-		InputStream in = new FileInputStream(map_path); 
+		InputStream in = new FileInputStream(MAP_PATH); 
         Scanner scanner = new Scanner(in);
         while(scanner.hasNext()){   	
         	for(int i=0;i < mapinfo.getGridRow();i++){
@@ -146,8 +143,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
         			if(path[i][j]==3){
         				this.endX = i;
         				this.endY = j;
-        			}
-        			
+        			}       			
         		}
         	}
         }
@@ -158,38 +154,36 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 		}
 	}
 	
-	
 	@Override
 	public void paintComponent(Graphics g) {
-		g.clearRect(0, 0, StaticGameInfo.frameWidth, StaticGameInfo.frameHeight);
+		g.clearRect(0, 0, StaticGameInfo.FRAME_WIDTH, StaticGameInfo.FRAME_HEIGHT);
 		drawPath(g);
 		drawGrid(g);
 		drawFighter(g);
 		g.setColor(Color.green);
-		g.drawRect(focusX, focusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+		g.drawRect(focusX, focusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 	}
 
 	private void drawPath(Graphics g2) {
-
 		for (int i = 0; i < path.length; i++) {
 			for (int j = 0; j < path[i].length; j++) {
 				if (path[i][j] == 1) {
 					g2.setColor(Color.RED);
-					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
-							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
-							StaticGameInfo.gridSize);
+					g2.fillRect(j * StaticGameInfo.GRID_SIZE + StaticGameInfo.GAMELOCATION_X, i* StaticGameInfo.GRID_SIZE
+							+ StaticGameInfo.GAMELOCATION_Y, StaticGameInfo.GRID_SIZE,
+							StaticGameInfo.GRID_SIZE);
 				}
 				if (path[i][j] == 2) {
 					g2.setColor(Color.BLUE);
-					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
-							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
-							StaticGameInfo.gridSize);
+					g2.fillRect(j * StaticGameInfo.GRID_SIZE + StaticGameInfo.GAMELOCATION_X, i* StaticGameInfo.GRID_SIZE
+							+ StaticGameInfo.GAMELOCATION_Y, StaticGameInfo.GRID_SIZE,
+							StaticGameInfo.GRID_SIZE);
 				}
 				if (path[i][j] == 3) {
 					g2.setColor(Color.BLACK);
-					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
-							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
-							StaticGameInfo.gridSize);
+					g2.fillRect(j * StaticGameInfo.GRID_SIZE + StaticGameInfo.GAMELOCATION_X, i* StaticGameInfo.GRID_SIZE
+							+ StaticGameInfo.GAMELOCATION_Y, StaticGameInfo.GRID_SIZE,
+							StaticGameInfo.GRID_SIZE);
 				}
 			}
 		}		
@@ -199,12 +193,12 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 		g2.setColor(Color.BLACK);
 		for(int x = 0;x < map_col;x++){
 			for(int y = 0;y < map_row;y++){
-				g2.drawRect(StaticGameInfo.gridSize + (x*StaticGameInfo.gridSize), StaticGameInfo.gridSize + (y*StaticGameInfo.gridSize), StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+				g2.drawRect(StaticGameInfo.GRID_SIZE + (x*StaticGameInfo.GRID_SIZE), StaticGameInfo.GRID_SIZE + (y*StaticGameInfo.GRID_SIZE), StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 			}		
 		}
 	}
 	
-	public void drawFighter(Graphics g2){
+	private void drawFighter(Graphics g2){
 		List<Fighter> fighterList = this.getFighterList();
 		for(int i=0;i<fighterList.size();i++){
 			fighterList.get(i).draw(g2);
@@ -221,7 +215,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 					count = 1;
 				}else{
 					repaint();
-					gameScreenThread.sleep(50);
+					Thread.sleep(50);
 					count++;
 				}		
 			} catch (InterruptedException e) {
@@ -240,12 +234,12 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener{
 	public void mouseMoved(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-		if (x > StaticGameInfo.gameLocationX && x < StaticGameInfo.gameLocationX + map_col*StaticGameInfo.gridSize && y > StaticGameInfo.gameLocationY
-				&& y < StaticGameInfo.gameLocationY + map_row*StaticGameInfo.gridSize) {
-			focusX = (x - StaticGameInfo.gameLocationX) / StaticGameInfo.gridSize * StaticGameInfo.gridSize
-					+ StaticGameInfo.gridSize;
-			focusY = (y - StaticGameInfo.gameLocationY) / StaticGameInfo.gridSize * StaticGameInfo.gridSize
-					+ StaticGameInfo.gridSize;
+		if (x > StaticGameInfo.GAMELOCATION_X && x < StaticGameInfo.GAMELOCATION_X + map_col*StaticGameInfo.GRID_SIZE && y > StaticGameInfo.GAMELOCATION_Y
+				&& y < StaticGameInfo.GAMELOCATION_Y + map_row*StaticGameInfo.GRID_SIZE) {
+			focusX = (x - StaticGameInfo.GAMELOCATION_X) / StaticGameInfo.GRID_SIZE * StaticGameInfo.GRID_SIZE
+					+ StaticGameInfo.GRID_SIZE;
+			focusY = (y - StaticGameInfo.GAMELOCATION_Y) / StaticGameInfo.GRID_SIZE * StaticGameInfo.GRID_SIZE
+					+ StaticGameInfo.GRID_SIZE;
 		} else {
 			focusX = -100;
 			focusY = -100;

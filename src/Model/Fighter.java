@@ -18,8 +18,8 @@ public abstract class Fighter {
 	private int path[][];
 	
 	public Fighter(int x, int y,GameScreen GS) {
-		this.x = x * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX;
-		this.y = y * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX;
+		this.x = x * StaticGameInfo.GRID_SIZE + StaticGameInfo.GAMELOCATION_X;
+		this.y = y * StaticGameInfo.GRID_SIZE + StaticGameInfo.GAMELOCATION_X;
 		this.futureX = this.x;
 		this.futureY = this.y;
 		this.path = GS.getPath();

@@ -14,6 +14,6 @@ public class Ball extends Fighter{
 	@Override
 	public void draw(Graphics g) {	
 		g.setColor(Color.pink);
-		g.fillOval(y, x, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+		g.fillOval(y, x, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 	}
 }

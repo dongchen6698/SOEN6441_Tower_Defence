@@ -2,15 +2,9 @@ package BaseGameUI;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Point;
-import java.awt.Window;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.peer.MouseInfoPeer;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,7 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -30,30 +23,25 @@ import GameData.StaticGameInfo;
 import MapVerification.MapVerification;
 
 public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListener, MouseListener{
+	
 	private int maprow;
 	private int mapcol;
 	private int focusX = -100;
 	private int focusY = -100;
 	private int clickfocusX = -100;
 	private int clickfocusY = -100;
-	
-	private CreatMapScreen CMS;
-	private String map_path;
-	private int entryX;
-	private int entryY;
-	private int endX;
-	private int endY;
-	
-	private JButton save,edit,back;
 	private int[][] creatmappath;
-	public int clickinfo;
-	int count = 1;
-	public MainScreen mainscreen;
-	Thread creatmapscreen = new Thread(this);
+	private int clickinfo;
+	private String map_path;
+	private JButton save,edit,back;
+	private MainScreen mainscreen;
+	private CreatMapScreen creatmapscreen;
+	
+	Thread CMST = new Thread(this);
 	
 	public CreatMapScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
-		this.CMS = this;
+		this.creatmapscreen = this;
 		init();
 	}
 	
@@ -135,8 +123,8 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String mappath = fileChooser();
-				CMS.map_path = mappath;
+				String mappath = chooseFile();
+				creatmapscreen.map_path = mappath;
 				try {
 					loadMap();
 				} catch (FileNotFoundException e1) {
@@ -182,14 +170,11 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		});
 		this.addMouseMotionListener(this);
 		this.addMouseListener(this);
-		creatmapscreen.start();
+		CMST.start();
 	}
 	
 	public void paintComponent(Graphics g) {
-//		if(count == 1){
-		g.clearRect(0, 0, StaticGameInfo.frameWidth, StaticGameInfo.frameHeight);
-//		count++;
-//		}
+		g.clearRect(0, 0, StaticGameInfo.FRAME_WIDTH, StaticGameInfo.FRAME_HEIGHT);
 		drawPath(g);
 		drawGrid(g);
 		switch(clickinfo){
@@ -199,7 +184,7 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		case 4: clickCancel(g);break;
 		}
 		g.setColor(Color.green);
-		g.drawRect(focusX, focusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+		g.drawRect(focusX, focusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 	}
 	
 	public void drawPath(Graphics g2) {
@@ -207,21 +192,21 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 			for (int j = 0; j < creatmappath[i].length; j++) {
 				if (creatmappath[i][j] == 1) {
 					g2.setColor(Color.RED);
-					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
-							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
-							StaticGameInfo.gridSize);
+					g2.fillRect(j * StaticGameInfo.GRID_SIZE + StaticGameInfo.GAMELOCATION_X, i* StaticGameInfo.GRID_SIZE
+							+ StaticGameInfo.GAMELOCATION_Y, StaticGameInfo.GRID_SIZE,
+							StaticGameInfo.GRID_SIZE);
 				}
 				if (creatmappath[i][j] == 2) {
 					g2.setColor(Color.BLUE);
-					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
-							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
-							StaticGameInfo.gridSize);
+					g2.fillRect(j * StaticGameInfo.GRID_SIZE + StaticGameInfo.GAMELOCATION_X, i* StaticGameInfo.GRID_SIZE
+							+ StaticGameInfo.GAMELOCATION_Y, StaticGameInfo.GRID_SIZE,
+							StaticGameInfo.GRID_SIZE);
 				}
 				if (creatmappath[i][j] == 3) {
 					g2.setColor(Color.BLACK);
-					g2.fillRect(j * StaticGameInfo.gridSize + StaticGameInfo.gameLocationX, i* StaticGameInfo.gridSize
-							+ StaticGameInfo.gameLocationY, StaticGameInfo.gridSize,
-							StaticGameInfo.gridSize);
+					g2.fillRect(j * StaticGameInfo.GRID_SIZE + StaticGameInfo.GAMELOCATION_X, i* StaticGameInfo.GRID_SIZE
+							+ StaticGameInfo.GAMELOCATION_Y, StaticGameInfo.GRID_SIZE,
+							StaticGameInfo.GRID_SIZE);
 				}
 			}
 		}
@@ -231,18 +216,17 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		g2.setColor(Color.BLACK);
 		for(int x = 0;x < mapcol;x++){
 			for(int y = 0;y < maprow;y++){
-				g2.drawRect(StaticGameInfo.gridSize + (x*StaticGameInfo.gridSize), StaticGameInfo.gridSize + (y*StaticGameInfo.gridSize), StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+				g2.drawRect(StaticGameInfo.GRID_SIZE + (x*StaticGameInfo.GRID_SIZE), StaticGameInfo.GRID_SIZE + (y*StaticGameInfo.GRID_SIZE), StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 			}		
 		}
 	}
 	
-	public String fileChooser(){
+	public String chooseFile(){
 		JFileChooser jFileChooser = new JFileChooser();
 		jFileChooser.setCurrentDirectory(new File("Maps/"));	
         int result = jFileChooser.showOpenDialog(new JFrame());    
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jFileChooser.getSelectedFile();
- //           System.out.println("Selected file: " + selectedFile.getAbsolutePath());
             return selectedFile.getAbsolutePath();
         }else{
         	return null;
@@ -270,7 +254,6 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		}
 	}
 	
-	
 	public void saveMap() throws IOException{
 		String filename;
 		filename = JOptionPane.showInputDialog("Please input the name of file!");
@@ -290,30 +273,30 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		mainscreen.validate();
 		mainscreen.repaint();
 	}
+	
 	public void clickEntryPoint(Graphics g2){
 		g2.setColor(Color.BLUE);
-		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 		clickinfo = 0;
 	}
 	
 	public void clickPath(Graphics g2){
 		g2.setColor(Color.RED);
-		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 		clickinfo = 0;
 	}
 		
 	public void clickExitPoint(Graphics g2){
 		g2.setColor(Color.BLACK);
-		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 		clickinfo = 0;
 	}
 	
 	public void clickCancel(Graphics g2){
-		g2.clearRect(clickfocusX, clickfocusY, StaticGameInfo.gridSize, StaticGameInfo.gridSize);
+		g2.clearRect(clickfocusX, clickfocusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 		clickinfo = 0;
 	}
 	
-
 	@Override
 	public void run() {
 		while(true){
@@ -326,56 +309,37 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		}	
 	}
 
-	public int getMaprow() {
-		return maprow;
-	}
-
-	public void setMaprow(int maprow) {
-		this.maprow = maprow;
-	}
-
-	public int getMapcol() {
-		return mapcol;
-	}
-	
-	public void setMapcol(int mapcol) {
-		this.mapcol = mapcol;
-	}
-
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-		if (x > StaticGameInfo.gameLocationX && x < StaticGameInfo.gameLocationX + mapcol*StaticGameInfo.gridSize && y > StaticGameInfo.gameLocationY
-				&& y < StaticGameInfo.gameLocationY + maprow*StaticGameInfo.gridSize) {
-			focusX = (x - StaticGameInfo.gameLocationX) / StaticGameInfo.gridSize * StaticGameInfo.gridSize
-					+ StaticGameInfo.gridSize;
-			focusY = (y - StaticGameInfo.gameLocationY) / StaticGameInfo.gridSize * StaticGameInfo.gridSize
-					+ StaticGameInfo.gridSize;
+		if (x > StaticGameInfo.GAMELOCATION_X && x < StaticGameInfo.GAMELOCATION_X + mapcol*StaticGameInfo.GRID_SIZE && y > StaticGameInfo.GAMELOCATION_Y
+				&& y < StaticGameInfo.GAMELOCATION_Y + maprow*StaticGameInfo.GRID_SIZE) {
+			focusX = (x - StaticGameInfo.GAMELOCATION_X) / StaticGameInfo.GRID_SIZE * StaticGameInfo.GRID_SIZE
+					+ StaticGameInfo.GRID_SIZE;
+			focusY = (y - StaticGameInfo.GAMELOCATION_Y) / StaticGameInfo.GRID_SIZE * StaticGameInfo.GRID_SIZE
+					+ StaticGameInfo.GRID_SIZE;
 		} else {
 			focusX = -100;
 			focusY = -100;
-		}
-		
-		
+		}		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-		if (x > StaticGameInfo.gameLocationX && x < StaticGameInfo.gameLocationX + mapcol*StaticGameInfo.gridSize && y > StaticGameInfo.gameLocationY
-				&& y < StaticGameInfo.gameLocationY + maprow*StaticGameInfo.gridSize) {
-			clickfocusX = (x - StaticGameInfo.gameLocationX) / StaticGameInfo.gridSize * StaticGameInfo.gridSize
-					+ StaticGameInfo.gridSize;
-			clickfocusY = (y - StaticGameInfo.gameLocationY) / StaticGameInfo.gridSize * StaticGameInfo.gridSize
-					+ StaticGameInfo.gridSize;
+		if (x > StaticGameInfo.GAMELOCATION_X && x < StaticGameInfo.GAMELOCATION_X + mapcol*StaticGameInfo.GRID_SIZE && y > StaticGameInfo.GAMELOCATION_Y
+				&& y < StaticGameInfo.GAMELOCATION_Y + maprow*StaticGameInfo.GRID_SIZE) {
+			clickfocusX = (x - StaticGameInfo.GAMELOCATION_X) / StaticGameInfo.GRID_SIZE * StaticGameInfo.GRID_SIZE
+					+ StaticGameInfo.GRID_SIZE;
+			clickfocusY = (y - StaticGameInfo.GAMELOCATION_Y) / StaticGameInfo.GRID_SIZE * StaticGameInfo.GRID_SIZE
+					+ StaticGameInfo.GRID_SIZE;
 			
 			Object[] clicklist = {"Entry Point","Path","Exit Point","Cancel"};
 			String content = (String)JOptionPane.showInputDialog(this,"Which point you want to draw?\n","Draw point",JOptionPane.PLAIN_MESSAGE,null,clicklist,"Path");
@@ -422,6 +386,22 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public int getMaprow() {
+		return maprow;
+	}
+
+	public void setMaprow(int maprow) {
+		this.maprow = maprow;
+	}
+
+	public int getMapcol() {
+		return mapcol;
+	}
+	
+	public void setMapcol(int mapcol) {
+		this.mapcol = mapcol;
+	}
 
 	public int[][] getCreatmappath() {
 		return creatmappath;
@@ -430,10 +410,5 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	public void setCreatmappath(int[][] creatmappath) {
 		this.creatmappath = creatmappath;
 	}
-
-
-
-	
-	
 
 }
