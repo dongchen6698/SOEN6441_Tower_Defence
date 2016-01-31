@@ -17,14 +17,24 @@ public class Tower {
 	private int fightNum;
 
 	private int speed;
-
+	
+    private int price;
+    
 	private int[] powers;
 
 	private int[] fightNums;
+	
+	private boolean enable;
 
+	public Tower(){
+		enable = false;
+	}
 	public void levelUp(){
-		level++;
-		setPowerAndFinghtNum();
+		if (level < 6) {
+			level++;
+			enable = false;
+			setPowerAndFinghtNum();
+		}
 	}
 	
 	public void setPowerAndFinghtNum(){
@@ -178,6 +188,11 @@ public class Tower {
 	 */
 	public void setFightNums(int[] fightNums) {
 		this.fightNums = fightNums;
+	}
+
+	public boolean isEnable() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

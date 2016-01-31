@@ -1,5 +1,6 @@
 package BaseGameUI;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,6 +15,7 @@ import java.util.Scanner;
 
 import javax.swing.*;
 
+import Util.TowerUtil;
 import Util.DrawTowerUtil;
 import Util.Point;
 import Model.ElectricTower;
@@ -36,10 +38,13 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 	private int entryY;
 	private int endX;
 	private int endY;
+	private int money;
+	private int round;
 	private int changeTowerType;
 	private int towerType;
 	private boolean atTools;
 	private boolean drawTowerTools;
+	private boolean drawMoney;
 	private List<Point> toolsList;
 	private int[][] path = new int[100][100];
 	private List<Fighter> fighterList;
@@ -58,9 +63,12 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 	}
 	
 	public void init(){
+		money = 300;
+		round = 1;
 		atTools = false;
 		drawTowerTools = false;
 		changeTowerType = -1;
+		drawMoney = true;
 		towerType = -1;
 		toolsList = new ArrayList<Point>();
 		toolsList.add(new Point(StaticGameInfo.GAMELOCATION_X, StaticGameInfo.GAMELOCATION_Y + StaticGameInfo.GRID_SIZE * 8));
@@ -210,11 +218,28 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		drawFighter(g);
 		drawTools(g);
 		drawTowers(g);
+		drawMoney(g);
 		g.setColor(Color.green);
 		g.drawRect(focusX, focusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 		drawTowersTools(g);
 		
 	}
+	private void drawMoney(Graphics g2){
+		if (drawMoney) {
+			Font font = new Font("宋体", 30, 30);
+			g2.setFont(font);
+			g2.setColor(Color.black);
+			g2.drawString("$" + money, 50 + 12 * 50, 50
+					+ 9 * 50 - 10);
+		}
+		Font font = new Font("宋体", 30, 30);
+		g2.setColor(Color.black);
+		g2.setFont(font);
+		g2.drawString("round" + round, 50 + 9 * 50 - 25,
+				50 + 9 * 50 - 10);
+	}
+
+	
 	private void drawTowersTools(Graphics g2){
 		if (drawTowerTools) {
 			DrawTowerUtil.drawTowerByType(towerType, 1, g2, focusX, focusY,
@@ -222,9 +247,14 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		}
 	}
 	private void drawTools(Graphics g2){
+		Font font = new Font("STYLE_BOLD", 5, 12);
+		g2.setFont(font);
 		for (int i = 0; i < toolsList.size(); i++) {
 			DrawTowerUtil.drawTowerByType(i, 1, g2, toolsList.get(i).getX(),
 					toolsList.get(i).getY(), StaticGameInfo.GRID_SIZE);
+			g2.setColor(Color.black);
+			g2.drawString("" +"$"+ TowerUtil.getPriceByTowerType(i), toolsList.get(
+					i).getX() + 13, toolsList.get(i).getY() + 60);
 		}
 	}
 	private void drawTowers(Graphics g2){
@@ -232,6 +262,11 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 			Tower tower = towerList.get(i);
 			DrawTowerUtil.drawTowerByType(tower.getType(), tower.getLevel(),
 					g2, tower.getX(), tower.getY(), StaticGameInfo.GRID_SIZE);
+			int towerLevelX = tower.getX() + 42;
+			g2.setColor(Color.yellow);
+			for (int j = 0; j < tower.getLevel(); j++) {
+				g2.fillRect(towerLevelX, tower.getY() + 4 * j, 6, 3);
+			}
 		}
 	}
 	
