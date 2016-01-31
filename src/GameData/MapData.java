@@ -8,7 +8,11 @@ public class MapData {
 	
 	private int gridrow ;
 	private int gridcol ;
-	
+	/**
+	 * 
+	 * @param map_path
+	 * @throws FileNotFoundException
+	 */
 	public MapData(String map_path) throws FileNotFoundException{
 		String  thisLine = null;
 		int countrow = 0;

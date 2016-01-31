@@ -1,0 +1,17 @@
+package Model;
+
+public class FireTower extends Tower {
+	
+	public FireTower(int x, int y, int size) {
+		int[] powers = { 30, 60, 90, 120, 150, 180 };
+		int[] fightNums = { 1, 1, 2, 2, 3, 3 };
+		this.setPowers(powers);
+		this.setFightNums(fightNums);
+		this.setLevel(1);
+		this.setType(1);
+		this.setX(x);
+		this.setY(y);
+		this.setSpeed(1000);
+		setPowerAndFinghtNum();
+	}
+}

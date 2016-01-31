@@ -42,6 +42,7 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	public CreatMapScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
 		this.creatmapscreen = this;
+		
 		init();
 	}
 	

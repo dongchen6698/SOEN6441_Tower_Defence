@@ -1,0 +1,17 @@
+package Model;
+
+public class ElectricTower extends Tower {
+	
+	public ElectricTower(int x, int y, int size) {
+		int[] powers = { 40, 80, 120, 160, 200, 240 };
+		int[] fightNums = { 1, 1, 2, 2, 3, 3 };
+		this.setPowers(powers);
+		this.setFightNums(fightNums);
+		this.setLevel(1);
+		this.setType(2);
+		this.setX(x);
+		this.setY(y);
+		this.setSpeed(1000);
+		setPowerAndFinghtNum();
+	}
+}
