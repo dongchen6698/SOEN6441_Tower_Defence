@@ -24,15 +24,19 @@ public class Tower {
 
 	private int[] fightNums;
 	
-	private boolean enable;
+	private boolean enable ;
+	
+	private boolean life;
 
 	public Tower(){
-		enable = false;
+		enable = true;
+		life = true;
 	}
+	
 	public void levelUp(){
 		if (level < 6) {
 			level++;
-			enable = false;
+			enable = true;
 			setPowerAndFinghtNum();
 		}
 	}
@@ -189,10 +193,30 @@ public class Tower {
 	public void setFightNums(int[] fightNums) {
 		this.fightNums = fightNums;
 	}
-
+	
+	public void setEnable(boolean enable) {
+		this.enable = enable;
+	}
+	
 	public boolean isEnable() {
 		// TODO Auto-generated method stub
-		return false;
+		return enable;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+	
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	public boolean isLife() {
+		return life;
+	}
+	
+	public void setLife(boolean life) {
+		this.life = life;
 	}
 
 }

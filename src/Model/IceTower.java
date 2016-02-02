@@ -12,6 +12,9 @@ public class IceTower extends Tower {
 		this.setX(x);
 		this.setY(y);
 		this.setSpeed(1000);
+		//this.setData(data);
+		//this.setFighterList(data.getFighterList());
+		this.setPrice(100);
 		setPowerAndFinghtNum();
 	}
 }

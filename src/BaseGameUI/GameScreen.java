@@ -42,9 +42,14 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 	private int round;
 	private int changeTowerType;
 	private int towerType;
+	private int upX;
+	private int upY;
+	private boolean up;
+	private boolean broken;
 	private boolean atTools;
 	private boolean drawTowerTools;
-	private boolean drawMoney;
+	private boolean drawMoney;	
+	private Tower focusTower;
 	private List<Point> toolsList;
 	private int[][] path = new int[100][100];
 	private List<Fighter> fighterList;
@@ -65,6 +70,10 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 	public void init(){
 		money = 300;
 		round = 1;
+		upX = -100;
+		upY = -100;
+		up = false;
+		broken = false;
 		atTools = false;
 		drawTowerTools = false;
 		changeTowerType = -1;
@@ -222,21 +231,46 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		g.setColor(Color.green);
 		g.drawRect(focusX, focusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 		drawTowersTools(g);
+		drawUpOrDown(g);
 		
 	}
+	
+	private void drawUpOrDown(Graphics g2){
+		if (upX != -100 && upY != -100 && !drawTowerTools) {
+			g2.setColor(Color.white);
+			g2.fillRect(upX, upY, 50, 10);
+			g2.setColor(Color.orange);
+			if (up) {
+				g2.fillRect(upX, upY, 25, 10);
+			}
+			if (broken) {
+				g2.fillRect(upX + 25, upY, 25, 10);
+			}
+			g2.setColor(Color.black);
+			g2.drawLine(upX + StaticGameInfo.GRID_SIZE / 2, upY, upX + StaticGameInfo.GRID_SIZE  / 2,
+					upY + 10);
+			Font font = new Font("ËÎÌå", 5, 8);
+			g2.setFont(font);
+			if (focusTower.getLevel() < 6) {
+				g2.drawString("up" + focusTower.getPrice(), upX, upY + 8);
+			}
+			g2.drawString(" down", upX + 25, upY + 8);
+		}
+	}
+	
 	private void drawMoney(Graphics g2){
 		if (drawMoney) {
-			Font font = new Font("å®‹ä½“", 30, 30);
+			Font font = new Font("TimesRoman", 30, 30);
 			g2.setFont(font);
 			g2.setColor(Color.black);
-			g2.drawString("$" + money, 50 + 12 * 50, 50
-					+ 9 * 50 - 10);
+			g2.drawString("$" + getMoney(), StaticGameInfo.GAMELOCATION_X + 12 * StaticGameInfo.GRID_SIZE, StaticGameInfo.GAMELOCATION_Y
+					+ 9 * StaticGameInfo.GRID_SIZE - 10);
 		}
-		Font font = new Font("å®‹ä½“", 30, 30);
+		Font font = new Font("TimesRoman", 30, 30);
 		g2.setColor(Color.black);
 		g2.setFont(font);
-		g2.drawString("round" + round, 50 + 9 * 50 - 25,
-				50 + 9 * 50 - 10);
+		g2.drawString("round" + getRound(), StaticGameInfo.GAMELOCATION_X + 9 * StaticGameInfo.GRID_SIZE - 25,
+				StaticGameInfo.GAMELOCATION_Y + 9 * StaticGameInfo.GRID_SIZE - 10);
 	}
 
 	
@@ -260,15 +294,21 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 	private void drawTowers(Graphics g2){
 		for (int i = 0; i < towerList.size(); i++) {
 			Tower tower = towerList.get(i);
-			DrawTowerUtil.drawTowerByType(tower.getType(), tower.getLevel(),
-					g2, tower.getX(), tower.getY(), StaticGameInfo.GRID_SIZE);
-			int towerLevelX = tower.getX() + 42;
-			g2.setColor(Color.yellow);
-			for (int j = 0; j < tower.getLevel(); j++) {
-				g2.fillRect(towerLevelX, tower.getY() + 4 * j, 6, 3);
+			if (tower != null) {
+				DrawTowerUtil.drawTowerByType(tower.getType(),
+						tower.getLevel(), g2, tower.getX(), tower.getY(),
+						StaticGameInfo.GRID_SIZE);
+				int towerLevelX = tower.getX() + 42;
+				g2.setColor(Color.yellow);
+				for (int j = 0; j < tower.getLevel(); j++) {
+					g2.fillRect(towerLevelX, tower.getY() + 4 * j, 6, 3);
+				}
+				//if (!tower.isEnable()) {
+				//	DrawTowerUtil.drawTowerLife(g2, tower);
+			//	}
 			}
 		}
-	}
+		}
 	
 	private void drawPath(Graphics g2) {
 		for (int i = 0; i < path.length; i++) {
@@ -330,6 +370,44 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		}
 	}
 
+	private void upTower(final Tower tower) {
+		setMoney( getMoney() - tower.getPrice());
+		System.out.println("now money: " + getMoney());
+		tower.levelUp();
+	}
+
+	private void downTower(Tower tower) {
+		System.out.println("downtower");
+		setMoney(getMoney() + tower.getPrice() * tower.getLevel());
+		System.out.println("tower.getprice: "+tower.getPrice());
+		System.out.println("now money: " + getMoney());
+		tower.setLife(false);
+		getTowerList().remove(tower);
+	}
+
+	private void setDrawMoney() {
+		if (drawMoney) {
+			drawMoney = false;
+		} else {
+			drawMoney = true;
+		}
+	}
+	
+	private void noMoneyThread() {
+		new Thread() {
+			public void run() {
+				try {
+					for (int i = 0; i < 4; i++) {
+						setDrawMoney();
+						Thread.sleep(100);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}.start();
+	}
+
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
@@ -345,9 +423,36 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 			if (getSquerasX(x) == getSquerasX(tower.getX())
 					&& getSquerasY(y) == getSquerasX(tower.getY())) {
 				canDrawTowerTools = false;
+				if (tower.isEnable()) {
+					upX = getSquerasX(x);
+					upY = getSquerasY(y);
+					focusTower = tower;
+				} else {
+					upX = -100;
+					upY = -100;
+				}
 				break;
 			}
 		}
+		if (canDrawTowerTools) {
+			upX = -100;
+			upY = -100;
+			up = false;
+			broken = false;
+		} else {
+			if (x > upX && x < upX + 25 && y > upY && y < upY + 10
+					&& focusTower.getLevel() < 6) {
+				up = true;
+			} else {
+				up = false;
+			}
+			if (x > upX + 25 && x < upX + 50 && y > upY && y < upY + 10) {
+				broken = true;
+			} else {
+				broken = false;
+			}
+		}
+		
 		if (canDrawTowerTools
 				&& x > StaticGameInfo.GAMELOCATION_X
 				&& x <  StaticGameInfo.GAMELOCATION_X + StaticGameInfo.GRID_SIZE*path[0].length
@@ -395,12 +500,43 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 			}
 		} else {
 			if (changeTowerType != -1) {
-				drawTowerTools = true;
-				towerType = changeTowerType;
+				if (TowerUtil.getPriceByTowerType(changeTowerType) <=getMoney()) {
+					drawTowerTools = true;
+					towerType = changeTowerType;
+				} else {
+					noMoneyThread();
+				}
 			} else if (drawTowerTools && focusX != -100 && focusY != -100) {
-				addTower(towerType, focusX, focusY, StaticGameInfo.GRID_SIZE);
-				drawTowerTools = false;
-				towerType = -1;
+				setMoney(getMoney() - TowerUtil.getPriceByTowerType(towerType));
+				new Thread() {
+					public void run() {
+						addTower(towerType, focusX, focusY, StaticGameInfo.GRID_SIZE);
+						drawTowerTools = false;
+						towerType = -1;
+					}
+				}.start();
+			}
+			if (up && !drawTowerTools) {
+				if (getMoney() >= TowerUtil.getPriceByTowerType(focusTower
+						.getType())
+						&& focusTower.getLevel() < 6) {
+					upTower(focusTower);
+					upX = -100;
+					upY = -100;
+					up = false;
+				} else {
+					if (focusTower.getLevel() == 6) {
+
+					} else {
+						noMoneyThread();
+					}
+				}
+			}
+			if (broken && !drawTowerTools) {
+				downTower(focusTower);
+				upX = -100;
+				upY = -100;
+				broken = false;
 			}
 		}
 	}
@@ -468,6 +604,22 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 	private int getSquerasX(int x) {
 		return (x - StaticGameInfo.GAMELOCATION_X) / StaticGameInfo.GRID_SIZE * StaticGameInfo.GRID_SIZE
 				+ StaticGameInfo.GRID_SIZE;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+	
+	public int getRound() {
+		return round;
+	}
+
+	public void setRound(int round) {
+		this.round = round;
 	}
 
 	@Override
