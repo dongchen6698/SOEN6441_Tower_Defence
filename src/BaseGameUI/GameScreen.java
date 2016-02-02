@@ -44,6 +44,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 	private int towerType;
 	private int upX;
 	private int upY;
+	private int click_count = 1;
 	private boolean up;
 	private boolean broken;
 	private boolean atTools;
@@ -318,8 +319,12 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 			//	}
 			
 			}
+				g2.setColor(Color.green);
+				g2.drawArc(tower.getX()-(25+25*click_count), tower.getY()-(25+25*click_count), tower.getRange(), tower.getRange(), 0, 360);
+
+			}
 		}		
-	}
+	
 	
 	private void drawPath(Graphics g2) {
 		for (int i = 0; i < path.length; i++) {
@@ -532,6 +537,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 						.getType())
 						&& focusTower.getLevel() < 6) {
 					upTower(focusTower);
+					click_count++;
 					upX = -100;
 					upY = -100;
 					up = false;
