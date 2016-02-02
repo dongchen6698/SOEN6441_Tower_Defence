@@ -1,11 +1,8 @@
 package BaseGameUI;
 
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.io.File;
 
 import javax.swing.JButton;

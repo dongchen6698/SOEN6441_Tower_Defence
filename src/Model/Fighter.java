@@ -3,7 +3,6 @@ package Model;
 import java.awt.Graphics;
 
 import BaseGameUI.GameScreen;
-import GameData.MapData;
 import GameData.StaticGameInfo;
 
 public abstract class Fighter {

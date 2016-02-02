@@ -11,6 +11,8 @@ public class Tower {
 	private int power;
 
 	private int level;
+	
+	private int range;
 
 	private int bulletType;
 
@@ -24,10 +26,14 @@ public class Tower {
 
 	private int[] fightNums;
 	
+	private int[] ranges;
+	
 	private boolean enable ;
 	
 	private boolean life;
-
+	
+	private String special_effects;
+	
 	public Tower(){
 		enable = true;
 		life = true;
@@ -44,6 +50,7 @@ public class Tower {
 	public void setPowerAndFinghtNum(){
 		this.power = powers[level-1];
 		this.fightNum = fightNums[level-1];
+		this.range = ranges[level-1];
 	}
 	
 	/**
@@ -217,6 +224,30 @@ public class Tower {
 	
 	public void setLife(boolean life) {
 		this.life = life;
+	}
+	
+	public String getSpecial_effects() {
+		return special_effects;
+	}
+
+	public void setSpecial_effects(String special_effects) {
+		this.special_effects = special_effects;
+	}
+
+	public int[] getRanges() {
+		return ranges;
+	}
+
+	public void setRanges(int[] range) {
+		this.ranges = range;
+	}
+
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
 	}
 
 }

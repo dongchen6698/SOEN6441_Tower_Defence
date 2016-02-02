@@ -174,6 +174,7 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		CMST.start();
 	}
 	
+	@Override
 	public void paintComponent(Graphics g) {
 		g.clearRect(0, 0, StaticGameInfo.FRAME_WIDTH, StaticGameInfo.FRAME_HEIGHT);
 		drawPath(g);
