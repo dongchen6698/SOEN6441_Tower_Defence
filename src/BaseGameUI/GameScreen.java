@@ -180,13 +180,15 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		drawFighter(g);
 		drawTools(g);
 		drawTowers(g);
+		drawTowersTools(g);
+		drawUpOrDown(g);
 		drawMoney(g);
+		drawTowerInspectPanel(g);
+		drawTowerInspectInfo(g);
 		g.setColor(Color.green);
 		g.drawRect(focusX, focusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
-		drawTowersTools(g);
-		drawUpOrDown(g);	
 	}
-	
+
 	private void drawUpOrDown(Graphics g2){
 		if (upX != -100 && upY != -100 && !drawTowerTools) {
 			g2.setColor(Color.white);
@@ -208,34 +210,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 				g2.drawString("UP", upX+6, upY + 10);
 				g2.drawString("$:"+focusTower.getPrice(), upX+2, upY + 20);
 			}
-			g2.drawString("SALE", upX + 25, upY + 10);
-			//g2.drawString("$:"+focusTower.getPrice(), upX, upY + 20);
-
-			Font font1 = new Font("TimesRoman", 30, 15);
-			g2.setFont(font1);
-			g2.setColor(Color.black);
-			g2.drawString("Level: " + focusTower.getLevel(), 
-					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5, 
-					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 15);
-			g2.drawString("Power: " + focusTower.getPower(), 
-					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
-					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 35);
-			g2.drawString("Refund: " + "100%", 
-					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
-					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 55);
-			g2.drawString("Speical: " + focusTower.getSpecial_effects(), 
-					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
-					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 75);
-			g2.drawString("Range: " + focusTower.getRange(), 
-					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
-					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 95);
-			
-			g2.drawString("FightNum: " + focusTower.getFightNum(), 
-					StaticGameInfo.GAMELOCATION_X + 9 * StaticGameInfo.GRID_SIZE + 5, 
-					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 15);
-			g2.drawString("Speed: " + focusTower.getSpeed(), 
-					StaticGameInfo.GAMELOCATION_X + 9 * StaticGameInfo.GRID_SIZE + 5,
-					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 35);
+			g2.drawString("SALE", upX + 25, upY + 10);	
 			}
 	}
 	
@@ -252,8 +227,11 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		g2.setFont(font);
 		g2.drawString("round" + getRound(), StaticGameInfo.GAMELOCATION_X + 3 * StaticGameInfo.GRID_SIZE ,
 				StaticGameInfo.GAMELOCATION_Y + 10 * StaticGameInfo.GRID_SIZE);
-		Font font1 = new Font("TimesRoman", 25, 15);
-		g2.setFont(font1);
+	}
+	
+	private void drawTowerInspectPanel(Graphics g2) {
+		Font font = new Font("TimesRoman", 25, 15);
+		g2.setFont(font);
 		g2.drawString("Tower Inspect Panel", 
 				StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE-1, 
 				StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE-12);
@@ -268,17 +246,45 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 				StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 150, 
 				StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 100);
 	}
-
 	
+	private void drawTowerInspectInfo(Graphics g2) {
+		if (upX != -100 && upY != -100 && !drawTowerTools){
+			Font font = new Font("TimesRoman", 30, 15);
+			g2.setFont(font);
+			g2.setColor(Color.black);
+			g2.drawString("Level: " + focusTower.getLevel(), 
+					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5, 
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 15);
+			g2.drawString("Power: " + focusTower.getPower(), 
+					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 35);
+			g2.drawString("Refund: " + "100%", 
+					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 55);
+			g2.drawString("Speical: " + focusTower.getSpecial_effects(), 
+					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 75);
+			g2.drawString("Range: " + focusTower.getRange(), 
+					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 95);
+			g2.drawString("FightNum: " + focusTower.getFightNum(), 
+					StaticGameInfo.GAMELOCATION_X + 9 * StaticGameInfo.GRID_SIZE + 5, 
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 15);
+			g2.drawString("Speed: " + focusTower.getSpeed(), 
+					StaticGameInfo.GAMELOCATION_X + 9 * StaticGameInfo.GRID_SIZE + 5,
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 35);
+		}	
+	}
+
 	private void drawTowersTools(Graphics g2){
 		if (drawTowerTools) {
 			DrawTowerUtil.drawTowerByType(towerType, 1, g2, focusX, focusY,
 					StaticGameInfo.GRID_SIZE);
 			g2.setColor(Color.green);
 			g2.drawArc(focusX-50, focusY-50, 150, 150, 0, 360);
-		}
-		
+		}	
 	}
+	
 	private void drawTools(Graphics g2){
 		Font font = new Font("STYLE_BOLD", 5, 12);
 		g2.setFont(font);
@@ -290,6 +296,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 					i).getX() + 13, toolsList.get(i).getY() + 60);
 		}
 	}
+	
 	private void drawTowers(Graphics g2){
 		for (int i = 0; i < towerList.size(); i++) {
 			Tower tower = towerList.get(i);
