@@ -17,7 +17,7 @@ public class ElectricTower extends Tower {
 		this.setSpecial_effects("Long_range");
 		//this.setData(data);
 		//this.setFighterList(data.getFighterList());
-		this.setPrice(160);
+		this.setPrice(200);
 		setPowerAndFinghtNum();
 	}
 }

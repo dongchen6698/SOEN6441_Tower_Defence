@@ -1,8 +1,8 @@
 package BaseGameUI;
 
 import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JButton;
@@ -23,7 +23,6 @@ public class StartScreen extends JPanel{
 
 	public void init(){
 		this.setLayout(null);
- 		this.setBackground(Color.orange);
 		creat = new JButton("Creat Maps");
 		select = new JButton("Select Maps");
 		exit = new JButton("EXIT GAME");
@@ -33,10 +32,9 @@ public class StartScreen extends JPanel{
 		creat.setBounds(300, 100, 200,100);
 		select.setBounds(300,250,200,100);
 		exit.setBounds(300,400,200,100);
-		creat.addMouseListener(new MouseListener(){
-
+		creat.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				CreatMapScreen CMS = new CreatMapScreen(mainscreen);
 				int row = Integer.parseInt(JOptionPane.showInputDialog("Please input the number of row"));
 				int col = Integer.parseInt(JOptionPane.showInputDialog("Please input the number of col"));
@@ -51,35 +49,27 @@ public class StartScreen extends JPanel{
 				mainscreen.add(CMS);
 				mainscreen.validate();
 				mainscreen.repaint();
-				}	
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				}
 			}
 		});
-		select.addMouseListener(new SelectMouseListener());
-		exit.addMouseListener(new ExitMouseListener());
+		select.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String mappath = chooseFile();
+				GameScreen.MAP_PATH = mappath;
+				GameScreen GS = new GameScreen(mainscreen);
+				mainscreen.removeAll();
+				mainscreen.add(GS);
+				mainscreen.validate();
+				mainscreen.repaint();
+			}
+		});
+		exit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 	}
 	
 	public String chooseFile(){
@@ -92,78 +82,5 @@ public class StartScreen extends JPanel{
         }else{
         	return null;
         }
-	}
-	
-	public class SelectMouseListener implements MouseListener{
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			String mappath = chooseFile();
-			GameScreen.MAP_PATH = mappath;
-			GameScreen GS = new GameScreen(mainscreen);
-			mainscreen.removeAll();
-			mainscreen.add(GS);
-			mainscreen.validate();
-			mainscreen.repaint();	
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-	}
-	
-	public class ExitMouseListener implements MouseListener{
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			System.exit(0);
-			
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
 	}
 }

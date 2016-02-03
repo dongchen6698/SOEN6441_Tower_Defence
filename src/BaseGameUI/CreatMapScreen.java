@@ -2,6 +2,8 @@ package BaseGameUI;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -42,7 +44,6 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	public CreatMapScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
 		this.creatmapscreen = this;
-		
 		init();
 	}
 	
@@ -57,116 +58,38 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		save.setBounds(700,475,100,30);
 		edit.setBounds(700,515,100,30);
 		back.setBounds(700,550,100,30);
-		save.addMouseListener(new MouseListener() {
-			
+		save.addActionListener(new ActionListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				if(new MapVerification(creatmappath).isState()){
-				try {
-					saveMap();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				JOptionPane.showMessageDialog(null, "Congratulation~!");
-				}
+					try {
+						saveMap();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					JOptionPane.showMessageDialog(null, "Congratulation~!");
+					}
 			}
 		});
-		edit.addMouseListener(new MouseListener() {
-			
+		edit.addActionListener(new ActionListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				String mappath = chooseFile();
 				creatmapscreen.map_path = mappath;
 				try {
 					loadMap();
 				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
-				
+				}	
 			}
 		});
-		back.addMouseListener(new MouseListener() {
-			
+		back.addActionListener(new ActionListener() {	
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				mainscreen.removeAll();
 				mainscreen.add(new StartScreen(mainscreen));
 				mainscreen.validate();
-				mainscreen.repaint();		
+				mainscreen.repaint();	
 			}
 		});
 		this.addMouseMotionListener(this);
@@ -267,8 +190,7 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 			}
 			out.write("\n");
 		}
-		out.close();
-		
+		out.close();	
 		mainscreen.removeAll();
 		mainscreen.add(new StartScreen(mainscreen));
 		mainscreen.validate();
@@ -411,5 +333,4 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	public void setCreatmappath(int[][] creatmappath) {
 		this.creatmappath = creatmappath;
 	}
-
 }

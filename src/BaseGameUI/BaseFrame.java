@@ -1,4 +1,6 @@
 package BaseGameUI;
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 import GameData.StaticGameInfo;
@@ -11,6 +13,7 @@ public class BaseFrame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
+		this.setBackground(Color.GRAY);
 		init();
 	}
 

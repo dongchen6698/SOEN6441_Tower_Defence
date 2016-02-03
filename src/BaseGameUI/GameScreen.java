@@ -2,6 +2,8 @@ package BaseGameUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -82,11 +84,11 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		towerType = -1;
 		toolsList = new ArrayList<Point>();
 		toolsList.add(new Point(StaticGameInfo.GAMELOCATION_X, StaticGameInfo.GAMELOCATION_Y + StaticGameInfo.GRID_SIZE * 8));
-		toolsList.add(new Point(StaticGameInfo.GAMELOCATION_X + StaticGameInfo.GRID_SIZE * 2, StaticGameInfo.GAMELOCATION_Y + StaticGameInfo.GRID_SIZE
+		toolsList.add(new Point(StaticGameInfo.GAMELOCATION_X + StaticGameInfo.GRID_SIZE + 25, StaticGameInfo.GAMELOCATION_Y + StaticGameInfo.GRID_SIZE
 				* 8));
-		toolsList.add(new Point(StaticGameInfo.GAMELOCATION_X + StaticGameInfo.GRID_SIZE * 4, StaticGameInfo.GAMELOCATION_Y + StaticGameInfo.GRID_SIZE
+		toolsList.add(new Point(StaticGameInfo.GAMELOCATION_X + StaticGameInfo.GRID_SIZE * 3, StaticGameInfo.GAMELOCATION_Y + StaticGameInfo.GRID_SIZE
 				* 8));
-		toolsList.add(new Point(StaticGameInfo.GAMELOCATION_X + StaticGameInfo.GRID_SIZE * 6, StaticGameInfo.GAMELOCATION_Y + StaticGameInfo.GRID_SIZE
+		toolsList.add(new Point(StaticGameInfo.GAMELOCATION_X + StaticGameInfo.GRID_SIZE * 4 + 25, StaticGameInfo.GAMELOCATION_Y + StaticGameInfo.GRID_SIZE
 				* 8));
 		this.setLayout(null);
 		start = new JButton("Start Game");
@@ -95,71 +97,21 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		this.add(back);
 		start.setBounds(700,515,100,30);
 		back.setBounds(700,550,100,30);
-		start.addMouseListener(new MouseListener() {
-			
+		start.addActionListener(new ActionListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				GST.start();
 				Thread FT = new Thread(new FighterThread(gamescreen));
-				FT.start();			
+				FT.start();	
 			}
 		});
-		back.addMouseListener(new MouseListener() {
-			
+		back.addActionListener(new ActionListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				mainscreen.removeAll();
 				mainscreen.add(new StartScreen(mainscreen));
 				mainscreen.validate();
-				mainscreen.repaint();		
+				mainscreen.repaint();
 			}
 		});
 		fighterList = new ArrayList<Fighter>();
@@ -232,53 +184,89 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		g.setColor(Color.green);
 		g.drawRect(focusX, focusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 		drawTowersTools(g);
-		drawUpOrDown(g);
-		
+		drawUpOrDown(g);	
 	}
 	
 	private void drawUpOrDown(Graphics g2){
 		if (upX != -100 && upY != -100 && !drawTowerTools) {
 			g2.setColor(Color.white);
-			g2.fillRect(upX, upY, 50, 10);
-			g2.setColor(Color.orange);
+			g2.fillRect(upX , upY, 50, 25);
 			if (up) {
-				g2.fillRect(upX, upY, 25, 10);
+				g2.setColor(Color.GREEN);
+				g2.fillRect(upX, upY, 25, 25);
 			}
 			if (broken) {
-				g2.fillRect(upX + 25, upY, 25, 10);
+				g2.setColor(Color.red);
+				g2.fillRect(upX + 25, upY, 25, 25);
 			}
 			g2.setColor(Color.black);
 			g2.drawLine(upX + StaticGameInfo.GRID_SIZE / 2, upY, upX + StaticGameInfo.GRID_SIZE  / 2,
-					upY + 10);
+					upY + 25);
 			Font font = new Font("Times New Roman", 5, 10);
 			g2.setFont(font);
 			if (focusTower.getLevel() < 6) {
-				g2.drawString("up" + focusTower.getPrice(), upX, upY + 8);
+				g2.drawString("UP", upX+6, upY + 10);
+				g2.drawString("$:"+focusTower.getPrice(), upX+2, upY + 20);
 			}
-			g2.drawString(" down", upX + 25, upY + 8);
-			g2.setColor(Color.gray);
-			g2.fillRect(upX, upY+10, 50, 30);
+			g2.drawString("SALE", upX + 25, upY + 10);
+			//g2.drawString("$:"+focusTower.getPrice(), upX, upY + 20);
+
+			Font font1 = new Font("TimesRoman", 30, 15);
+			g2.setFont(font1);
 			g2.setColor(Color.black);
-			g2.drawString("level: " + focusTower.getLevel(), upX, upY + 17);
-			g2.drawString("power: " + focusTower.getPower(), upX, upY + 25);
-			g2.drawString("refund: " + "100%", upX, upY + 33);
-			g2.drawString("speical: " + focusTower.getSpecial_effects(), upX, upY + 42);
+			g2.drawString("Level: " + focusTower.getLevel(), 
+					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5, 
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 15);
+			g2.drawString("Power: " + focusTower.getPower(), 
+					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 35);
+			g2.drawString("Refund: " + "100%", 
+					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 55);
+			g2.drawString("Speical: " + focusTower.getSpecial_effects(), 
+					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 75);
+			g2.drawString("Range: " + focusTower.getRange(), 
+					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 95);
+			
+			g2.drawString("FightNum: " + focusTower.getFightNum(), 
+					StaticGameInfo.GAMELOCATION_X + 9 * StaticGameInfo.GRID_SIZE + 5, 
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 15);
+			g2.drawString("Speed: " + focusTower.getSpeed(), 
+					StaticGameInfo.GAMELOCATION_X + 9 * StaticGameInfo.GRID_SIZE + 5,
+					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 35);
 			}
 	}
 	
 	private void drawMoney(Graphics g2){
 		if (drawMoney) {
-			Font font = new Font("TimesRoman", 30, 30);
+			Font font = new Font("TimesRoman", 30, 25);
 			g2.setFont(font);
 			g2.setColor(Color.black);
-			g2.drawString("$" + getMoney(), StaticGameInfo.GAMELOCATION_X + 12 * StaticGameInfo.GRID_SIZE, StaticGameInfo.GAMELOCATION_Y
-					+ 9 * StaticGameInfo.GRID_SIZE - 10);
+			g2.drawString("$" + getMoney(), StaticGameInfo.GAMELOCATION_X, 
+					StaticGameInfo.GAMELOCATION_Y + 10 * StaticGameInfo.GRID_SIZE);
 		}
-		Font font = new Font("TimesRoman", 30, 30);
+		Font font = new Font("TimesRoman", 30, 25);
 		g2.setColor(Color.black);
 		g2.setFont(font);
-		g2.drawString("round" + getRound(), StaticGameInfo.GAMELOCATION_X + 9 * StaticGameInfo.GRID_SIZE - 25,
-				StaticGameInfo.GAMELOCATION_Y + 9 * StaticGameInfo.GRID_SIZE - 10);
+		g2.drawString("round" + getRound(), StaticGameInfo.GAMELOCATION_X + 3 * StaticGameInfo.GRID_SIZE ,
+				StaticGameInfo.GAMELOCATION_Y + 10 * StaticGameInfo.GRID_SIZE);
+		Font font1 = new Font("TimesRoman", 25, 15);
+		g2.setFont(font1);
+		g2.drawString("Tower Inspect Panel", 
+				StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE-1, 
+				StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE-12);
+		g2.drawRect(StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE-5,
+				StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE-30, 155, 30);
+		g2.drawRect(StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE, 
+				StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE, 300, 100);
+		g2.drawRect(StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE-5, 
+				StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE-5, 310, 110);
+		g2.drawLine(StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 150, 
+				StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE,
+				StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 150, 
+				StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 100);
 	}
 
 	
@@ -309,22 +297,16 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 				DrawTowerUtil.drawTowerByType(tower.getType(),
 						tower.getLevel(), g2, tower.getX(), tower.getY(),
 						StaticGameInfo.GRID_SIZE);
-				int towerLevelX = tower.getX() + 42;
+				int towerLevelX = tower.getX() + 44;
 				g2.setColor(Color.yellow);
 				for (int j = 0; j < tower.getLevel(); j++) {
-					g2.fillRect(towerLevelX, tower.getY() + 4 * j, 6, 3);
+					g2.fillRect(towerLevelX, tower.getY() + 6 * j, 6, 4);
 				}
-								//if (!tower.isEnable()) {
-				//	DrawTowerUtil.drawTowerLife(g2, tower);
-			//	}
-			
-			}
 				g2.setColor(Color.green);
 				g2.drawArc(tower.getX()-(25+25*click_count), tower.getY()-(25+25*click_count), tower.getRange(), tower.getRange(), 0, 360);
-
+			}
 			}
 		}		
-	
 	
 	private void drawPath(Graphics g2) {
 		for (int i = 0; i < path.length; i++) {
@@ -453,13 +435,13 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 			up = false;
 			broken = false;
 		} else {
-			if (x > upX && x < upX + 25 && y > upY && y < upY + 10
+			if (x > upX && x < upX + 25 && y > upY && y < upY + 25
 					&& focusTower.getLevel() < 6) {
 				up = true;
 			} else {
 				up = false;
 			}
-			if (x > upX + 25 && x < upX + 50 && y > upY && y < upY + 10) {
+			if (x > upX + 25 && x < upX + 50 && y > upY && y < upY + 25) {
 				broken = true;
 			} else {
 				broken = false;
@@ -492,17 +474,6 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 				changeTowerType = -1;
 			}
 		}
-	/*	if (x > StaticGameInfo.GAMELOCATION_X && x < StaticGameInfo.GAMELOCATION_X + map_col*StaticGameInfo.GRID_SIZE && y > StaticGameInfo.GAMELOCATION_Y
-				&& y < StaticGameInfo.GAMELOCATION_Y + map_row*StaticGameInfo.GRID_SIZE) {
-			focusX = (x - StaticGameInfo.GAMELOCATION_X) / StaticGameInfo.GRID_SIZE * StaticGameInfo.GRID_SIZE
-					+ StaticGameInfo.GRID_SIZE;
-			focusY = (y - StaticGameInfo.GAMELOCATION_Y) / StaticGameInfo.GRID_SIZE * StaticGameInfo.GRID_SIZE
-					+ StaticGameInfo.GRID_SIZE;
-		} else {
-			focusX = -100;
-			focusY = -100;
-		}
-	*/	
 	}
 
 	@Override
@@ -526,7 +497,6 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 					@Override
 					public void run() {
 						addTower(towerType, focusX, focusY, StaticGameInfo.GRID_SIZE);
-						System.out.println("focusx "+focusX+"focusY"+focusY);
 						drawTowerTools = false;
 						towerType = -1;
 					}
@@ -557,6 +527,32 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 			}
 		}
 	}
+	
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	public int[][] getPath() {
 		return path;
 	}
@@ -637,29 +633,5 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 
 	public void setRound(int round) {
 		this.round = round;
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }

@@ -17,7 +17,7 @@ public class FireTower extends Tower {
 		this.setSpecial_effects("Big_power");
 		//this.setData(data);
 		//this.setFighterList(data.getFighterList());
-		this.setPrice(140);
+		this.setPrice(150);
 		setPowerAndFinghtNum();
 	}
 }

@@ -17,7 +17,7 @@ public class WoodTower extends Tower{
 		this.setSpecial_effects("Slowing");
 		//this.setData(data);
 		//this.setFighterList(data.getFighterList());
-		this.setPrice(150);
+		this.setPrice(250);
 		setPowerAndFinghtNum();
 	}
 }

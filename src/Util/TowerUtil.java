@@ -8,13 +8,13 @@ public class TowerUtil {
 			price = 100;
 		}
 		if (type == 1) {
-			price = 140;
+			price = 150;
 		}
 		if (type == 2) {
-			price = 160;
+			price = 200;
 		}
 		if (type == 3) {
-			price = 150;
+			price = 250;
 		}
 		return price;
 	}
