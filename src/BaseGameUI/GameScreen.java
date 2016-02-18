@@ -14,9 +14,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import javax.swing.*;
-
 import Util.TowerUtil;
 import Util.DrawTowerUtil;
 import Util.Point;
@@ -25,52 +23,52 @@ import Model.FireTower;
 import Model.IceTower;
 import Model.Tower;
 import Model.WoodTower;
-import FighterThread.FighterThread;
 import GameData.MapData;
 import GameData.StaticGameInfo;
-import Model.*;
-
+/**
+ * This is a basic game screen which after users select a map
+ * 
+ * @author peilin
+ *
+ */
 public class GameScreen extends JPanel implements Runnable, MouseMotionListener, MouseListener{
 	
-	private int focusX = -100;
-	private int focusY = -100;
+	private int focusX = -100;							// current the X-axis of the mouse
+	private int focusY = -100;							// current the Y-axis of the mouse
 	private int map_row;
 	private int map_col;
-	private int entryX;
-	private int entryY;
-	private int endX;
-	private int endY;
 	private int money;
 	private int round;
 	private int changeTowerType;
 	private int towerType;
-	private int upX;
-	private int upY;
-	private int click_count = 1;
-	private boolean up;
-	private boolean broken;
+	private int upX;									// the X-axis of the tower which users want to update
+	private int upY;									// the Y-axis of the tower which users want to update
+	private int[][] path = new int[100][100];
+	private boolean up;									// up the tower 
+	private boolean broken;								// sell the tower			
 	private boolean atTools;
 	private boolean drawTowerTools;
 	private boolean drawMoney;	
-	private Tower focusTower;
+	private Tower focusTower;							// a tower when users mouse clicked it 
 	private List<Point> toolsList;
-	private int[][] path = new int[100][100];
-	private List<Fighter> fighterList;
 	private List<Tower> towerList;
 	private JButton start,back;
-	private GameScreen gamescreen;
 	private MainScreen mainscreen;
 	public static String MAP_PATH;
 	Thread GST = new Thread(this);
 	
 	public GameScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
-		gamescreen = this;
 		init();	
 		this.addMouseListener(this);
 	}
 	
+	/**
+	 * A method of initialize the value
+	 * 
+	 */
 	public void init(){
+		GST.start();
 		money = 3000;
 		round = 1;
 		upX = -100;
@@ -97,14 +95,6 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		this.add(back);
 		start.setBounds(700,515,100,30);
 		back.setBounds(700,550,100,30);
-		start.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				GST.start();
-				Thread FT = new Thread(new FighterThread(gamescreen));
-				FT.start();	
-			}
-		});
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -114,7 +104,6 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 				mainscreen.repaint();
 			}
 		});
-		fighterList = new ArrayList<Fighter>();
 		towerList = new ArrayList<Tower>();
 		this.addMouseMotionListener(this);
 		
@@ -125,6 +114,13 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		}	
 	}
 	
+	/**
+	 * a method of add a tower to tower list 
+	 * @param type   a tower's type
+	 * @param x		 the position of the tower's x-axis	
+	 * @param y		 the position of tower's y-axis
+	 * @param size	 the size of the tower	
+	 */
 	public void addTower(int type, int x, int y, int size) {
 		Tower tower = null;
 		if (type == 0) {
@@ -142,6 +138,10 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		towerList.add(tower);
 	}
 
+	/**
+	 * This method is loaded a map's information when users select it  
+	 * @throws FileNotFoundException
+	 */
 	public void loadMap() throws FileNotFoundException{
 		MapData mapinfo = new MapData(MAP_PATH);
 		map_row = mapinfo.getGridRow();
@@ -153,14 +153,6 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
         	for(int i=0;i < mapinfo.getGridRow();i++){
         		for(int j=0;j < mapinfo.getGridCol();j++){
         			new_path[i][j] = scanner.nextInt();
-        			if(new_path[i][j]==2){
-        				this.entryX = i;
-        				this.entryY = j;
-        			}
-        			if(new_path[i][j]==3){
-        				this.endX = i;
-        				this.endY = j;
-        			}       			
         		}
         	}
         	setPath(new_path);
@@ -172,12 +164,15 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		}
 	}
 	
+	/**
+	 * This is a method of paint 
+	 * 
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		g.clearRect(0, 0, StaticGameInfo.FRAME_WIDTH, StaticGameInfo.FRAME_HEIGHT);
 		drawPath(g);
 		drawGrid(g);
-		drawFighter(g);
 		drawTools(g);
 		drawTowers(g);
 		drawTowersTools(g);
@@ -189,10 +184,16 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		g.drawRect(focusX, focusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 	}
 
+	/**
+	 * This method is draw a kind of buttons of update and broken
+	 * 
+	 * @param g2
+	 */
 	private void drawUpOrDown(Graphics g2){
 		if (upX != -100 && upY != -100 && !drawTowerTools) {
 			g2.setColor(Color.white);
 			g2.fillRect(upX , upY, 50, 25);
+			g2.drawOval(upX-(focusTower.getRange()/2)+25, upY-(focusTower.getRange()/2)+25, focusTower.getRange(), focusTower.getRange());
 			if (up) {
 				g2.setColor(Color.GREEN);
 				g2.fillRect(upX, upY, 25, 25);
@@ -214,6 +215,10 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 			}
 	}
 	
+	/**
+	 * This method is draw current money which the player hold
+	 * @param g2
+	 */
 	private void drawMoney(Graphics g2){
 		if (drawMoney) {
 			Font font = new Font("TimesRoman", 30, 25);
@@ -229,6 +234,11 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 				StaticGameInfo.GAMELOCATION_Y + 10 * StaticGameInfo.GRID_SIZE);
 	}
 	
+	/**
+	 * This method is draw a panel which will hold the information of a tower
+	 * 
+	 * @param g2
+	 */
 	private void drawTowerInspectPanel(Graphics g2) {
 		Font font = new Font("TimesRoman", 25, 15);
 		g2.setFont(font);
@@ -247,6 +257,11 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 				StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 100);
 	}
 	
+	/**
+	 * This method is display a tower's information 
+	 * 
+	 * @param g2
+	 */
 	private void drawTowerInspectInfo(Graphics g2) {
 		if (upX != -100 && upY != -100 && !drawTowerTools){
 			Font font = new Font("TimesRoman", 30, 15);
@@ -261,7 +276,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 			g2.drawString("Refund: " + "100%", 
 					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
 					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 55);
-			g2.drawString("Speical: " + focusTower.getSpecial_effects(), 
+			g2.drawString("Speical: " + focusTower.getSpecialEffects(), 
 					StaticGameInfo.GAMELOCATION_X + 6 * StaticGameInfo.GRID_SIZE + 5,
 					StaticGameInfo.GAMELOCATION_Y + 8 * StaticGameInfo.GRID_SIZE + 75);
 			g2.drawString("Range: " + focusTower.getRange(), 
@@ -276,15 +291,22 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		}	
 	}
 
+	/**
+	 * This method is after player choose a tower, it can be displayed on the game map following the mouse 
+	 * @param g2
+	 */
 	private void drawTowersTools(Graphics g2){
 		if (drawTowerTools) {
 			DrawTowerUtil.drawTowerByType(towerType, 1, g2, focusX, focusY,
 					StaticGameInfo.GRID_SIZE);
-			g2.setColor(Color.green);
-			g2.drawArc(focusX-50, focusY-50, 150, 150, 0, 360);
+			g2.setColor(Color.WHITE);
 		}	
 	}
 	
+	/**
+	 * This method is draw towers and the money which is the price of the tower on the toolbar  
+	 * @param g2
+	 */
 	private void drawTools(Graphics g2){
 		Font font = new Font("STYLE_BOLD", 5, 12);
 		g2.setFont(font);
@@ -297,6 +319,10 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		}
 	}
 	
+	/**
+	 * This method is draw a tower on the game map
+	 * @param g2
+	 */
 	private void drawTowers(Graphics g2){
 		for (int i = 0; i < towerList.size(); i++) {
 			Tower tower = towerList.get(i);
@@ -309,12 +335,14 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 				for (int j = 0; j < tower.getLevel(); j++) {
 					g2.fillRect(towerLevelX, tower.getY() + 6 * j, 6, 4);
 				}
-				g2.setColor(Color.green);
-				g2.drawArc(tower.getX()-(25+25*click_count), tower.getY()-(25+25*click_count), tower.getRange(), tower.getRange(), 0, 360);
 			}
-			}
-		}		
+		}
+	}		
 	
+	/**
+	 * This method is draw a path which from entrance to exit
+	 * @param g2
+	 */
 	private void drawPath(Graphics g2) {
 		for (int i = 0; i < path.length; i++) {
 			for (int j = 0; j < path[i].length; j++) {
@@ -348,38 +376,32 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 			}		
 		}
 	}
-	
-	private void drawFighter(Graphics g2){
-		List<Fighter> fighterList = this.getFighterList();
-		for(int i=0;i<fighterList.size();i++){
-			fighterList.get(i).draw(g2);
-		}
-	}
 
 	@Override
 	public void run() {
-		int count =1;
 		while(true){
 			try {
-				if(count%10 == 0){
-					fighterList.add(new Ball(this.entryX,this.entryY,this));
-					count = 1;
-				}else{
-					repaint();
-					Thread.sleep(50);
-					count++;
-				}		
+				repaint();
+				Thread.sleep(50);	
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	private void upTower(final Tower tower) {
+	/**
+	 * This method is update a tower
+	 * @param tower
+	 */
+	private void upTower(Tower tower) {
 		setMoney( getMoney() - tower.getPrice());
 		tower.levelUp();
 	}
-
+	
+	/**
+	 * This method is sell a tower
+	 * @param tower
+	 */
 	private void downTower(Tower tower) {
 		setMoney(getMoney() + tower.getPrice() * tower.getLevel());
 		tower.setLife(false);
@@ -394,6 +416,10 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		}
 	}
 	
+	/**
+	 * This method will warn players when they want to buy a tower 
+	 * do not have enough money 
+	 */
 	private void noMoneyThread() {
 		new Thread() {
 			@Override
@@ -460,7 +486,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 				&& x <  StaticGameInfo.GAMELOCATION_X + StaticGameInfo.GRID_SIZE*path[0].length
 				&& y >  StaticGameInfo.GAMELOCATION_Y
 				&& y <  StaticGameInfo.GAMELOCATION_Y + StaticGameInfo.GRID_SIZE*path.length
-				&& path[(y -  StaticGameInfo.GAMELOCATION_Y) / StaticGameInfo.GRID_SIZE][(x -  StaticGameInfo.GAMELOCATION_X) / StaticGameInfo.GRID_SIZE] != 1) {
+				&& path[(y -  StaticGameInfo.GAMELOCATION_Y) / StaticGameInfo.GRID_SIZE][(x -  StaticGameInfo.GAMELOCATION_X) / StaticGameInfo.GRID_SIZE] == 0) {
 			focusX = getSquerasX(x);
 			focusY = getSquerasX(y);
 		} else {
@@ -514,7 +540,6 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 						.getType())
 						&& focusTower.getLevel() < 6) {
 					upTower(focusTower);
-					click_count++;
 					upX = -100;
 					upY = -100;
 					up = false;
@@ -566,30 +591,6 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 
 	public void setPath(int[][] path) {
 		this.path = path;
-	}
-
-	public List<Fighter> getFighterList() {
-		return fighterList;
-	}
-
-	public void setFighterList(List<Fighter> fighterList) {
-		this.fighterList = fighterList;
-	}
-
-	public int getEndX() {
-		return endX;
-	}
-
-	public void setEndX(int endX) {
-		this.endX = endX;
-	}
-
-	public int getEndY() {
-		return endY;
-	}
-
-	public void setEndY(int endY) {
-		this.endY = endY;
 	}
 
 	public int getMap_row() {

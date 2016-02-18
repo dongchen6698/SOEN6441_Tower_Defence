@@ -1,9 +1,21 @@
 package Model;
 
+/**
+ * A subclass of Tower
+ * A type of a tower 
+ * @author peilin
+ *
+ */
 public class FireTower extends Tower {
 	
+	/**
+	 * A constructor of FireTower
+	 * @param x			the position of x-axis of the tower
+	 * @param y		    the position of y-axis of the tower
+	 * @param size		the size of the tower
+	 */
 	public FireTower(int x, int y, int size) {
-		int[] powers = { 30, 60, 90, 120, 150, 180 };
+		int[] powers = { 40, 80, 120, 160, 200, 240 };
 		int[] fightNums = { 1, 1, 2, 2, 3, 3 };
 		int[] ranges = {150, 200, 250, 300, 350, 400};
 		this.setPowers(powers);
@@ -14,10 +26,8 @@ public class FireTower extends Tower {
 		this.setX(x);
 		this.setY(y);
 		this.setSpeed(1000);
-		this.setSpecial_effects("Big_power");
-		//this.setData(data);
-		//this.setFighterList(data.getFighterList());
+		this.setSpecialEffects("Big_power");
 		this.setPrice(150);
-		setPowerAndFinghtNum();
+		setPower_FinghtNum_Range();
 	}
 }

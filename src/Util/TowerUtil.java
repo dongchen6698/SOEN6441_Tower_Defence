@@ -1,5 +1,9 @@
 package Util;
-
+/**
+ * This class is setting up the price of towers
+ * @author peilin
+ *
+ */
 public class TowerUtil {
 	
 	public static int getPriceByTowerType(int type) {

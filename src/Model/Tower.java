@@ -1,12 +1,18 @@
 package Model;
 
+/**
+ * This class contain the information of towers
+ * 
+ * @author peilin
+ *
+ */
 public class Tower {
 
-	private int x;
+	private int x;				// the position of X-axis of the tower
 
-	private int y;
+	private int y;				// the position of Y-axis of the tower
 
-	private int type;
+	private int type;			// the type of tower
 
 	private int power;
 
@@ -32,22 +38,25 @@ public class Tower {
 	
 	private boolean life;
 	
-	private String special_effects;
+	private String specialEffects;
 	
 	public Tower(){
 		enable = true;
 		life = true;
 	}
 	
+	/**
+	 * A method player can update tower until level 6
+	 */
 	public void levelUp(){
 		if (level < 6) {
 			level++;
 			enable = true;
-			setPowerAndFinghtNum();
+			setPower_FinghtNum_Range();
 		}
 	}
 	
-	public void setPowerAndFinghtNum(){
+	public void setPower_FinghtNum_Range(){
 		this.power = powers[level-1];
 		this.fightNum = fightNums[level-1];
 		this.range = ranges[level-1];
@@ -157,12 +166,12 @@ public class Tower {
 		this.life = life;
 	}
 	
-	public String getSpecial_effects() {
-		return special_effects;
+	public String getSpecialEffects() {
+		return specialEffects;
 	}
 
-	public void setSpecial_effects(String special_effects) {
-		this.special_effects = special_effects;
+	public void setSpecialEffects(String specialEffects) {
+		this.specialEffects = specialEffects;
 	}
 
 	public int[] getRanges() {

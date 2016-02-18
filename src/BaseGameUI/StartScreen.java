@@ -1,6 +1,5 @@
 package BaseGameUI;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -10,7 +9,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+/**
+ * This is beginning of game screen
+ * @author peilin
+ *
+ */
 public class StartScreen extends JPanel{
 
 	private MainScreen mainscreen;
@@ -21,6 +24,9 @@ public class StartScreen extends JPanel{
 		init();	
 	}
 
+	/**
+	 * This method is set up the value
+	 */
 	public void init(){
 		this.setLayout(null);
 		creat = new JButton("Creat Maps");
@@ -72,6 +78,10 @@ public class StartScreen extends JPanel{
 		});
 	}
 	
+	/**
+	 * This method is choose a file when player select a map
+	 * @return
+	 */
 	public String chooseFile(){
 		JFileChooser jFileChooser = new JFileChooser();
 		jFileChooser.setCurrentDirectory(new File("Maps/"));	

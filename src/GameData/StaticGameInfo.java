@@ -1,5 +1,9 @@
 package GameData;
-
+/**
+ * This class is contain the static member 
+ * @author peilin
+ *
+ */
 public class StaticGameInfo {
 	public static final int FRAME_WIDTH = 800;
 	public static final int FRAME_HEIGHT = 600;

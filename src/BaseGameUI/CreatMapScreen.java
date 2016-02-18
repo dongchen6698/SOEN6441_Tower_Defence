@@ -23,15 +23,20 @@ import javax.swing.JPanel;
 import GameData.MapData;
 import GameData.StaticGameInfo;
 import MapVerification.MapVerification;
-
+/**
+ * This class is made a view of Create map screen 
+ * 
+ * @author peilin
+ *
+ */
 public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListener, MouseListener{
-	
+
 	private int maprow;
 	private int mapcol;
-	private int focusX = -100;
-	private int focusY = -100;
-	private int clickfocusX = -100;
-	private int clickfocusY = -100;
+	private int focusX = -100;				// current position of X-axis of mouse
+	private int focusY = -100;				// current position of Y-axis of mouse
+	private int clickfocusX = -100;			// the position of X-axis of mouse when click mouse 
+	private int clickfocusY = -100;			// the position of Y-axis of mouse when click mouse
 	private int[][] creatmappath;
 	private int clickinfo;
 	private String map_path;
@@ -41,6 +46,11 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	
 	Thread CMST = new Thread(this);
 	
+	/**
+	 * The constructor of CreatMapScreen
+	 * 
+	 * @param mainscreen 
+	 */
 	public CreatMapScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
 		this.creatmapscreen = this;
@@ -112,9 +122,21 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		g.drawRect(focusX, focusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 	}
 	
+	/**
+	 * a method of draw a map when users edit it 
+	 *  
+	 * @param g2
+	 */
 	public void drawPath(Graphics g2) {
 		for (int i = 0; i < creatmappath.length; i++) {
 			for (int j = 0; j < creatmappath[i].length; j++) {
+				
+				/*
+				 * creatmappath[i][j] == 1 means draw a path
+				 * creatmappath[i][j] == 2 means draw a entrance
+				 * creatmappath[i][j] == 3 means draw a exit
+				 * 
+				 */
 				if (creatmappath[i][j] == 1) {
 					g2.setColor(Color.RED);
 					g2.fillRect(j * StaticGameInfo.GRID_SIZE + StaticGameInfo.GAMELOCATION_X, i* StaticGameInfo.GRID_SIZE
@@ -137,6 +159,11 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		}
 	}
 	
+	/**
+	 * This method is draw a grid after user input the game size
+	 * 
+	 * @param g2
+	 */
 	public void drawGrid(Graphics g2) {
 		g2.setColor(Color.BLACK);
 		for(int x = 0;x < mapcol;x++){
@@ -146,6 +173,11 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		}
 	}
 	
+	/**
+	 * This method is choose file when users edit a map
+	 * 
+	 * @return String
+	 */
 	public String chooseFile(){
 		JFileChooser jFileChooser = new JFileChooser();
 		jFileChooser.setCurrentDirectory(new File("Maps/"));	
@@ -158,6 +190,11 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
         }
 	}
 	
+	/**
+	 * This method is load map information when users edit a map
+	 * 
+	 * @throws FileNotFoundException
+	 */
 	public void loadMap() throws FileNotFoundException{
 		MapData mapinfo = new MapData(map_path);
 		maprow = mapinfo.getGridRow();
@@ -179,6 +216,11 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		}
 	}
 	
+	/**
+	 * This method is save map information when users save a map
+	 * 
+	 * @throws IOException
+	 */
 	public void saveMap() throws IOException{
 		String filename;
 		filename = JOptionPane.showInputDialog("Please input the name of file!");
@@ -197,29 +239,53 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 		mainscreen.repaint();
 	}
 	
+	/**
+	 * This method is draw a entrance
+	 * 
+	 * @param g2
+	 */
 	public void clickEntryPoint(Graphics g2){
 		g2.setColor(Color.BLUE);
 		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 		clickinfo = 0;
 	}
 	
+	/**
+	 * This method is draw path
+	 * 
+	 * @param g2
+	 */
 	public void clickPath(Graphics g2){
 		g2.setColor(Color.RED);
 		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 		clickinfo = 0;
 	}
 		
+	/**
+	 * This method is draw a exit
+	 * 
+	 * @param g2
+	 */
 	public void clickExitPoint(Graphics g2){
 		g2.setColor(Color.BLACK);
 		g2.fillRect(clickfocusX, clickfocusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 		clickinfo = 0;
 	}
 	
+	/**
+	 * This method is cancel the current state(entrance, path, and exit) to scene
+	 * 
+	 * @param g2
+	 */
 	public void clickCancel(Graphics g2){
 		g2.clearRect(clickfocusX, clickfocusY, StaticGameInfo.GRID_SIZE, StaticGameInfo.GRID_SIZE);
 		clickinfo = 0;
 	}
 	
+	/**
+	 * Run a thread to repaint
+	 *  
+	 */
 	@Override
 	public void run() {
 		while(true){
@@ -241,6 +307,11 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	public void mouseMoved(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
+		
+		/*
+		 *This condition is for setting up the coordinate of the mouse which within the map
+		 * 
+		 */
 		if (x > StaticGameInfo.GAMELOCATION_X && x < StaticGameInfo.GAMELOCATION_X + mapcol*StaticGameInfo.GRID_SIZE && y > StaticGameInfo.GAMELOCATION_Y
 				&& y < StaticGameInfo.GAMELOCATION_Y + maprow*StaticGameInfo.GRID_SIZE) {
 			focusX = (x - StaticGameInfo.GAMELOCATION_X) / StaticGameInfo.GRID_SIZE * StaticGameInfo.GRID_SIZE
@@ -257,6 +328,11 @@ public class CreatMapScreen extends JPanel implements Runnable, MouseMotionListe
 	public void mouseClicked(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
+		
+		/*
+		 * When the mouse within the game map, clicking the mouse users can choose what operate 
+		 * they want to next
+		 */
 		if (x > StaticGameInfo.GAMELOCATION_X && x < StaticGameInfo.GAMELOCATION_X + mapcol*StaticGameInfo.GRID_SIZE && y > StaticGameInfo.GAMELOCATION_Y
 				&& y < StaticGameInfo.GAMELOCATION_Y + maprow*StaticGameInfo.GRID_SIZE) {
 			clickfocusX = (x - StaticGameInfo.GAMELOCATION_X) / StaticGameInfo.GRID_SIZE * StaticGameInfo.GRID_SIZE

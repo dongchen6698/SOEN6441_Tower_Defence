@@ -3,16 +3,16 @@ package GameData;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-
+/**
+ * This class is contain the information of a map
+ * @author peilin
+ *
+ */
 public class MapData {
 	
-	private int gridrow ;
-	private int gridcol ;
-	/**
-	 * 
-	 * @param map_path
-	 * @throws FileNotFoundException
-	 */
+	private int gridRow ;
+	private int gridCol ;
+
 	public MapData(String map_path) throws FileNotFoundException{
 		String  thisLine = null;
 		int countrow = 0;
@@ -23,8 +23,8 @@ public class MapData {
 			countrow++;
 			countcol = thisLine.replace(" ", "").length();
 			}
-		gridrow = countrow;
-		gridcol = countcol;
+		gridRow = countrow;
+		gridCol = countcol;
 		}
 		catch(Exception e){
 		e.printStackTrace();
@@ -32,16 +32,16 @@ public class MapData {
 	}
 	
 	public int getGridRow() {
-		return gridrow;
+		return gridRow;
 	}
 	public void setGridRow(int gridRow) {
-		this.gridrow = gridRow;
+		this.gridRow = gridRow;
 	}
 	public int getGridCol() {
-		return gridcol;
+		return gridCol;
 	}
 	public void setGridCol(int gridCol) {
-		this.gridcol = gridCol;
+		this.gridCol = gridCol;
 	}
 
 }

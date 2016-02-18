@@ -1,7 +1,19 @@
 package Model;
 
+/**
+ * A subclass of Tower
+ * A type of a tower 
+ * @author peilin
+ *
+ */
 public class IceTower extends Tower {
 	
+	/**
+	 * A constructor of IceTower
+	 * @param x			the position of x-axis of the tower
+	 * @param y		    the position of y-axis of the tower
+	 * @param size		the size of the tower
+	 */
 	public IceTower(int x, int y, int size) {
 		int[] powers = { 25, 50, 75, 100, 125, 150 };
 		int[] fightNums = { 1, 1, 2, 2, 3, 3 };
@@ -14,10 +26,8 @@ public class IceTower extends Tower {
 		this.setX(x);
 		this.setY(y);
 		this.setSpeed(1000);
-		this.setSpecial_effects("Stun");
-		//this.setData(data);
-		//this.setFighterList(data.getFighterList());
+		this.setSpecialEffects("Stun");
 		this.setPrice(100);
-		setPowerAndFinghtNum();
+		setPower_FinghtNum_Range();
 	}
 }

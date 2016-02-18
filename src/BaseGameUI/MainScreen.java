@@ -1,10 +1,13 @@
 package BaseGameUI;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
-
+/**
+ * This class extends JPanel 
+ * @author peilin
+ *
+ */
 public class MainScreen extends JPanel{
 	
 	public MainScreen(){

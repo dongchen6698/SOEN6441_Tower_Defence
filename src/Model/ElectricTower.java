@@ -1,11 +1,23 @@
 package Model;
 
+/**
+ * A subclass of Tower
+ * A type of a tower 
+ * @author peilin
+ *
+ */
 public class ElectricTower extends Tower {
 	
+	/**
+	 * A constructor of ElectricTower
+	 * @param x			the position of x-axis of the tower
+	 * @param y		    the position of y-axis of the tower
+	 * @param size		the size of the tower
+	 */
 	public ElectricTower(int x, int y, int size) {
-		int[] powers = { 40, 80, 120, 160, 200, 240 };
+		int[] powers = { 30, 60, 90, 120, 150, 180 };
 		int[] fightNums = { 1, 1, 2, 2, 3, 3 };
-		int[] ranges = {150, 200, 250, 300, 350, 400};
+		int[] ranges = {200, 250, 300, 350, 400, 450};
 		this.setPowers(powers);
 		this.setFightNums(fightNums);
 		this.setRanges(ranges);
@@ -14,10 +26,8 @@ public class ElectricTower extends Tower {
 		this.setX(x);
 		this.setY(y);
 		this.setSpeed(1000);
-		this.setSpecial_effects("Long_range");
-		//this.setData(data);
-		//this.setFighterList(data.getFighterList());
+		this.setSpecialEffects("Long_range");
 		this.setPrice(200);
-		setPowerAndFinghtNum();
+		setPower_FinghtNum_Range();
 	}
 }
