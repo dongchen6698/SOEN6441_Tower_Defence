@@ -15,10 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.*;
+
+import FighterThread.FighterThread;
 import Util.TowerUtil;
 import Util.DrawTowerUtil;
 import Util.Point;
+import Model.Ball;
 import Model.ElectricTower;
+import Model.Fighter;
 import Model.FireTower;
 import Model.IceTower;
 import Model.Tower;
@@ -37,6 +41,10 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 	private int focusY = -100;							// current the Y-axis of the mouse
 	private int map_row;
 	private int map_col;
+	private int entryX;
+	private int entryY;
+	private int endX;
+	private int endY;
 	private int money;
 	private int round;
 	private int changeTowerType;
@@ -51,14 +59,18 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 	private boolean drawMoney;	
 	private Tower focusTower;							// a tower when users mouse clicked it 
 	private List<Point> toolsList;
+	private List<Fighter> fighterList;
 	private List<Tower> towerList;
 	private JButton start,back;
 	private MainScreen mainscreen;
+	private GameScreen gamescreen;
 	public static String MAP_PATH;
+	
 	Thread GST = new Thread(this);
 	
 	public GameScreen(MainScreen mainscreen){
 		this.mainscreen = mainscreen;
+		gamescreen = this;
 		init();	
 		this.addMouseListener(this);
 	}
@@ -68,7 +80,6 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 	 * 
 	 */
 	public void init(){
-		GST.start();
 		money = 3000;
 		round = 1;
 		upX = -100;
@@ -95,6 +106,14 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		this.add(back);
 		start.setBounds(700,515,100,30);
 		back.setBounds(700,550,100,30);
+		start.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GST.start();
+				Thread FT = new Thread(new FighterThread(gamescreen));
+				FT.start();		
+			}
+		});
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -104,6 +123,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 				mainscreen.repaint();
 			}
 		});
+		fighterList = new ArrayList<Fighter>();
 		towerList = new ArrayList<Tower>();
 		this.addMouseMotionListener(this);
 		
@@ -153,6 +173,14 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
         	for(int i=0;i < mapinfo.getGridRow();i++){
         		for(int j=0;j < mapinfo.getGridCol();j++){
         			new_path[i][j] = scanner.nextInt();
+        			if(new_path[i][j]==2){
+        				this.entryX = i;
+        				this.entryY = j;
+        			}
+        			if(new_path[i][j]==3){
+        				this.endX = i;
+        				this.endY = j;
+        			}       			
         		}
         	}
         	setPath(new_path);
@@ -173,6 +201,7 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 		g.clearRect(0, 0, StaticGameInfo.FRAME_WIDTH, StaticGameInfo.FRAME_HEIGHT);
 		drawPath(g);
 		drawGrid(g);
+		drawFighter(g);
 		drawTools(g);
 		drawTowers(g);
 		drawTowersTools(g);
@@ -376,13 +405,27 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 			}		
 		}
 	}
+	
+	private void drawFighter(Graphics g2){
+		List<Fighter> fighterList = this.getFighterList();
+		for(int i=0;i<fighterList.size();i++){
+			fighterList.get(i).draw(g2);
+		}
+	}
 
 	@Override
 	public void run() {
+		int count =1;
 		while(true){
 			try {
-				repaint();
-				Thread.sleep(50);	
+				if(count%10 == 0){
+					fighterList.add(new Ball(this.entryX,this.entryY,this));
+					count = 1;
+				}else{
+					repaint();
+					Thread.sleep(50);
+					count++;
+				}		
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -641,5 +684,45 @@ public class GameScreen extends JPanel implements Runnable, MouseMotionListener,
 
 	public void setRound(int round) {
 		this.round = round;
+	}
+
+	public int getEntryX() {
+		return entryX;
+	}
+
+	public void setEntryX(int entryX) {
+		this.entryX = entryX;
+	}
+
+	public int getEntryY() {
+		return entryY;
+	}
+
+	public void setEntryY(int entryY) {
+		this.entryY = entryY;
+	}
+
+	public int getEndX() {
+		return endX;
+	}
+
+	public void setEndX(int endX) {
+		this.endX = endX;
+	}
+
+	public int getEndY() {
+		return endY;
+	}
+
+	public void setEndY(int endY) {
+		this.endY = endY;
+	}
+
+	public List<Fighter> getFighterList() {
+		return fighterList;
+	}
+
+	public void setFighterList(List<Fighter> fighterList) {
+		this.fighterList = fighterList;
 	}
 }
