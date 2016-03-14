@@ -98,14 +98,11 @@ public class Shop_Controller implements Observer {
                     double refund_amount = sModel.getButtonPrice(i) * 0.8;
                     sModel.setMoney(ConfigModel.money + (int)refund_amount );
                     ConfigModel.money = ConfigModel.money + (int)refund_amount;
-                  //  ccCont.getgcModelObj(y, x).towerLog[i] += LogGenerator.getLogTime()+"Tower Removed from ("+y+","+x+")\n";
-                   // LogGenerator.addLog("Tower Id:"+sModel.getHeldID()+" removed from ("+y+","+x+")");
-                   // LogGenerator.addLog("Tower Sell reward done.");
-                    try {
-                        ccCont.getgcModelObj(y, x).endTime();
-                    } catch (ParseException ex) {
-                        Logger.getLogger(Shop_Controller.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+//                    try {
+//                        ccCont.getgcModelObj(y, x).endTime();
+//                    } catch (ParseException ex) {
+//                        Logger.getLogger(Shop_Controller.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
                     return true;
                 }
         }

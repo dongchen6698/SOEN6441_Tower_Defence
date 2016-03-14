@@ -16,7 +16,7 @@ public class ConfigModel {
     public static int killsToWin = 5;
     public static int maxLevel = 4;
     public static boolean roundSlot = true;
-    public static int creaturesNo = 5;
+    public static int creaturesNo = 7;
     public static int waveLap = 1;
     
     public static int level = 1;

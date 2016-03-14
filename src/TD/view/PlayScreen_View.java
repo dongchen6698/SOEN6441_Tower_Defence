@@ -63,17 +63,12 @@ public class PlayScreen_View extends JPanel implements Runnable {
         
         j.addMouseListener(eventSource);
         j.addMouseMotionListener(eventSource);
-//        for(int i=0;i<ground_level.length;i++){
-//            ground_level[i] = new ImageIcon("resources/grass_tile1.png").getImage();
-//            ground_level[i] = createImage(new FilteredImageSource(ground_level[i].getSource(), new CropImageFilter(0, 40*i, 40, 40)));
-//        }
-        ground_level[0] = new ImageIcon("resources/green_road.png").getImage();
-        ground_level[1] = new ImageIcon("resources/brown_road.png").getImage();
-        
-//        for(int i=0;i<air_level.length;i++){
-//            air_level[i] = new ImageIcon("resources/air_tile1.png").getImage();
-//            air_level[i] = createImage(new FilteredImageSource(air_level[i].getSource(), new CropImageFilter(0, 40*i, 40, 40)));
-//        }
+
+        ground_level[0] = new ImageIcon("resources/green_ground.png").getImage();
+        ground_level[1] = new ImageIcon("resources/path.png").getImage();
+ 
+        air_level[0] = new ImageIcon("resources/end_point.png").getImage();
+        air_level[1] = new ImageIcon("resources/entry_point.png").getImage();
         air_level[3] = new ImageIcon("resources/tower_1.png").getImage();
         air_level[4] = new ImageIcon("resources/tower_2.png").getImage();
         air_level[5] = new ImageIcon("resources/tower_3.png").getImage();
