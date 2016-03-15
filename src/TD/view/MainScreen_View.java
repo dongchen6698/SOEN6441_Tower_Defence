@@ -42,7 +42,6 @@ public class MainScreen_View extends JFrame implements WindowListener{
 		creat.setBounds(300, 100, 200,100);
 		start.setBounds(300,250,200,100);
 		exit.setBounds(300,400,200,100);
-		
 		this.addWindowListener(this);
 	}
 	

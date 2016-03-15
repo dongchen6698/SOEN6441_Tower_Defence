@@ -20,7 +20,6 @@ import TD.view.MainScreen_View;
  *
  */
 public class MapChooser_View extends JFrame {
-    
     private JButton showButton;
     private JList fruitList;
     MainScreen_View msView;
@@ -58,8 +57,7 @@ public class MapChooser_View extends JFrame {
      * this method will read all files from MapFiles folder and list in JList Box.
      * @param fileList the array of map files
      */
-    public void listMapFiles(String[] fileList){
-        
+    public void listMapFiles(String[] fileList){     
         this.setLayout(new BorderLayout(5, 5));
         final DefaultListModel fruitsName = new DefaultListModel();
 

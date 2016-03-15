@@ -12,6 +12,7 @@ import TD.model.Creature_Model;
  *
  */
 public class Creature_View {
+	
     /**
      * Draw function for creature's view
      * @param cModel CreatureModel object

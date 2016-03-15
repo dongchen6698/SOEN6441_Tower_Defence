@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import TD.controller.MapBox_Controller;
+
 /**
  * This class is a view  of mapcreation
  * 
@@ -32,7 +33,6 @@ public class MapCreation_View extends JFrame implements WindowListener{
     JPanel map_grid_panel;
     MapBox_Controller mbCont;
     
-	
 	/**
      * This method is initialize GUI components for Map Creation Screen.
      */
