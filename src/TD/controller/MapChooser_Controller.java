@@ -16,7 +16,6 @@ import TowerDefenceGame.GamePlay;
  * @author peilin
  */
 public class MapChooser_Controller {
-
     MapChooser_View theView = new MapChooser_View();
     MapChooser_Model theModel = new MapChooser_Model();
     

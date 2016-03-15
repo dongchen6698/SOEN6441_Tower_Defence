@@ -9,7 +9,6 @@ import TD.view.GridCell_View;
  * @author peilin
  */
 public class GridCell_Controller {
-
     GridCell_View theView;
     GridCell_Model[][] theModel;
    

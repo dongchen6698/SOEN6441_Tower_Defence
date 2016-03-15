@@ -1,6 +1,7 @@
 package TD.controller;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -11,6 +12,7 @@ import TD.model.MapCreation_Model;
 import TD.view.MainScreen_View;
 import TD.view.MapChooser_View;
 import TD.view.MapCreation_View;
+
 /**
  * This Class will bind and initialize Model-View of Main Screen Module.
  * @author peilin
@@ -38,6 +40,9 @@ public class MainScreen_Controller {
         theView.setTopEnabled();
     }
     
+    /**
+     * this is method for initializing map creation controller
+     */
     public void initMapCreationg_Controller(){
     	MapCreation_View mcView = new MapCreation_View();
         MapCreation_Model mcModel = new MapCreation_Model();

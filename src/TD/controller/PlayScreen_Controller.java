@@ -17,18 +17,14 @@ import TD.view.Shop_View;
  * @author peilin
  */
 public class PlayScreen_Controller {
-
     PlayScreen_Model theModel;
-    PlayScreen_View theView;
-    
+    PlayScreen_View theView;    
     private CellContainer_Model ccModel;
     private CellContainer_View ccView;
-    private CellContainer_Controller ccCont;
-    
+    private CellContainer_Controller ccCont;    
     GridCell_Model[][] gcModel;
     GridCell_View gcView;
-    GridCell_Controller gcCont;
-    
+    GridCell_Controller gcCont;    
     private Shop_Model sModel;
     Shop_View sView;
     private Shop_Controller sCont;
@@ -43,12 +39,11 @@ public class PlayScreen_Controller {
      * @param ccModel the CellContainerModel
      * @param sView the ShopView
      * @param sModel the ShopModel
-     */
-    
+     */   
     public PlayScreen_Controller(PlayScreen_View psView, PlayScreen_Model psModel, GridCell_View gcView, GridCell_Model[][] gcModel, CellContainer_View ccView, CellContainer_Model ccModel, Shop_View sView, Shop_Model sModel) {
         theModel = psModel;
         theView = psView;
-        
+     
         this.gcModel = gcModel;
         this.gcView = gcView;
         this.gcCont = new GridCell_Controller(this.gcView,this.gcModel);

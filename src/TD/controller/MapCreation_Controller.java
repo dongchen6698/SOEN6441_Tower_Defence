@@ -17,8 +17,7 @@ import TD.view.MapCreation_View;
  */
 public class MapCreation_Controller {
 	MapCreation_View theView;
-    MapCreation_Model theModel;
-    
+    MapCreation_Model theModel;   
     MapBox_Controller mbCon;
     MainScreen_Controller msCon;
     
@@ -28,6 +27,7 @@ public class MapCreation_Controller {
     public MapCreation_Controller(){
     	
     }
+    
     /**
      * This is a constructor of the class
      * @param mcView the mapcreation view

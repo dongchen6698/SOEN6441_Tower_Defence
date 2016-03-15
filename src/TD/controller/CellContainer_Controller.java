@@ -10,11 +10,11 @@ import TD.view.CellContainer_View;
  * @author peilin
  */
 public class CellContainer_Controller {
-
     CellContainer_Model theModel;
     CellContainer_View theView;
     private GridCell_Model[][] gcModel;
     private GridCell_Controller gcCont;
+    
     /**
      * This method will initialize and bind View and model of Grid Cell Container moduel.
      * @param ccView the view object of Cell Container

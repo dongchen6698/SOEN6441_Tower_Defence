@@ -17,7 +17,6 @@ import TD.view.Shop_View;
  * 
  */
 public class Shop_Controller implements Observer {
-
     static CellContainer_Controller ccCont;
     static Shop_Model sModel;
     Shop_View sView;

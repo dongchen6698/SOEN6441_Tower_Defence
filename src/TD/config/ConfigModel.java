@@ -2,6 +2,7 @@ package TD.config;
 
 import java.awt.Image;
 import java.awt.Point;
+
 /**
  * This is Default Value Model. To load Different images, tower properties, game levels.
  * 
