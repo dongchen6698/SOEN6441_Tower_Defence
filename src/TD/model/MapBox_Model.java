@@ -1,15 +1,15 @@
 package TD.model;
+
 /**
  * This is model for Map Box Module.
  * @author peilin
  */
-public class MapBox_Model {
-    
+public class MapBox_Model {    
     private int xBlockCount;
     private int yBlockCount;
     private static int[][] mapGirdArray;
-    
     private boolean fileFlag = false;
+    
     /**
      * This is constructor method for Map Box Model.
      */

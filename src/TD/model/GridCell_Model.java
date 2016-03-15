@@ -65,6 +65,7 @@ public class GridCell_Model extends Rectangle{
         this.airID = airID;
         
     }
+    
     /**
      * This is physic function for Grid Cell.
      * @param cModel
@@ -189,6 +190,10 @@ public class GridCell_Model extends Rectangle{
         return getTowerRange()[x];
     }
     
+    /**
+     * 
+     * @param mobID
+     */
     public void getMoney(int mobID){
         System.out.println("Money Is increased");
         ConfigModel.money += ConfigModel.deathReward[0];

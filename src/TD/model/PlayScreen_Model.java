@@ -1,11 +1,10 @@
-
-
 package TD.model;
 
 import java.awt.Image;
 import java.awt.Point;
 import java.io.File;
 import java.util.Scanner;
+
 /**
  * This is model for Play Screen Module.
  * @author peilin

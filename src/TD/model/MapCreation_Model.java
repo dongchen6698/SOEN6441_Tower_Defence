@@ -3,13 +3,13 @@ package TD.model;
 import java.io.File;
 import java.util.Scanner;
 import TD.controller.MapBox_Controller;
+
 /**
  * This is model class of Map Creation Module.
  * @author peilin
  *
  */
-public class MapCreation_Model {
-    
+public class MapCreation_Model {    
     private int xBlockCount = 0;
     private int yBlockCount = 0;
     private String FileName;

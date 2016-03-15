@@ -4,13 +4,13 @@ import java.awt.Rectangle;
 
 import TD.config.ConfigModel;
 import TD.controller.CellContainer_Controller;
+
 /**
  * This class is model of creature
  * @author peilin
  *
  */
-public class Creature_Model extends Rectangle{
-    
+public class Creature_Model extends Rectangle{  
     private int xC, yC;
     private int health = 44;
     private int healthSize =3, healthWidth =5, healthHeight = 44;
