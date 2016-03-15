@@ -73,8 +73,6 @@ public class Shop_Controller implements Observer {
             ccCont.getgcModelObj(y, x).setAirID(sModel.getHeldID());
             ConfigModel.money = ConfigModel.money - sModel.getButtonPrice(priceID);
             System.out.println("Tower Placed"+sModel.getHeldID());
-           // LogGenerator.addLog("Tower Id:"+sModel.getHeldID()+" placed at ("+y+","+x+")");
-           // ccCont.getgcModelObj(y, x).towerLog[sModel.getHeldID()-3] = LogGenerator.getLogTime()+"Tower Placed at ("+y+","+x+")\n";
             ccCont.getgcModelObj(y, x).setTowerRange(sModel.getTowerID(), new Rectangle(ccCont.getgcModelObj(y, x).x - ((ConfigModel.airTowerRanger[sModel.getTowerID()])/2), ccCont.getgcModelObj(y, x).y - ((ConfigModel.airTowerRanger[sModel.getTowerID()])/2), ccCont.getgcModelObj(y, x).width + ConfigModel.airTowerRanger[sModel.getTowerID()], ccCont.getgcModelObj(y, x).height + ConfigModel.airTowerRanger[sModel.getTowerID()]));
             sModel.setHoldsItem(false);
             return true;
@@ -98,11 +96,6 @@ public class Shop_Controller implements Observer {
                     double refund_amount = sModel.getButtonPrice(i) * 0.8;
                     sModel.setMoney(ConfigModel.money + (int)refund_amount );
                     ConfigModel.money = ConfigModel.money + (int)refund_amount;
-//                    try {
-//                        ccCont.getgcModelObj(y, x).endTime();
-//                    } catch (ParseException ex) {
-//                        Logger.getLogger(Shop_Controller.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
                     return true;
                 }
         }
@@ -120,8 +113,6 @@ public class Shop_Controller implements Observer {
             System.out.println("Tower Id: "+ccCont.getgcModelObj(y, x).getAirID()+"-"+ConfigModel.airTowerLaser[i]);
             if(ccCont.getgcModelObj(y, x).getAirID() == ConfigModel.airTowerLaser[i]){
                 System.out.println("Tower Is Here");
-               // ccCont.getgcModelObj(y, x).towerLog[i] += LogGenerator.getLogTime()+"Tower Inspection window opened.\n";
-               // LogGenerator.addLog("Tower Inspection window showed for Tower:"+ConfigModel.airTowerLaser[i]+" at ("+y+","+x+")");
                 sModel.setTowerID(i);
                 sModel.setTowerInfo(true);
                 return true;
@@ -138,7 +129,6 @@ public class Shop_Controller implements Observer {
      * @param arg arguments
      */
     public void update(Observable o, Object arg) {
-        //System.out.println("Bagha");
          if (arg instanceof String) {
             int button = Integer.parseInt((String)arg);
             if(button == 1){

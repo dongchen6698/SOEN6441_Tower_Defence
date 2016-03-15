@@ -22,14 +22,12 @@ public class Creature_View {
     public boolean draw(Creature_Model cModel,int mobID, Graphics g){
         if(g != null){
             g.drawImage(ConfigModel.tileset_mob[0], cModel.x, cModel.y, cModel.width, cModel.height, null);
-
             //Health Bar
             g.setColor(new Color(180, 50, 50));
             g.fillRect(cModel.x + cModel.getMobSize(), cModel.y, cModel.getHealthWidth(), cModel.height);
 
             g.setColor(new Color(50, 180, 50));
             g.fillRect(cModel.x + cModel.getMobSize(), cModel.y, cModel.getHealthWidth(), cModel.getHealthHeight());
-
 
             g.setColor(Color.BLACK);
             g.drawRect(cModel.x + cModel.getMobSize() - 1, cModel.y - 1, cModel.getHealthWidth(), cModel.height);

@@ -119,10 +119,7 @@ public class MapValidation {
                 if(checkRight() == 1){
                     right();
                 }else if(checkRight() == 8){
-                    
                     setArray();
-                    
-                    //System.out.println("Path Found.");
                     flag = "e";
                     setValid(true);
                 }else if(checkUp() == 1){
@@ -159,7 +156,6 @@ public class MapValidation {
      * This method will moved pointer to up.
      */
     public void up(){
-        //System.out.println(""+flag.equals("d"));
         if(!flag.equals("d") && !flag.equals("e" ) && !flag.equals("f")){
                 flag = "u";
                 if(checkUp() == 1){
@@ -307,12 +303,6 @@ public class MapValidation {
      * It will set final array with one path.
      */
     public void setArray(){
-//        for(int y = 0;y < width; y++){
-//           for(int x=0;x < height; x++){
-//                        //System.out.print("  "+GridArray_temp[y][x]);
-//                    }
-//                    System.out.println("");
-//                }
         for(int y=0;y < width ; y++){
                         for(int x=0;x < height; x++){
                             if(getFinal_array()[y][x] == 1){

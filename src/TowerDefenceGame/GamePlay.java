@@ -21,7 +21,6 @@ import TD.view.GridCell_View;
 import TD.view.PlayScreen_View;
 import TD.view.Shop_View;
 
-
 /**
  * This class initialize the game play screen.
  * @author peilin
@@ -67,10 +66,10 @@ public class GamePlay extends JFrame implements WindowListener {
                             
                                 psModel.initCellContainerModel();
                                 psModel.setGridCellVal();
-
+                                
                                 Shop_View sView = new Shop_View();
                                 Shop_Model sModel = new Shop_Model(psModel.getStartX(),psModel.getStartY());
-
+                                
                                 CellContainer_View ccView = new CellContainer_View();
                                 CellContainer_Model ccModel = psModel.getCellContainer_Model();
 
@@ -81,7 +80,7 @@ public class GamePlay extends JFrame implements WindowListener {
                                 this.add(psView);
                                 psCont = new PlayScreen_Controller(psView, psModel, gcView, gcModel, ccView, ccModel, sView, sModel);
                                 psView.setController(getPsCont());
-                                //psView.startGame();
+                                psView.startGame();
                                 this.setVisible(true);
                             }else{
                                 System.out.println("Map Is Invalid");

@@ -2,7 +2,7 @@ package TowerDefenceGame;
 
 import TD.controller.MainScreen_Controller;
 /**
- * 
+ * This is towerdefence entry for tower defence.
  * @author peilin
  *
  */

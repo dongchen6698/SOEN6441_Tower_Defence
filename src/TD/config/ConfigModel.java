@@ -4,13 +4,13 @@ import java.awt.Image;
 import java.awt.Point;
 /**
  * This is Default Value Model. To load Different images, tower properties, game levels.
- * add
+ * 
  */
 public class ConfigModel {
     
     public static int money = 150;
     public static int total_earned = 150;
-    public static int health = 3;
+    public static int health = 6;
     public static int killed = 0;
     public static int total_killed = 0;
     public static int killsToWin = 5;

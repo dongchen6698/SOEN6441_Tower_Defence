@@ -53,7 +53,7 @@ public class GridCell_Model extends Rectangle{
         Arrays.fill(MobList, 0);
         setBounds(x, y, width, height);
         towerRange = new Rectangle[ConfigModel.airTowerLaser.length];
-        towerLog = new String[ConfigModel.airTowerLaser.length];
+        //towerLog = new String[ConfigModel.airTowerLaser.length];
         towerActiveTime = new int[ConfigModel.airTowerLaser.length];
         towerCKilled = new int[ConfigModel.airTowerLaser.length];
         for(int i=0;i<ConfigModel.airTowerLaser.length;i++){
@@ -63,9 +63,13 @@ public class GridCell_Model extends Rectangle{
         }
         this.gID = gID;
         this.airID = airID;
-       
+        
     }
-    
+    /**
+     * This is physic function for Grid Cell.
+     * @param cModel
+     * @throws ParseException
+     */
     public void physic(Creature_Model[] cModel) throws ParseException{
         
         for(int i=0;i<ConfigModel.airTowerLaser.length;i++){

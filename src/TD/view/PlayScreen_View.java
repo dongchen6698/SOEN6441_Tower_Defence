@@ -1,5 +1,3 @@
-
-
 package TD.view;
 
 import static TD.config.ConfigModel.*;

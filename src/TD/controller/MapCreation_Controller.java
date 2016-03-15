@@ -22,6 +22,9 @@ public class MapCreation_Controller {
     MapBox_Controller mbCon;
     MainScreen_Controller msCon;
     
+    /**
+     * This is a default constructor.
+     */
     public MapCreation_Controller(){
     	
     }

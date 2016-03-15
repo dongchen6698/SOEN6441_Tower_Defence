@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import TD.config.ConfigModel;
 import TD.model.GridCell_Model;
 
-
 /**
  * This is GUI class of Grid Cell Module.
  * @author peilin
@@ -26,7 +25,7 @@ public class GridCell_View {
      * @param gcModel the model object
      */
     public void draw(GridCell_Model gcModel,Graphics g){
-            g.drawImage(ConfigModel.ground_level[gcModel.getgID()], gcModel.x, gcModel.y, gcModel.width, gcModel.height, null);
+           g.drawImage(ConfigModel.ground_level[gcModel.getgID()], gcModel.x, gcModel.y, gcModel.width, gcModel.height, null);
         
         if(gcModel.getAirID() != ConfigModel.airAir && (gcModel.getAirID() ==8)){
            g.drawImage(ConfigModel.air_level[0], gcModel.x, gcModel.y, gcModel.width, gcModel.height, null);
@@ -60,6 +59,7 @@ public class GridCell_View {
             if(gcModel.getAirID() == 4){
                     g.drawImage(ConfigModel.fire[0], PlayScreen_View.Creatures[gcModel.getShotMob()].x, PlayScreen_View.Creatures[gcModel.getShotMob()].y, gcModel.width, gcModel.height, null);
             } else if(gcModel.getAirID() == 5){
+            	
             } else {
                 g.drawImage(ConfigModel.star[0], PlayScreen_View.Creatures[gcModel.getShotMob()].x, PlayScreen_View.Creatures[gcModel.getShotMob()].y, gcModel.width, gcModel.height, null);
             }
@@ -73,7 +73,6 @@ public class GridCell_View {
             } else {
                 g.setColor(Color.green);
             }
-               
                g.drawLine(gcModel.x + (gcModel.width/2)+1, gcModel.y + (gcModel.height/2)+1, PlayScreen_View.Creatures[gcModel.getShotMob()].x + (PlayScreen_View.Creatures[gcModel.getShotMob()].width/2) + 1, PlayScreen_View.Creatures[gcModel.getShotMob()].y + (PlayScreen_View.Creatures[gcModel.getShotMob()].height/2) + 1);
                g.drawLine(gcModel.x + (gcModel.width/2), gcModel.y + (gcModel.height/2), PlayScreen_View.Creatures[gcModel.getShotMob()].x + (PlayScreen_View.Creatures[gcModel.getShotMob()].width/2), PlayScreen_View.Creatures[gcModel.getShotMob()].y + (PlayScreen_View.Creatures[gcModel.getShotMob()].height/2));
         }
