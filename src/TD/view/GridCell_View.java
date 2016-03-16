@@ -47,31 +47,36 @@ public class GridCell_View {
      */
     public void fireRangeOutline(GridCell_Model gcModel,Graphics g){
         if(true){
+        	//draw the range of the each tower.
             for(int i=0;i<ConfigModel.airTowerLaser.length;i++){
                 if(gcModel.getAirID() == ConfigModel.airTowerLaser[i]){
-                    g.setColor(Color.gray);
+                    g.setColor(Color.white);
                     g.drawRect(gcModel.getTowerRange(i).x, gcModel.getTowerRange(i).y, gcModel.getTowerRange(i).width, gcModel.getTowerRange(i).height);
                 }
             }
             g.setColor(Color.white);
         }
         if(gcModel != null && gcModel.isFiring() && gcModel.getAirID() != -1){
+        	//draw the special image to the critters.
             if(gcModel.getAirID() == 4){
-                    g.drawImage(ConfigModel.fire[0], PlayScreen_View.Creatures[gcModel.getShotMob()].x, PlayScreen_View.Creatures[gcModel.getShotMob()].y, gcModel.width, gcModel.height, null);
+                g.drawImage(ConfigModel.fire[0], PlayScreen_View.Creatures[gcModel.getShotMob()].x, PlayScreen_View.Creatures[gcModel.getShotMob()].y, gcModel.width, gcModel.height, null);
             } else if(gcModel.getAirID() == 5){
-            	
-            } else {
+            	//g.drawImage(ConfigModel.ice[0], PlayScreen_View.Creatures[gcModel.getShotMob()].x, PlayScreen_View.Creatures[gcModel.getShotMob()].y, gcModel.width, gcModel.height, null);
+            } else if(gcModel.getAirID() == 6){
                 g.drawImage(ConfigModel.star[0], PlayScreen_View.Creatures[gcModel.getShotMob()].x, PlayScreen_View.Creatures[gcModel.getShotMob()].y, gcModel.width, gcModel.height, null);
             }
             
-            if(gcModel.getAirID() == 4){
-                g.setColor(Color.yellow);
+            //set the fire line color depends on the tower.
+            if(gcModel.getAirID() == 3){
+            	g.setColor(Color.YELLOW);
+            } else if(gcModel.getAirID() == 4){
+                g.setColor(Color.GREEN);
             } else if(gcModel.getAirID() == 5){
-                g.setColor(Color.blue);
+                g.setColor(Color.BLUE);
             } else if(gcModel.getAirID() == 6){
-                g.setColor(Color.red);
+                g.setColor(Color.RED);
             } else {
-                g.setColor(Color.green);
+                g.setColor(Color.BLACK);
             }
                g.drawLine(gcModel.x + (gcModel.width/2)+1, gcModel.y + (gcModel.height/2)+1, PlayScreen_View.Creatures[gcModel.getShotMob()].x + (PlayScreen_View.Creatures[gcModel.getShotMob()].width/2) + 1, PlayScreen_View.Creatures[gcModel.getShotMob()].y + (PlayScreen_View.Creatures[gcModel.getShotMob()].height/2) + 1);
                g.drawLine(gcModel.x + (gcModel.width/2), gcModel.y + (gcModel.height/2), PlayScreen_View.Creatures[gcModel.getShotMob()].x + (PlayScreen_View.Creatures[gcModel.getShotMob()].width/2), PlayScreen_View.Creatures[gcModel.getShotMob()].y + (PlayScreen_View.Creatures[gcModel.getShotMob()].height/2));

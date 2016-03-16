@@ -14,7 +14,7 @@ public class ConfigModel {
     public static int killed = 0;
     public static int total_killed = 0;
     public static int killsToWin = 5;
-    public static int maxLevel = 4;
+    public static int maxLevel = 3;
     public static boolean roundSlot = true;
     public static int creaturesNo = 5;
     public static int waveLap = 1;   
@@ -34,7 +34,7 @@ public class ConfigModel {
     public static int[] TowerPrice 	   = new int[]{10,20,30,40};
     public static int[] TowerLevel     = new int[]{1,1,1,1};
     public static int[] airTowerRanger = new int[]{44,68,88,108};
-    public static int[] TowerFiringRate= new int[]{1,2,5,5};
+    public static int[] TowerFiringRate= new int[]{2,3,0,5};
     public static int[] Towerhealth    = new int[]{10,15,20,25};   
     public static int mobAir = -1;
     public static int mobGreeny = 0;    

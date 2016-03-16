@@ -115,14 +115,17 @@ public class GridCell_Model extends Rectangle{
         
         if(isFiring() && getAirID() != -1){
             if(loseFrame >= loseTime){
-                if(getAirID() != 5){
-                    cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[getAirID()-3]);
-                } else if(getAirID()==5) {
-                    if(cModel[getShotMob()].walkSpeed < 20+ConfigModel.TowerFiringRate[getAirID()-3]){
-                        cModel[getShotMob()].walkSpeed++;
-                    }
-                }
-                loseFrame = 0;
+            	if(getAirID() == 3){
+            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[0]);
+            	}else if(getAirID() == 4){
+            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[1]);
+            	}else if(getAirID() == 5){
+            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[2]);
+            		cModel[getShotMob()].walkSpeed=50;
+            	}else if(getAirID() == 6){
+            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
+            	}
+            	loseFrame = 0;
             }else {
                 loseFrame +=1;
             }

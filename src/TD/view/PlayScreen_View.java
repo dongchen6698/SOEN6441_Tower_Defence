@@ -39,7 +39,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
     public static boolean isWin = false;
     boolean rFlag =false;
     static PlayScreen_Controller psCont;
-    static int wave = 0;
+    static int wave = 1;
     
     public static int winTime = 2000, winFrame =0;
     public Graphics w;
@@ -109,23 +109,23 @@ public class PlayScreen_View extends JPanel implements Runnable {
      * Adding new creatures for next level
      */
     public void newCreatures(){
-        if((ConfigModel.level > maxLevel) && health != 0){
+        if((ConfigModel.level > ConfigModel.maxLevel) && health != 0){
             isWon = true;
-        } else{
+        }else{
             isWon = false;
         }
         if((ConfigModel.health > 0 && checkLiveCreatures()) && !isWon){
-            ConfigModel.creaturesNo = ConfigModel.creaturesNo * 2;
-            ConfigModel.killsToWin = ConfigModel.creaturesNo;
-            ConfigModel.killed = 0;
-            ConfigModel.waveLap++;
-            ConfigModel.level++;
-            if(wave == 0){
-            	tileset_mob[0] = new ImageIcon("resources/trash.png").getImage();
-            	wave++;
-            }else if(wave ==1){
-            	tileset_mob[0] = new ImageIcon("resources/tower.png").getImage();
-            }
+        		ConfigModel.creaturesNo = ConfigModel.creaturesNo + 5;
+                ConfigModel.killsToWin = ConfigModel.creaturesNo;
+                ConfigModel.killed = 0;
+                ConfigModel.waveLap++;
+                ConfigModel.level++;
+        	if(wave == 1){
+                tileset_mob[0] = new ImageIcon("resources/critter_2.png").getImage();
+                wave++;
+        	}else if(wave == 2){
+                tileset_mob[0] = new ImageIcon("resources/critter_3.png").getImage();
+        	}
             
             Creatures = new Creature_Model[ConfigModel.creaturesNo];
             for(int i=0;i<Creatures.length;i++){
@@ -159,7 +159,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
      * @return successFlag
      */
     public static boolean hasWon() {
-        if((ConfigModel.level >= maxLevel) && ConfigModel.killed == ConfigModel.killsToWin){
+        if((ConfigModel.level >= ConfigModel.maxLevel) && ConfigModel.killed == ConfigModel.killsToWin){
             return true;
         } else{
             return false;
@@ -300,7 +300,6 @@ public class PlayScreen_View extends JPanel implements Runnable {
                 try {
                     psCont.getCcModel().physic(Creatures);
                 } catch (ParseException ex) {
-                    //Logger.getLogger(PlayScreen_View.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 mobSpawner();
                 for(int i=0;i<Creatures.length;i++){
