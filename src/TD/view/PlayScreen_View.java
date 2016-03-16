@@ -292,7 +292,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
                 try {
                     psCont.getCcModel().physic(Creatures);
                 } catch (ParseException ex) {
-                    Logger.getLogger(PlayScreen_View.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(PlayScreen_View.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 mobSpawner();
                 for(int i=0;i<Creatures.length;i++){
