@@ -62,26 +62,26 @@ public class PlayScreen_View extends JPanel implements Runnable {
         j.addMouseListener(eventSource);
         j.addMouseMotionListener(eventSource);
 
-        ground_level[0] = new ImageIcon("resources/green_ground.png").getImage();
-        ground_level[1] = new ImageIcon("resources/path.png").getImage();
+        ground_level[0] = new ImageIcon("Resources/green_ground.png").getImage();
+        ground_level[1] = new ImageIcon("Resources/path.png").getImage();
  
-        air_level[0] = new ImageIcon("resources/end_point.png").getImage();
-        air_level[1] = new ImageIcon("resources/entry_point.png").getImage();
-        air_level[3] = new ImageIcon("resources/tower_1.png").getImage();
-        air_level[4] = new ImageIcon("resources/tower_2.png").getImage();
-        air_level[5] = new ImageIcon("resources/tower_3.png").getImage();
-        air_level[6] = new ImageIcon("resources/tower_4.png").getImage();
+        air_level[0] = new ImageIcon("Resources/end_point.png").getImage();
+        air_level[1] = new ImageIcon("Resources/entry_point.png").getImage();
+        air_level[3] = new ImageIcon("Resources/tower_1.png").getImage();
+        air_level[4] = new ImageIcon("Resources/tower_2.png").getImage();
+        air_level[5] = new ImageIcon("Resources/tower_3.png").getImage();
+        air_level[6] = new ImageIcon("Resources/tower_4.png").getImage();
         
-        tileset_res[0] = new ImageIcon("resources/cell.png").getImage();
-        tileset_res[1] = new ImageIcon("resources/heart.png").getImage();
-        tileset_res[2] = new ImageIcon("resources/coin_icon.png").getImage();
-        tileset_mob[0] = new ImageIcon("resources/critter.png").getImage();
-        fire[0] = new ImageIcon("resources/fire.gif").getImage();
-        ice[0] = new ImageIcon("resources/ice.png").getImage();
-        star[0] = new ImageIcon("resources/star.gif").getImage();
+        tileset_res[0] = new ImageIcon("Resources/cell.png").getImage();
+        tileset_res[1] = new ImageIcon("Resources/heart.png").getImage();
+        tileset_res[2] = new ImageIcon("Resources/coin_icon.png").getImage();
+        tileset_mob[0] = new ImageIcon("Resources/critter.png").getImage();
+        fire[0] = new ImageIcon("Resources/fire.gif").getImage();
+        ice[0] = new ImageIcon("Resources/ice.png").getImage();
+        star[0] = new ImageIcon("Resources/star.gif").getImage();
         
-        happy[0] = new ImageIcon("resources/happy.gif").getImage();
-        sad[0] = new ImageIcon("resources/sad.gif").getImage();
+        happy[0] = new ImageIcon("Resources/happy.gif").getImage();
+        sad[0] = new ImageIcon("Resources/sad.gif").getImage();
    
     }
     
