@@ -169,13 +169,7 @@ public class Shop_Controller implements Observer {
                     if(ConfigModel.TowerLevel[sModel.getTowerID()] < 5){
                         if(ConfigModel.money >= ConfigModel.TowerPrice[sModel.getTowerID()]){
                             System.out.println("Tower Upgrade: "+sModel.getTowerID());
-                            
-                            if(sModel.getTowerID() == 2){
-                                ConfigModel.TowerFiringRate[sModel.getTowerID()] += 5;
-                            } else {
-                                ConfigModel.TowerFiringRate[sModel.getTowerID()] += 1;
-                            }
-                            
+                            ConfigModel.TowerFiringRate[sModel.getTowerID()] += 1;
                             ConfigModel.airTowerRanger[sModel.getTowerID()] += 20;
                             ConfigModel.TowerLevel[sModel.getTowerID()]++;
                             ConfigModel.money -= ConfigModel.TowerPrice[sModel.getTowerID()];
