@@ -122,9 +122,18 @@ public class GridCell_Model extends Rectangle{
             	}else if(getAirID() == 5){
             		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[2]);
             		cModel[getShotMob()].walkSpeed=50;
+            		for(int i=0;i<cModel.length;i++){
+            			if(cModel[i].isInGame()){
+            				if(!getTowerRange()[2].contains(cModel[i])){
+            					cModel[i].walkSpeed = 20;
+            				}
+                    	}
+            		}
             	}else if(getAirID() == 6){
             		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
             	}
+            	
+            	
             	loseFrame = 0;
             }else {
                 loseFrame +=1;
