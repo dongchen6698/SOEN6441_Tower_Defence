@@ -39,6 +39,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
     public static boolean isWin = false;
     boolean rFlag =false;
     static PlayScreen_Controller psCont;
+    static int wave = 0;
     
     public static int winTime = 2000, winFrame =0;
     public Graphics w;
@@ -119,6 +120,13 @@ public class PlayScreen_View extends JPanel implements Runnable {
             ConfigModel.killed = 0;
             ConfigModel.waveLap++;
             ConfigModel.level++;
+            if(wave == 0){
+            	tileset_mob[0] = new ImageIcon("resources/trash.png").getImage();
+            	wave++;
+            }else if(wave ==1){
+            	tileset_mob[0] = new ImageIcon("resources/tower.png").getImage();
+            }
+            
             Creatures = new Creature_Model[ConfigModel.creaturesNo];
             for(int i=0;i<Creatures.length;i++){
                 Creatures[i] = new Creature_Model(psCont.getCcModel(),psCont.getCcCont());
