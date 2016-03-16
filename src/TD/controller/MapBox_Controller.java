@@ -191,7 +191,7 @@ public class MapBox_Controller {
      */
     public String validPath(int[][] ga){
         MapValidation mapV = new MapValidation(ga);
-        System.out.println("Path Validation: "+mapV.isValid());
+        //System.out.println("Path Validation: "+mapV.isValid());
         if(mapV.isValid()){
             return "Done";
         }else{
@@ -233,12 +233,12 @@ public class MapBox_Controller {
             if(e.getSource() instanceof JButton)
             {
                 String btnName = ((JComponent)e.getSource()).getName();
-                System.out.println("You Clicked Grid."+btnName);
+                //System.out.println("You Clicked Grid."+btnName);
                 String[] temp = new String[2];
                 temp = btnName.split("_");
                 int x = Integer.parseInt(temp[0]);
                 int y = Integer.parseInt(temp[1]);
-                System.out.println("X: "+x+" Y:"+y);
+                //System.out.println("X: "+x+" Y:"+y);
                 if(x==0){
                     theView.setEntryPoint(y, x);
                     theModel.setmapGirdArrayElement( y, x, 7);

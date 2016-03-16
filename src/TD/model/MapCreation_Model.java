@@ -55,7 +55,7 @@ public class MapCreation_Model {
      * @return file validation result
      */
     public boolean readFile(MapBox_Controller mbCon, String name, File path){
-        System.out.println("Selected FilePath: "+path);
+        //System.out.println("Selected FilePath: "+path);
         try{
             Scanner loadScanner = new Scanner(path);
             int xC = loadScanner.nextInt();
@@ -80,7 +80,7 @@ public class MapCreation_Model {
              mbCon.setFileFlag(true);
              return true;
          } catch(Exception e){
-             System.out.println("Hey, Somtething is wrong in file.");
+             //System.out.println("Hey, Somtething is wrong in file.");
              return false;
          }
     }

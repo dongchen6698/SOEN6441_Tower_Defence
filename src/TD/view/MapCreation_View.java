@@ -104,7 +104,7 @@ public class MapCreation_View extends JFrame implements WindowListener{
             try{
                 temp  = Integer.parseInt((String) rowInfo.getSelectedItem());
             } catch(Exception e){
-                System.out.println("Inter exception");
+                //System.out.println("Inter exception");
                 temp = 0;
             }
             return temp;
@@ -124,7 +124,7 @@ public class MapCreation_View extends JFrame implements WindowListener{
             try{
                 temp  = Integer.parseInt((String) colInfo.getSelectedItem());
             } catch(Exception e){
-                System.out.println("Inter exception");
+                //System.out.println("Inter exception");
                 temp = 0;
             }
             return temp;

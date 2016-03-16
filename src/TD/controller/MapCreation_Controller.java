@@ -105,7 +105,7 @@ public class MapCreation_Controller {
                 if(tempBtnStr.equals("Save Map")){
                     if(mbCon.validPath(mbCon.getMapGirdArray()).equals("Done")){
                         String file_name = theView.getFileName();
-                        System.out.println("file "+file_name);
+                        //System.out.println("file "+file_name);
                         if(file_name == null){
                             
                         }else{

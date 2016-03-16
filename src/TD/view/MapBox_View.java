@@ -62,7 +62,7 @@ public class MapBox_View extends JPanel {
                 gbc.ipady = 20;
                 this.add(cellBtn[y][x],gbc);
                 if(FileLoadedFlag){
-                    System.out.println("X:"+x+" y:"+y+" "+temp_MapGridArray[y][x]);
+                    //System.out.println("X:"+x+" y:"+y+" "+temp_MapGridArray[y][x]);
                     if(temp_MapGridArray[y][x] == 7)
                         setEntryPoint(y, x);
                     if(temp_MapGridArray[y][x] == 8)

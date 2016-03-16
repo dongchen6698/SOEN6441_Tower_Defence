@@ -102,7 +102,7 @@ public class GridCell_Model extends Rectangle{
                                 shotMob = i;
                                 if(!startFlag){
                                     startTime = getCurrentTime();
-                                    System.out.println("Start");
+                                    //System.out.println("Start");
                                     startFlag = true;
                                 } else
                                     endTime();
@@ -147,20 +147,20 @@ public class GridCell_Model extends Rectangle{
         }
         
         if(!isFiring() && startFlag && getAirID() != -1){
-                System.out.println("End");
+                //System.out.println("End");
                 endTime();
             }
     }
     
     public void endTime() throws ParseException{
         endTime = getCurrentTime();
-                System.out.println("sT: "+startTime);
-                System.out.println("eT: "+endTime);
+                //System.out.println("sT: "+startTime);
+                //System.out.println("eT: "+endTime);
                 SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
                 Date date1 = format.parse(startTime);
                     Date date2 = format.parse(endTime);
                     long difference = date2.getTime() - date1.getTime();
-                    System.out.println("diff: "+(long)difference);
+                    //System.out.println("diff: "+(long)difference);
                     towerActiveTime[getAirID()-3] += difference;
                 startFlag = false;
     }
@@ -206,7 +206,7 @@ public class GridCell_Model extends Rectangle{
      * @param mobID
      */
     public void getMoney(int mobID){
-        System.out.println("Money Is increased");
+        //System.out.println("Money Is increased");
         ConfigModel.money += ConfigModel.deathReward[0];
     }
 

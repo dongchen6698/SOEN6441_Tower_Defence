@@ -83,7 +83,7 @@ public class GamePlay extends JFrame implements WindowListener {
                                 psView.startGame();
                                 this.setVisible(true);
                             }else{
-                                System.out.println("Map Is Invalid");
+                                //System.out.println("Map Is Invalid");
                                 JOptionPane.showMessageDialog(this,"Map is Invalid", null, WIDTH);
                             }  
                         }else{

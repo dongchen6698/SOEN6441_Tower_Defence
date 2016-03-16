@@ -67,16 +67,17 @@ public class Shop_View {
         if(sModel.isTowerInfo()){
             int temp_Height = 100;
             double x = sModel.getButtonPrice(sModel.getTowerID()) * 0.8;
-            g.drawRect(sModel.button[0].x - 5, 150, 226, 85);
+            g.drawRect(sModel.button[0].x - 5, 150, 226, 100);
             g.drawString("ID: "+(sModel.getTowerID()+1), sModel.btn_health.x - 30 + sModel.icon_space, sModel.btn_health.height + temp_Height + 45);
             g.drawString("Firing Rate: "+ConfigModel.TowerFiringRate[sModel.getTowerID()], sModel.btn_health.x - 30 + sModel.icon_space, sModel.btn_health.height + temp_Height + 60);
             g.drawString("Range: "+ConfigModel.airTowerRanger[sModel.getTowerID()], sModel.btn_health.x - 30 + sModel.icon_space, sModel.btn_health.height + temp_Height + 75);
             g.drawString("Level: "+ConfigModel.TowerLevel[sModel.getTowerID()], sModel.btn_health.x - 30 + sModel.icon_space, sModel.btn_health.height + temp_Height + 90);
-            g.drawString("Refund Rate: "+(int)x, sModel.btn_health.x - 30 + sModel.icon_space, sModel.btn_health.height + temp_Height + 105);
+            g.drawString("Refund Rate: "+(int)x+"(80%)", sModel.btn_health.x - 30 + sModel.icon_space, sModel.btn_health.height + temp_Height + 105);
+            g.drawString("Special effects: "+ConfigModel.TowerSpecial[sModel.getTowerID()], sModel.btn_health.x - 30 + sModel.icon_space, sModel.btn_health.height + temp_Height + 120);
             g.setColor(new Color(255, 255, 255, 100));            
             
             if(ConfigModel.TowerLevel[sModel.getTowerID()] < 5){
-                Rectangle wx = new Rectangle(sModel.button[0].x - 5, 240, 226, 20);
+                Rectangle wx = new Rectangle(sModel.button[0].x - 5, 255, 226, 20);
                 if(wx.contains(ConfigModel.mse)){
                      g.setColor(new Color(200, 200, 200));
                      g.fillRect(wx.x, wx.y, wx.width, wx.height);
@@ -85,10 +86,10 @@ public class Shop_View {
                     g.fillRect(wx.x, wx.y, wx.width, wx.height);
                     g.setColor(new Color(255, 255, 255));
                 }
-                g.drawString("Upgrade Tower Level", sModel.btn_health.x + sModel.icon_space - 10, sModel.btn_health.height + 235);
+                g.drawString("Upgrade Tower Level", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 250);
             } else {
                 g.setColor(new Color(255, 255, 255));
-                g.drawString("Tower reached max Level", sModel.btn_health.x + 5, sModel.btn_health.height + 235);
+                g.drawString("Tower reached max Level", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 250);
             }
         }
     }

@@ -8,7 +8,7 @@ import java.awt.Point;
  * 
  */
 public class ConfigModel {   
-    public static int money = 150;
+    public static int money = 500;
     public static int total_earned = 150;
     public static int health = 6;
     public static int killed = 0;
@@ -35,7 +35,8 @@ public class ConfigModel {
     public static int[] TowerLevel     = new int[]{1,1,1,1};
     public static int[] airTowerRanger = new int[]{44,68,88,108};
     public static int[] TowerFiringRate= new int[]{2,3,0,5};
-    public static int[] Towerhealth    = new int[]{10,15,20,25};   
+    public static int[] Towerhealth    = new int[]{10,15,20,25};
+    public static String[] TowerSpecial= new String[]{"Normal","Fire","Freeze","Big gun"};
     public static int mobAir = -1;
     public static int mobGreeny = 0;    
     public static int[] deathReward = {10};    

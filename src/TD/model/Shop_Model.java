@@ -63,7 +63,7 @@ public class Shop_Model {
         for(int i=0;i<button.length;i++){
             button[i] = new Rectangle( startX +(i * (cellSpace+getButtonSize())), startY+getButtonSize()+cellSpace, getButtonSize(), getButtonSize());
         }
-        towerUpgrade = new Rectangle(startX - 5, 240, 226, 20);
+        towerUpgrade = new Rectangle(startX - 5, 240, 226, 35);
         btn_health = new Rectangle(startX, 14, iconSize, iconSize);
         btn_coins = new Rectangle(startX + button[0].y + 60, 14, iconSize, iconSize);
     }

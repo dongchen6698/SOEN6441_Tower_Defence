@@ -91,7 +91,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
      * @return successFlag
      */
     public boolean initCreatures(){
-        System.out.println("initCreatures");
+        //System.out.println("initCreatures");
    
         if(psCont != null){
             for(int i=0;i<Creatures.length;i++){
@@ -100,7 +100,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
             isFirst = false;
             return true;
         } else {
-            System.out.println("psCont not initialized");
+            //System.out.println("psCont not initialized");
             return false;
         }
     }
@@ -216,7 +216,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
         }
         
         if(hasWon() || isWon){
-            System.out.println("Congratulations");
+            //System.out.println("Congratulations");
             Point Cp= GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
             for(int i=0; i< Creatures.length;i++){
                 Creatures[i].setHealth(0);
@@ -243,7 +243,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
                 money = 0;
             }
             gameOberFlag = true;
-            System.out.println("Game Over");
+            //System.out.println("Game Over");
             Point Cp= GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
             for(int i=0; i< Creatures.length;i++){
                 Creatures[i].setHealth(0);
@@ -311,7 +311,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
                 try{
                     gameLoop.sleep(1);
                 } catch (Exception e){
-                    System.out.println("Some Error");
+                    //System.out.println("Some Error");
                 }
             } else {
                 if(isWin){
