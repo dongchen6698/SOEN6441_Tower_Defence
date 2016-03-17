@@ -39,7 +39,16 @@ public class GridCell_Model extends Rectangle{
     private String startTime;
     private boolean startFlag = false;
     private String endTime;
+    public static int creature_id=0;
+    public static int creature_y=0;
+    public static int creature_x=0;
 
+    public static int creature_yprev=0;
+    public static int creature_xprev=0;
+    
+    public static int difference=0;
+    
+    
     /**
      * * This is constructor method for Grid Cell. It will set different properties for each grid cell.
      * @param x x point
@@ -117,9 +126,39 @@ public class GridCell_Model extends Rectangle{
             if(loseFrame >= loseTime){
             	if(getAirID() == 3){
             		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[0]);
+            		
+            		//Use to deploy different tower strategies
+            		if((cModel[getShotMob()].y<=((int)this.y)+20 && cModel[getShotMob()].y>=((int)this.y)-20) || (cModel[getShotMob()].x<=((int)this.x)+20 && cModel[getShotMob()].x>=((int)this.x)-20))
+            		{
+            			System.out.println("Hit Big");
+            			cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[0]+1);
+            			
+            		}
+            		
+            	
+            		
+            		
+            		
             	}else if(getAirID() == 4){
+            		
+            		//Use to deploy different tower strategies
+            		if((cModel[getShotMob()].y<=((int)this.y)+20 && cModel[getShotMob()].y>=((int)this.y)-20) || (cModel[getShotMob()].x<=((int)this.x)+20 && cModel[getShotMob()].x>=((int)this.x)-20))
+            		{
+            			System.out.println("Hit Big");
+            			cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[1]+1);
+            			
+            		}
+            		
             		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[1]);
+            		
             	}else if(getAirID() == 5){
+            		//Use to deploy different tower strategies
+            		if((cModel[getShotMob()].y<=((int)this.y)+20 && cModel[getShotMob()].y>=((int)this.y)-20) || (cModel[getShotMob()].x<=((int)this.x)+20 && cModel[getShotMob()].x>=((int)this.x)-20))
+            		{
+            			System.out.println("Hit Big");
+            			cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[2]+1);
+            			
+            		}
             		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[2]);
             		cModel[getShotMob()].walkSpeed=50;
             		for(int i=0;i<cModel.length;i++){
@@ -130,6 +169,15 @@ public class GridCell_Model extends Rectangle{
                     	}
             		}
             	}else if(getAirID() == 6){
+            		
+            		//Use to deploy different tower strategies
+            		if((cModel[getShotMob()].y<=((int)this.y)+20 && cModel[getShotMob()].y>=((int)this.y)-20) || (cModel[getShotMob()].x<=((int)this.x)+20 && cModel[getShotMob()].x>=((int)this.x)-20))
+            		{
+            			System.out.println("Hit Big");
+            			cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]+1);
+            			
+            		}
+            		
             		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
             	}
             	
