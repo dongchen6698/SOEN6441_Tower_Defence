@@ -125,59 +125,19 @@ public class GridCell_Model extends Rectangle{
         if(isFiring() && getAirID() != -1){
             if(loseFrame >= loseTime){
             	if(getAirID() == 3){
-            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[0]);
-            		
-            		//Use to deploy different tower strategies
-            		if((cModel[getShotMob()].y<=((int)this.y)+20 && cModel[getShotMob()].y>=((int)this.y)-20) || (cModel[getShotMob()].x<=((int)this.x)+20 && cModel[getShotMob()].x>=((int)this.x)-20))
-            		{
-            			System.out.println("Hit Big");
-            			cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[0]+1);
-            			
-            		}
-            		
-            	
-            		
-            		
-            		
+            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[0]);			
             	}else if(getAirID() == 4){
-            		
-            		//Use to deploy different tower strategies
-            		if((cModel[getShotMob()].y<=((int)this.y)+20 && cModel[getShotMob()].y>=((int)this.y)-20) || (cModel[getShotMob()].x<=((int)this.x)+20 && cModel[getShotMob()].x>=((int)this.x)-20))
-            		{
-            			System.out.println("Hit Big");
-            			cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[1]+1);
-            			
-            		}
-            		
-            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[1]);
-            		
+            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[1]);		
             	}else if(getAirID() == 5){
-            		//Use to deploy different tower strategies
-            		if((cModel[getShotMob()].y<=((int)this.y)+20 && cModel[getShotMob()].y>=((int)this.y)-20) || (cModel[getShotMob()].x<=((int)this.x)+20 && cModel[getShotMob()].x>=((int)this.x)-20))
-            		{
-            			System.out.println("Hit Big");
-            			cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[2]+1);
-            			
-            		}
-            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[2]);
-            		cModel[getShotMob()].walkSpeed=50;
+            		cModel[getShotMob()].walkSpeed = 30;
             		for(int i=0;i<cModel.length;i++){
             			if(cModel[i].isInGame()){
             				if(!getTowerRange()[2].contains(cModel[i])){
-            					cModel[i].walkSpeed = 20;
+            					cModel[i].walkSpeed = ConfigModel.walkSpeed;
             				}
                     	}
             		}
             	}else if(getAirID() == 6){
-            		
-            		//Use to deploy different tower strategies
-            		if((cModel[getShotMob()].y<=((int)this.y)+20 && cModel[getShotMob()].y>=((int)this.y)-20) || (cModel[getShotMob()].x<=((int)this.x)+20 && cModel[getShotMob()].x>=((int)this.x)-20))
-            		{
-            			System.out.println("Hit Big");
-            			cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]+1);
-            			
-            		}
-            		
             		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
             	}
             	

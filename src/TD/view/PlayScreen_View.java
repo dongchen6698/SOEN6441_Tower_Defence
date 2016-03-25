@@ -33,14 +33,15 @@ public class PlayScreen_View extends JPanel implements Runnable {
     private static boolean isFirst = true;
     private static boolean isWon = false;
     
-    public static Creature_Model[] Creatures = new Creature_Model[ConfigModel.creaturesNo];
-    Creature_View cView = new Creature_View();
-    
     public static boolean isWin = false;
     boolean rFlag =false;
     static PlayScreen_Controller psCont;
-    static int wave = 1;
+    public static int wave = 1;
     
+    public static Creature_Model[] Creatures = CreatureFactory.getCreature(wave);
+    //  public static Creature_Model[] Creatures = new Creature_Model[ConfigModel.creaturesNo];
+      Creature_View cView = new Creature_View();
+      
     public static int winTime = 2000, winFrame =0;
     public Graphics w;
     public Graphics getGraph(){
@@ -94,6 +95,10 @@ public class PlayScreen_View extends JPanel implements Runnable {
         //System.out.println("initCreatures");
    
         if(psCont != null){
+        	if(wave == 1){
+        		Creatures = CreatureFactory.getCreature(wave);
+        		wave++;
+        	}
             for(int i=0;i<Creatures.length;i++){
                 Creatures[i] = new Creature_Model(psCont.getCcModel(),psCont.getCcCont());
             }
@@ -115,19 +120,24 @@ public class PlayScreen_View extends JPanel implements Runnable {
             isWon = false;
         }
         if((ConfigModel.health > 0 && checkLiveCreatures()) && !isWon){
-        		ConfigModel.creaturesNo = ConfigModel.creaturesNo + 5;
+        	if(wave == 2){        		
+                ConfigModel.killsToWin = ConfigModel.creaturesNo;
+                ConfigModel.killed = 0;
+                ConfigModel.waveLap++;
+                ConfigModel.level++;        
+                tileset_mob[0] = new ImageIcon("resources/critter_2.png").getImage();
+                Creatures = CreatureFactory.getCreature(wave);
+                ConfigModel.walkSpeed = 12;
+               wave++;
+        	}else if(wave == 3){
                 ConfigModel.killsToWin = ConfigModel.creaturesNo;
                 ConfigModel.killed = 0;
                 ConfigModel.waveLap++;
                 ConfigModel.level++;
-        	if(wave == 1){
-                tileset_mob[0] = new ImageIcon("resources/critter_2.png").getImage();
-                wave++;
-        	}else if(wave == 2){
                 tileset_mob[0] = new ImageIcon("resources/critter_3.png").getImage();
+                Creatures = CreatureFactory.getCreature(wave);
+                ConfigModel.walkSpeed = 4;  
         	}
-            
-            Creatures = new Creature_Model[ConfigModel.creaturesNo];
             for(int i=0;i<Creatures.length;i++){
                 Creatures[i] = new Creature_Model(psCont.getCcModel(),psCont.getCcCont());
             }
