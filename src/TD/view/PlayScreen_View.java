@@ -121,21 +121,21 @@ public class PlayScreen_View extends JPanel implements Runnable {
         }
         if((ConfigModel.health > 0 && checkLiveCreatures()) && !isWon){
         	if(wave == 2){        		
-                ConfigModel.killsToWin = ConfigModel.creaturesNo;
-                ConfigModel.killed = 0;
+        		ConfigModel.killed = 0;
                 ConfigModel.waveLap++;
                 ConfigModel.level++;        
                 tileset_mob[0] = new ImageIcon("resources/critter_2.png").getImage();
                 Creatures = CreatureFactory.getCreature(wave);
+                ConfigModel.killsToWin = ConfigModel.creaturesNo;
                 ConfigModel.walkSpeed = 12;
                wave++;
-        	}else if(wave == 3){
-                ConfigModel.killsToWin = ConfigModel.creaturesNo;
+        	}else if(wave == 3){               
                 ConfigModel.killed = 0;
                 ConfigModel.waveLap++;
                 ConfigModel.level++;
                 tileset_mob[0] = new ImageIcon("resources/critter_3.png").getImage();
                 Creatures = CreatureFactory.getCreature(wave);
+                ConfigModel.killsToWin = ConfigModel.creaturesNo;
                 ConfigModel.walkSpeed = 4;  
         	}
             for(int i=0;i<Creatures.length;i++){
@@ -182,7 +182,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
      */
     public static boolean checkLiveCreatures(){
         for(int i=0;i<Creatures.length;i++){
-                if(Creatures[i].getHealth() != 0)
+                if(Creatures[i].getHealth() != 1000)
                     return false;
             }
         return true;
@@ -229,7 +229,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
             //System.out.println("Congratulations");
             Point Cp= GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
             for(int i=0; i< Creatures.length;i++){
-                Creatures[i].setHealth(0);
+                Creatures[i].setHealth(1000);
                 Creatures[i].setInGame(false);
             }
             g.setColor(new Color(255, 255, 255));
@@ -256,7 +256,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
             //System.out.println("Game Over");
             Point Cp= GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
             for(int i=0; i< Creatures.length;i++){
-                Creatures[i].setHealth(0);
+                Creatures[i].setHealth(1000);
                 Creatures[i].setInGame(false);
             }
             g.setColor(new Color(255, 255, 255));

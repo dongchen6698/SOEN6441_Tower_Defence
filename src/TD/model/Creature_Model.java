@@ -78,7 +78,7 @@ public class Creature_Model extends Rectangle{
             ConfigModel.total_killed +=1;
          
         }
-        this.setHealth(0);
+        this.setHealth(1000);
         return true;
     }
 
@@ -128,7 +128,7 @@ public class Creature_Model extends Rectangle{
      * @return successFlag
      */
     public boolean checkDeath(){
-        if(health <= 0){
+        if(health < 0){
             deleteCreature();
         }
         return true;
