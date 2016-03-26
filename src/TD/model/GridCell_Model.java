@@ -140,22 +140,22 @@ public class GridCell_Model extends Rectangle{
             	}else if(getAirID() == 6){
             		if(getShotMob()==0){
             			cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
-                		cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[3]);
+                		cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[0]);
             		}else if(getShotMob()==(cModel.length-1)){
             			if(cModel[getShotMob()-1].checkDeath()){
             				cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
             			}else{
-            			cModel[getShotMob()-1].loseHealth(ConfigModel.TowerFiringRate[3]);
+            			cModel[getShotMob()-1].loseHealth(ConfigModel.TowerFiringRate[0]);
                 		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
             			}
             		}else{
             			if(cModel[getShotMob()-1].checkDeath()){
             				cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
-            				cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[3]);
+            				cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[0]);
             				}else{
-            					cModel[getShotMob()-1].loseHealth(ConfigModel.TowerFiringRate[3]);
+            					cModel[getShotMob()-1].loseHealth(ConfigModel.TowerFiringRate[0]);
             					cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
-            					cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[3]);
+            					cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[0]);
             				}
             		}
             	}

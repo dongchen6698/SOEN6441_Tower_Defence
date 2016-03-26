@@ -135,7 +135,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
                 ConfigModel.level++;
                 tileset_mob[0] = new ImageIcon("resources/critter_3.png").getImage();
                 Creatures = CreatureFactory.getCreature(wave);
-                ConfigModel.killsToWin = ConfigModel.creaturesNo;
+                ConfigModel.killsToWin = 15;
                 ConfigModel.walkSpeed = 4;  
         	}
             for(int i=0;i<Creatures.length;i++){
@@ -182,7 +182,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
      */
     public static boolean checkLiveCreatures(){
         for(int i=0;i<Creatures.length;i++){
-                if(Creatures[i].getHealth() != 1000)
+                if(Creatures[i].getHealth() != 0)
                     return false;
             }
         return true;
@@ -228,10 +228,10 @@ public class PlayScreen_View extends JPanel implements Runnable {
         if(hasWon() || isWon){
             //System.out.println("Congratulations");
             Point Cp= GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
-            for(int i=0; i< Creatures.length;i++){
-                Creatures[i].setHealth(1000);
-                Creatures[i].setInGame(false);
-            }
+//            for(int i=0; i< Creatures.length;i++){
+//                Creatures[i].setHealth(0);
+//                Creatures[i].setInGame(false);
+//            }
             g.setColor(new Color(255, 255, 255));
             g.fillRect(0, 0, getWidth(), getHeight());
             g.drawImage(happy[0], Cp.x/2 - 60, Cp.y/2 - 120, 110, 100,  null);
@@ -256,7 +256,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
             //System.out.println("Game Over");
             Point Cp= GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
             for(int i=0; i< Creatures.length;i++){
-                Creatures[i].setHealth(1000);
+                Creatures[i].setHealth(0);
                 Creatures[i].setInGame(false);
             }
             g.setColor(new Color(255, 255, 255));

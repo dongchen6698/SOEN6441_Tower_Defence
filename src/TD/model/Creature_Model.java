@@ -78,7 +78,7 @@ public class Creature_Model extends Rectangle{
             ConfigModel.total_killed +=1;
          
         }
-        this.setHealth(1000);
+        this.setHealth(0);
         return true;
     }
 
