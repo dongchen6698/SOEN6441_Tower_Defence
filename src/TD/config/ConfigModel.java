@@ -23,6 +23,7 @@ public class ConfigModel {
     public static int gridY = 7;
     public static int cellPixels = 44;   
     public static int walkFrame = 0, walkSpeed = 20;   
+    public static int spawnTime = 1000, spawnFrame = 0;
     public static Point mse = new Point(0, 0);    
     public static int groundGrass = 0;
     public static int groundRoad = 1;
