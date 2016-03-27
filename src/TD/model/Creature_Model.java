@@ -24,6 +24,7 @@ public class Creature_Model extends Rectangle{
     private boolean hasDownward = false;
     private boolean hasLeft = false;
     private boolean hasRight = false;
+    private boolean isFire = false;
     private CellContainer_Model ccModel;
     private CellContainer_Controller ccCont;
     
@@ -274,5 +275,13 @@ public class Creature_Model extends Rectangle{
     public void setInGame(boolean inGame) {
         this.inGame = inGame;
     }
+
+	public boolean isFire() {
+		return isFire;
+	}
+
+	public void setFire(boolean isFire) {
+		this.isFire = isFire;
+	}
     
 }

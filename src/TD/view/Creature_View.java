@@ -36,6 +36,10 @@ public class Creature_View {
             if(cModel.walkSpeed > 20){
                 g.drawImage(ConfigModel.ice[0], cModel.x, cModel.y, cModel.width, cModel.height, null);
             }
+            
+            if(cModel.isFire()){
+            	g.drawImage(ConfigModel.fire[0], cModel.x, cModel.y, cModel.width, cModel.height, null);
+            }
             return true;
         } else {
             return false;
