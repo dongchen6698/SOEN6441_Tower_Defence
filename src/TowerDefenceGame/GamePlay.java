@@ -140,27 +140,3 @@ public class GamePlay extends JFrame implements WindowListener {
         
     }
 }
-
-// ignore:
-
-public class PlayScreen_View extends JPanel implements Runnable {
-
-    public Thread gameLoop = new Thread(this);
-    
-    private static boolean isFirst = true;
-    private static boolean isWon = false;
-    
-    public static boolean isWin = false;
-    boolean rFlag =false;
-    static PlayScreen_Controller psCont;
-    public static int wave = 1;
-    
-    public static Creature_Model[] Creatures = CreatureFactory.getCreature(wave);
-    //  public static Creature_Model[] Creatures = new Creature_Model[ConfigModel.creaturesNo];
-      Creature_View cView = new Creature_View();
-      
-    public static int winTime = 2000, winFrame =0;
-    public Graphics w;
-    public Graphics getGraph(){
-        return w;
-    }
