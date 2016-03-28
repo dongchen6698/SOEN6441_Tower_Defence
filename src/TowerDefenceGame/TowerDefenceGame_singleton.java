@@ -50,11 +50,3 @@ public class TowerDefenceGame_singleton {
 	
 	
 }
-
-public PlayScreen_View(GamePlay j){
-    final KeyController eventSource = new KeyController();
-
-    // subscribe the observer to the event source
-    eventSource.addObserver(responseHandler);
-    return mainscreenviewmodel;
-}
