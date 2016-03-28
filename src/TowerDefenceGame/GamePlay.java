@@ -1,6 +1,7 @@
 package TowerDefenceGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -8,15 +9,18 @@ import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import TD.config.ConfigModel;
 import TD.controller.PlayScreen_Controller;
 import TD.mapValidation.MapValidation;
 import TD.model.CellContainer_Model;
+import TD.model.Creature_Model;
 import TD.model.GridCell_Model;
 import TD.model.PlayScreen_Model;
 import TD.model.Shop_Model;
 import TD.view.CellContainer_View;
+import TD.view.Creature_View;
 import TD.view.GridCell_View;
 import TD.view.PlayScreen_View;
 import TD.view.Shop_View;
@@ -136,3 +140,27 @@ public class GamePlay extends JFrame implements WindowListener {
         
     }
 }
+
+// ignore:
+
+public class PlayScreen_View extends JPanel implements Runnable {
+
+    public Thread gameLoop = new Thread(this);
+    
+    private static boolean isFirst = true;
+    private static boolean isWon = false;
+    
+    public static boolean isWin = false;
+    boolean rFlag =false;
+    static PlayScreen_Controller psCont;
+    public static int wave = 1;
+    
+    public static Creature_Model[] Creatures = CreatureFactory.getCreature(wave);
+    //  public static Creature_Model[] Creatures = new Creature_Model[ConfigModel.creaturesNo];
+      Creature_View cView = new Creature_View();
+      
+    public static int winTime = 2000, winFrame =0;
+    public Graphics w;
+    public Graphics getGraph(){
+        return w;
+    }
