@@ -27,8 +27,8 @@ public class GridCell_Model extends Rectangle{
     private int gID;
     private int airID;
     private int loseTime = 100, loseFrame = 0;
-    
-    private int shotMob = -1;
+    //public int towerid
+	private int shotMob = -1;
     private int[] MobList = new int[100];
     private boolean freeze = false;
     private boolean fire = false;
@@ -65,7 +65,8 @@ public class GridCell_Model extends Rectangle{
         //towerLog = new String[ConfigModel.airTowerLaser.length];
         towerActiveTime = new int[ConfigModel.airTowerLaser.length];
         towerCKilled = new int[ConfigModel.airTowerLaser.length];
-        for(int i=0;i<ConfigModel.airTowerLaser.length;i++){
+        for(int i=0;i<ConfigModel.airTowerLaser.length;i++)
+        {
             towerRange[i] = new Rectangle(x - ((ConfigModel.airTowerRanger[i])/2), y - ((ConfigModel.airTowerRanger[i])/2), width + ConfigModel.airTowerRanger[i], height + ConfigModel.airTowerRanger[i]);
             towerActiveTime[i] = 0;
             towerCKilled[i] = 0;
@@ -82,32 +83,65 @@ public class GridCell_Model extends Rectangle{
      */
     public void physic(Creature_Model[] cModel) throws ParseException{
         
-        for(int i=0;i<ConfigModel.airTowerLaser.length;i++){
+        for(int i=0;i<ConfigModel.airTowerLaser.length;i++)
+        {
+        	
                 if(getShotMob() != -1 && getTowerRange()[gID].intersects(cModel[getShotMob()])){
-                    setFiring(true);
+                    //setFiring(true);
                 }
                 else{
                     setFiring(false);
                 }
         }
+        
+        
         for(int tid=0;tid<ConfigModel.airTowerLaser.length;tid++){
-                if(airID == 5){
-                    for(int i=0;i<cModel.length;i++){
-                        if(cModel[i].isInGame()){
-                            if(getTowerRange()[tid].contains(cModel[i])){
-                                setFiring(false);
-                            }
-                        }
+        	if(getAirID() == ConfigModel.airTowerLaser[tid]){
+        for(int i=0;i<cModel.length;i++){
+            if(cModel[i].isInGame()){
+                if(getTowerRange()[tid].intersects(cModel[i]))
+                {
+                   
+                    
+                    if(shotMob!=i)
+                    {
+                    	if(shotMob!=-1)
+                    	{
+                    	System.out.println("Another Creature "+i + " other than shotmob" + shotMob );
+                    	if(shotMob>i)
+                    	{
+                    	shotMob=i;	
+                    	}
+                    	
+                    	}
                     }
+                    
+                    
                 }
             }
-        if(!isFiring()){
+        }
+        }
+        }
+        
+        if(!isFiring())
+        {
             for(int tid=0;tid<ConfigModel.airTowerLaser.length;tid++){
-                if(airID == ConfigModel.airTowerLaser[tid]){
+            	if(airID == ConfigModel.airTowerLaser[tid]){
+            		//System.out.println("Tower Id "+airID);
+            		
+            		
+                    
                     for(int i=0;i<cModel.length;i++){
                         if(cModel[i].isInGame()){
-                            if(getTowerRange()[tid].intersects(cModel[i])){
-                                setFiring(true);
+                            if(getTowerRange()[tid].intersects(cModel[i]))
+                            {
+//                                if(i == 0){
+//                                	setFiring(true);
+//                                	shotMob = i;
+//                                }
+                                //System.out.println(i);
+                               
+                            	setFiring(true);
                                 shotMob = i;
                                 if(!startFlag){
                                     startTime = getCurrentTime();
@@ -179,7 +213,8 @@ public class GridCell_Model extends Rectangle{
             }
     }
     
-    public void endTime() throws ParseException{
+    public void endTime() throws ParseException
+    {
         endTime = getCurrentTime();
                 //System.out.println("sT: "+startTime);
                 //System.out.println("eT: "+endTime);
