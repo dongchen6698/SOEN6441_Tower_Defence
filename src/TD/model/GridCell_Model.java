@@ -107,11 +107,38 @@ public class GridCell_Model extends Rectangle{
                     {
                     	if(shotMob!=-1)
                     	{
-                    	System.out.println("Another Creature "+i + " other than shotmob" + shotMob );
-                    	if(shotMob>i)
+                    	System.out.println("Shot Mob "+cModel[shotMob].getHealth() + " other than shotmob" + cModel[i].getHealth() );
+                        		
+//                    	//weakest
+//                    	if(cModel[shotMob].getHealth()<cModel[i].getHealth())
+//                    	{
+//                    	//shotMob=i;	
+//                    	}
+//                    	else
+//                    	{
+//                    		shotMob=i;
+//                    	}
+                    	
+                    	
+                    	
+                    	//strongest
+                    	if(cModel[shotMob].getHealth()>cModel[i].getHealth())
                     	{
-                    	shotMob=i;	
+                    	//shotMob=i;	
                     	}
+                    	else
+                    	{
+                    		shotMob=i;
+                    	}
+                    	
+                    	// near to tht end
+//                    	if(shotMob<i)
+//                    	{
+//                    	shotMob=i;	
+//                    	}
+//                    	
+                    	
+                    	
                     	
                     	}
                     }

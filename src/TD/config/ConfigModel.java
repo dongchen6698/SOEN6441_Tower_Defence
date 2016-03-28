@@ -33,7 +33,7 @@ public class ConfigModel {
     public static int[] airTowerLaser  = new int[]{3,4,5,6};
     public static int[] TowerPrice 	   = new int[]{10,20,30,40};
     public static int[] TowerLevel     = new int[]{1,1,1,1};
-    public static int[] airTowerRanger = new int[]{88,88,88,108};
+    public static int[] airTowerRanger = new int[]{44,68,88,108};
     public static int[] TowerFiringRate= new int[]{3,4,0,5};
     public static int[] Towerhealth    = new int[]{10,15,20,25};
     public static String[] TowerSpecial= new String[]{"Normal","Fire","Freeze","Big gun"};
