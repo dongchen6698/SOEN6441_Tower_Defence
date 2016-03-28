@@ -1,5 +1,6 @@
 package TowerDefenceGame;
 
+import TD.controller.Shop_Controller;
 import TD.model.MainScreen_Model;
 import TD.view.MainScreen_View;
 
@@ -48,4 +49,12 @@ public class TowerDefenceGame_singleton {
 	}
 	
 	
+}
+
+public PlayScreen_View(GamePlay j){
+    final KeyController eventSource = new KeyController();
+
+    // subscribe the observer to the event source
+    eventSource.addObserver(responseHandler);
+    return mainscreenviewmodel;
 }
