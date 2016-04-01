@@ -2,12 +2,13 @@ package TD.config;
 
 import java.awt.Image;
 import java.awt.Point;
+import java.io.Serializable;
 
 /**
  * This is Default Value Model. To load Different images, tower properties, game levels.
  * 
  */
-public class ConfigModel {   
+public class ConfigModel{   
     public static int money = 500;
     public static int total_earned = 150;
     public static int health = 6;

@@ -1,7 +1,7 @@
 package TD.controller;
 
 import java.awt.Graphics;
-
+import java.io.Serializable;
 
 import TD.model.CellContainer_Model;
 import TD.model.GridCell_Model;
@@ -16,7 +16,7 @@ import TD.view.Shop_View;
  * This Class will bind and initialize Model-View of Play Screen Module.
  * @author peilin
  */
-public class PlayScreen_Controller {
+public class PlayScreen_Controller{
     PlayScreen_Model theModel;
     PlayScreen_View theView;    
     private CellContainer_Model ccModel;

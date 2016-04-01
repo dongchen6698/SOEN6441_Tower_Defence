@@ -7,11 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
-import java.awt.image.CropImageFilter;
-import java.awt.image.FilteredImageSource;
+import java.io.Serializable;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -26,7 +23,7 @@ import TowerDefenceGame.*;
   * This is GUI class of Play Screen Module.
  * @author peilin
  */
-public class PlayScreen_View extends JPanel implements Runnable {
+public class PlayScreen_View extends JPanel implements Runnable{
 
     public Thread gameLoop = new Thread(this);
     
@@ -37,6 +34,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
     boolean rFlag =false;
     static PlayScreen_Controller psCont;
     public static int wave = 1;
+    private volatile boolean isRunning = true;
     
     public static Creature_Model[] Creatures = CreatureFactory.getCreature(wave);
     //  public static Creature_Model[] Creatures = new Creature_Model[ConfigModel.creaturesNo];
@@ -301,7 +299,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
      */
     @Override
     public void run() {
-        while(true){
+        while(isRunning){
             
             if(isFirst){
                 initCreatures();
@@ -352,11 +350,8 @@ public class PlayScreen_View extends JPanel implements Runnable {
         }
     }
     
+    public void killThread(){
+    	this.isRunning = false;
+    }
 }
 
-public PlayScreen_View(GamePlay j){
-    final KeyController eventSource = new KeyController();
-
-    // subscribe the observer to the event source
-    eventSource.addObserver(responseHandler);
-}

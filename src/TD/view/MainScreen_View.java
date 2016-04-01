@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  * @author peilin
  */
 public class MainScreen_View extends JFrame implements WindowListener{
-	private JButton start,creat,exit;
+	private JButton start,creat,load,exit;
 	
 	/**
 	 * This method will initialize the windows size and other information.
@@ -35,13 +35,16 @@ public class MainScreen_View extends JFrame implements WindowListener{
 		this.setLayout(null);
 		creat = new JButton("Creat Maps");
 		start = new JButton("Start Game");
+		load = new JButton("Load Game");
 		exit = new JButton("EXIT GAME");
 		this.add(creat);
 		this.add(start);
+		this.add(load);
 		this.add(exit);
-		creat.setBounds(300, 100, 200,100);
-		start.setBounds(300,250,200,100);
-		exit.setBounds(300,400,200,100);
+		creat.setBounds(300, 100, 200,80);
+		start.setBounds(300,200,200,80);
+		load.setBounds(300,300,200,80);
+		exit.setBounds(300,400,200,80);
 		this.addWindowListener(this);
 	}
 	
@@ -52,6 +55,7 @@ public class MainScreen_View extends JFrame implements WindowListener{
 	public void addButtonClickListener(ActionListener ListenerButton){
 		creat.addActionListener(ListenerButton);
 		start.addActionListener(ListenerButton);
+		load.addActionListener(ListenerButton);
 		exit.addActionListener(ListenerButton);	
 	}
 

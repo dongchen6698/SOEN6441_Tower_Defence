@@ -1,6 +1,8 @@
 package TD.controller;
 
 import java.awt.Graphics;
+import java.io.Serializable;
+
 import TD.model.GridCell_Model;
 import TD.view.GridCell_View;
 
@@ -8,7 +10,7 @@ import TD.view.GridCell_View;
  * This Class will bind and initialize Model-View of Play Screen Module.
  * @author peilin
  */
-public class GridCell_Controller {
+public class GridCell_Controller{
     GridCell_View theView;
     GridCell_Model[][] theModel;
    

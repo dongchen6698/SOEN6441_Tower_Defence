@@ -2,6 +2,7 @@ package TD.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import TD.config.ConfigModel;
 import TD.model.Creature_Model;
@@ -11,7 +12,7 @@ import TD.model.Creature_Model;
  * @author peilin
  *
  */
-public class Creature_View {
+public class Creature_View{
 	
     /**
      * Draw function for creature's view

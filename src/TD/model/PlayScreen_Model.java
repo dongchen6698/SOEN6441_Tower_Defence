@@ -3,13 +3,14 @@ package TD.model;
 import java.awt.Image;
 import java.awt.Point;
 import java.io.File;
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  * This is model for Play Screen Module.
  * @author peilin
  */
-public class PlayScreen_Model {
+public class PlayScreen_Model{
     
     private int xC;
     private int yC;
@@ -18,6 +19,8 @@ public class PlayScreen_Model {
     private static int money = 20, health = 50;
     private static int killed =0, killsToWin =0, Level =1, maxLevel =3;
     private static int winTime = 4000, winFrame =0;
+    
+    public static int test = 1000;
     
     private static boolean isFirst = true;
     private static boolean isDebug = false;

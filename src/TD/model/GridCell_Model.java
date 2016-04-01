@@ -1,6 +1,7 @@
 package TD.model;
 
 import java.awt.Rectangle;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;

@@ -1,5 +1,7 @@
 package TowerDefenceGame;
 
+import java.io.Serializable;
+
 import TD.config.ConfigModel;
 import TD.model.Creature_Model;
 /**
@@ -7,7 +9,7 @@ import TD.model.Creature_Model;
  * @author peilin
  *
  */
-public class CreatureFactory {
+public class CreatureFactory{
 	/**
 	 * this is a static method for creating creatures
 	 * @param wave

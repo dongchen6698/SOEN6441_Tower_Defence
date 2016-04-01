@@ -3,10 +3,14 @@ package TowerDefenceGame;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.io.Serializable;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,6 +22,7 @@ import TD.model.CellContainer_Model;
 import TD.model.Creature_Model;
 import TD.model.GridCell_Model;
 import TD.model.PlayScreen_Model;
+import TD.model.SaveGameInfo_Model;
 import TD.model.Shop_Model;
 import TD.view.CellContainer_View;
 import TD.view.Creature_View;
@@ -29,9 +34,22 @@ import TD.view.Shop_View;
  * This class initialize the game play screen.
  * @author peilin
  */
-public class GamePlay extends JFrame implements WindowListener {
+public class GamePlay extends JFrame implements WindowListener{
     
     private PlayScreen_Controller psCont;
+    private SaveGameInfo_Model sgiModel;
+    
+    private PlayScreen_View psView;
+    private PlayScreen_Model psModel;
+    private GridCell_View gcView;
+    private GridCell_Model[][] gcModel;
+    private CellContainer_View ccView;
+    private CellContainer_Model ccModel;
+    private Shop_View sView;
+    private Shop_Model sModel;
+    private ConfigModel cModel;
+    private File file;
+    
     /**
      * This method will initialize JFrame and set some basic properties(Title, Size, Background Color, Location).
      * @param f Map file which is selected by user from list box.
@@ -46,7 +64,8 @@ public class GamePlay extends JFrame implements WindowListener {
         this.setSize(width,height);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setAlwaysOnTop(true);
+        //this.setAlwaysOnTop(true);
+        this.file = file;
         this.setBackground(Color.darkGray);
         init_elements(file);
         this.addWindowListener(this);
@@ -61,26 +80,36 @@ public class GamePlay extends JFrame implements WindowListener {
         this.setLayout(new GridLayout(1, 1, 0, 0));
         
         PlayScreen_Model psModel = new PlayScreen_Model();
+        this.psModel = psModel;
                         boolean temp = psModel.LoadMap(file);
                         if(temp){
                             MapValidation mv = new MapValidation(psModel.getGridCellArray());
                             if(mv.isValid()){
                                 //System.out.println("Map is Valid");
                                 ConfigModel cModel = new ConfigModel(); 
-                            
+                                this.cModel = cModel;
+                                
                                 psModel.initCellContainerModel();
                                 psModel.setGridCellVal();
                                 
                                 Shop_View sView = new Shop_View();
                                 Shop_Model sModel = new Shop_Model(psModel.getStartX(),psModel.getStartY());
+                                this.sView = sView;
+                                this.sModel = sModel;
                                 
                                 CellContainer_View ccView = new CellContainer_View();
                                 CellContainer_Model ccModel = psModel.getCellContainer_Model();
+                                this.ccView = ccView;
+                                this.ccModel = ccModel;
 
                                 GridCell_View gcView = new GridCell_View();
                                 GridCell_Model[][] gcModel = ccModel.getGcModel();
+                                this.gcView = gcView;
+                                this.gcModel = gcModel;
 
                                 PlayScreen_View psView = new PlayScreen_View(this);
+                                this.psView = psView;
+                                
                                 this.add(psView);
                                 psCont = new PlayScreen_Controller(psView, psModel, gcView, gcModel, ccView, ccModel, sView, sModel);
                                 psView.setController(getPsCont());
@@ -110,14 +139,23 @@ public class GamePlay extends JFrame implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        System.exit(0);
+    	String message = "Do you want to save game information?";
+        String title = "Save Game?";
+        int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.NO_OPTION){
+        	System.exit(0);
+        }else if(reply == JOptionPane.YES_OPTION){
+        	System.out.println("save game");
+        	sgiModel = new SaveGameInfo_Model(psView);
+        	//sgiModel = new SaveGameInfo_Model(psModel, gcModel, ccModel, sModel,cModel,file);
+        	
+        }
+
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
    
-        this.dispose();
-        System.exit(0);
     }
 
     @Override
@@ -132,7 +170,6 @@ public class GamePlay extends JFrame implements WindowListener {
 
     @Override
     public void windowActivated(WindowEvent e) {
-        
     }
 
     @Override

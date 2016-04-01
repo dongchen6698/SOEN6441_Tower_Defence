@@ -1,6 +1,7 @@
 package TD.model;
 
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 import TD.config.ConfigModel;
 
@@ -8,7 +9,7 @@ import TD.config.ConfigModel;
  * This is model for Shop(Tower) Module. Tower properties, user health, money.
  * @author peilin
  */
-public class Shop_Model {
+public class Shop_Model{
 
     /**
      * @return the buttonSize
@@ -39,6 +40,7 @@ public class Shop_Model {
     public Rectangle btn_coins;
     
     public Rectangle towerUpgrade;
+    public Rectangle savegameinfo;
     
     private boolean holdsItem = false;
     
@@ -64,6 +66,7 @@ public class Shop_Model {
             button[i] = new Rectangle( startX +(i * (cellSpace+getButtonSize())), startY+getButtonSize()+cellSpace, getButtonSize(), getButtonSize());
         }
         towerUpgrade = new Rectangle(startX - 5, 240, 226, 35);
+        savegameinfo = new Rectangle(startX-5,285,226,35);
         btn_health = new Rectangle(startX, 14, iconSize, iconSize);
         btn_coins = new Rectangle(startX + button[0].y + 60, 14, iconSize, iconSize);
     }
