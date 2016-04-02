@@ -76,7 +76,7 @@ public class MainScreen_Controller {
                     MapChooser_View mcView = new MapChooser_View(theView, mcModel.getMapFileList());
                     MapChooser_Controller mp = new MapChooser_Controller(mcView,mcModel);
                 }
-
+                
                 if(tempBtnStr.equals("Load Game")){
                 	//LoadGameInfo_Model lgiModel = new LoadGameInfo_Model();
                 }

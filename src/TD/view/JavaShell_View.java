@@ -30,7 +30,7 @@ public class JavaShell_View extends JFrame implements Observer{
         this.setSize(600,400);
         this.setLocationRelativeTo(null);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        String[] logtype = {"All","Game","Mapinfo","Tower_1","Tower_2","Tower_3","Tower_4",};
+        String[] logtype = {"All","Game","Tower","Mapinfo","Tower_1","Tower_2","Tower_3","Tower_4",};
         option = new JComboBox(logtype);
         this.add(option,BorderLayout.NORTH);
         jta = new JTextArea();
