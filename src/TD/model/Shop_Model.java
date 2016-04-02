@@ -42,6 +42,12 @@ public class Shop_Model{
     public Rectangle towerUpgrade;
     public Rectangle savegameinfo;
     
+    
+    public Rectangle strategy1;
+    public Rectangle strategy2;
+    public Rectangle strategy3;
+    public Rectangle strategy4;
+    
     private boolean holdsItem = false;
     
     private int towerID = 0;

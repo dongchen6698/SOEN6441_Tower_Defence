@@ -78,7 +78,7 @@ public class MainScreen_Controller {
                 }
 
                 if(tempBtnStr.equals("Load Game")){
-                	LoadGameInfo_Model lgiModel = new LoadGameInfo_Model();
+                	//LoadGameInfo_Model lgiModel = new LoadGameInfo_Model();
                 }
 
                 if(tempBtnStr.equals("EXIT GAME")){

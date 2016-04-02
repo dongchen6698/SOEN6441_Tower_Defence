@@ -99,7 +99,7 @@ public class GridCell_Model extends Rectangle{
         
         
         for(int tid=0;tid<ConfigModel.airTowerLaser.length;tid++){
-<<<<<<< HEAD
+
         	if(getAirID() == ConfigModel.airTowerLaser[tid]){
         for(int i=0;i<cModel.length;i++){
             if(cModel[i].isInGame()){
@@ -176,21 +176,11 @@ public class GridCell_Model extends Rectangle{
         }
         }
         
-        if(!isFiring())
-        {
-=======
-                    for(int i=0;i<cModel.length;i++){
-                        if(cModel[i].isInGame()){
-                            if(getTowerRange()[tid].contains(cModel[i])){
-                                setFiring(false);
-                            }
-                        }
-                    }
-            }
+        
         
         
         if(!isFiring()){
->>>>>>> f1627dc9d9fa9ddfa6818f7e910b4f4cefaaabab
+
             for(int tid=0;tid<ConfigModel.airTowerLaser.length;tid++){
             	if(airID == ConfigModel.airTowerLaser[tid]){
             		//System.out.println("Tower Id "+airID);

@@ -131,7 +131,8 @@ public class Shop_Controller implements Observer{
     public void update(Observable o, Object arg) {
          if (arg instanceof String) {
             int button = Integer.parseInt((String)arg);
-            if(button == 1){
+            if(button == 1)
+            {
                 for(int i=0;i<sModel.getbuttonLength();i++){
                     if(sModel.getButtonObj(i).contains(ConfigModel.mse)){
                         if(sModel.getButtonId(i) != ConfigModel.airAir)
