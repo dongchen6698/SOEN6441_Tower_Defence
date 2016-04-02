@@ -1,11 +1,14 @@
 package TD.model;
 
 import java.awt.Rectangle;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -96,6 +99,7 @@ public class GridCell_Model extends Rectangle{
         
         
         for(int tid=0;tid<ConfigModel.airTowerLaser.length;tid++){
+<<<<<<< HEAD
         	if(getAirID() == ConfigModel.airTowerLaser[tid]){
         for(int i=0;i<cModel.length;i++){
             if(cModel[i].isInGame()){
@@ -174,6 +178,19 @@ public class GridCell_Model extends Rectangle{
         
         if(!isFiring())
         {
+=======
+                    for(int i=0;i<cModel.length;i++){
+                        if(cModel[i].isInGame()){
+                            if(getTowerRange()[tid].contains(cModel[i])){
+                                setFiring(false);
+                            }
+                        }
+                    }
+            }
+        
+        
+        if(!isFiring()){
+>>>>>>> f1627dc9d9fa9ddfa6818f7e910b4f4cefaaabab
             for(int tid=0;tid<ConfigModel.airTowerLaser.length;tid++){
             	if(airID == ConfigModel.airTowerLaser[tid]){
             		//System.out.println("Tower Id "+airID);
@@ -210,7 +227,20 @@ public class GridCell_Model extends Rectangle{
             	if(getAirID() == 3){
             		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[0]);			
             	}else if(getAirID() == 4){
-            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[1]);		
+            		cModel[getShotMob()].setFire(true);
+            		
+            		for(int i=0;i<cModel.length;i++){
+            			if(cModel[i].isInGame()){
+            				if(cModel[i].isFire()){
+            						cModel[i].loseHealth(1);
+            				}
+            				if(!getTowerRange()[1].contains(cModel[i])){	
+            					cModel[i].setFire(false);
+            				}
+                    	}
+            		}
+            		
+            		
             	}else if(getAirID() == 5){
             		cModel[getShotMob()].walkSpeed = 30;
             		for(int i=0;i<cModel.length;i++){
@@ -367,4 +397,5 @@ public class GridCell_Model extends Rectangle{
     	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
     	return sdf.format(cal.getTime());
     }
+ 
 }

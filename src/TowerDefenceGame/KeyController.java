@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.Serializable;
 import java.util.Observable;
 
 import TD.config.ConfigModel;
@@ -12,7 +13,7 @@ import TD.config.ConfigModel;
  * This class will take input from user via mouse and trigger the appropriate function.
  * @author peilin
  */
-public class KeyController extends Observable implements MouseMotionListener, MouseListener {
+public class KeyController extends Observable implements MouseMotionListener, MouseListener{
 
     /**
      * This Method will listen mouse dragged movement and store x,y coordinates in point variable.

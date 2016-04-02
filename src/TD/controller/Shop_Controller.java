@@ -2,6 +2,7 @@ package TD.controller;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Observable;
 import java.util.Observer;
@@ -16,7 +17,7 @@ import TD.view.Shop_View;
  * This Class will bind and initialize Model-View of Shop(Tower) Module.
  * 
  */
-public class Shop_Controller implements Observer {
+public class Shop_Controller implements Observer{
     static CellContainer_Controller ccCont;
     static Shop_Model sModel;
     Shop_View sView;

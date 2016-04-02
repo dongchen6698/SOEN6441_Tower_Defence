@@ -7,11 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
-import java.awt.image.CropImageFilter;
-import java.awt.image.FilteredImageSource;
+import java.io.Serializable;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -26,7 +23,7 @@ import TowerDefenceGame.*;
   * This is GUI class of Play Screen Module.
  * @author peilin
  */
-public class PlayScreen_View extends JPanel implements Runnable {
+public class PlayScreen_View extends JPanel implements Runnable{
 
     public Thread gameLoop = new Thread(this);
     
@@ -37,6 +34,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
     boolean rFlag =false;
     static PlayScreen_Controller psCont;
     public static int wave = 1;
+    private volatile boolean isRunning = true;
     
     public static Creature_Model[] Creatures = CreatureFactory.getCreature(wave);
     //  public static Creature_Model[] Creatures = new Creature_Model[ConfigModel.creaturesNo];
@@ -128,7 +126,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
                 Creatures = CreatureFactory.getCreature(wave);
                 ConfigModel.killsToWin = ConfigModel.creaturesNo;
                 ConfigModel.walkSpeed = 12;
-               wave++;
+                wave++;
         	}else if(wave == 3){               
                 ConfigModel.killed = 0;
                 ConfigModel.waveLap++;
@@ -137,6 +135,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
                 Creatures = CreatureFactory.getCreature(wave);
                 ConfigModel.killsToWin = 15;
                 ConfigModel.walkSpeed = 4;  
+                wave++;
         	}
             for(int i=0;i<Creatures.length;i++){
                 Creatures[i] = new Creature_Model(psCont.getCcModel(),psCont.getCcCont());
@@ -300,7 +299,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
      */
     @Override
     public void run() {
-        while(true){
+        while(isRunning){
             
             if(isFirst){
                 initCreatures();
@@ -311,7 +310,18 @@ public class PlayScreen_View extends JPanel implements Runnable {
                     psCont.getCcModel().physic(Creatures);
                 } catch (ParseException ex) {
                 }
-                mobSpawner();
+                if(this.wave == 2){
+                	//System.out.println("wave 2");
+                	this.spawnTime = 1000;
+                	mobSpawner();
+                }else if(this.wave == 3){
+                	//System.out.println("wave 3");
+                	this.spawnTime = 800;
+                	mobSpawner();
+                }else{
+                	this.spawnTime = 400;
+                	mobSpawner();
+                }
                 for(int i=0;i<Creatures.length;i++){
                     if(Creatures[i].isInGame()){
                         Creatures[i].physic();
@@ -340,4 +350,8 @@ public class PlayScreen_View extends JPanel implements Runnable {
         }
     }
     
+    public void killThread(){
+    	this.isRunning = false;
+    }
 }
+

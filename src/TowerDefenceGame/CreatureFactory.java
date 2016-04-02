@@ -1,5 +1,7 @@
 package TowerDefenceGame;
 
+import java.io.Serializable;
+
 import TD.config.ConfigModel;
 import TD.model.Creature_Model;
 /**
@@ -7,7 +9,7 @@ import TD.model.Creature_Model;
  * @author peilin
  *
  */
-public class CreatureFactory {
+public class CreatureFactory{
 	/**
 	 * this is a static method for creating creatures
 	 * @param wave
@@ -17,10 +19,10 @@ public class CreatureFactory {
 		   switch(wave){
 		   case 1:	
 			   return new Creature_Model[ConfigModel.creaturesNo];
-		   case 2: 
+		   case 2:
 			   ConfigModel.creaturesNo=ConfigModel.creaturesNo+5;
 			   return new Creature_Model[ConfigModel.creaturesNo];
-		   case 3: 
+		   case 3:
 			   ConfigModel.creaturesNo=ConfigModel.creaturesNo+5; 
 			   return new Creature_Model[ConfigModel.creaturesNo];
 		   default: return null;

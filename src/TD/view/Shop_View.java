@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.Serializable;
+
+import javax.swing.JButton;
 
 import TD.config.ConfigModel;
 import TD.model.Shop_Model;
@@ -12,13 +17,13 @@ import TD.model.Shop_Model;
   * This is GUI class of Shop(Tower) Module.
  * @author peilin
  */
-public class Shop_View {
+public class Shop_View{
     
     /**
      * This method is initialize GUI components for Shop(Tower).
      */
     public Shop_View(){
-        
+       
     }
     
     /**

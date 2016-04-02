@@ -2,6 +2,7 @@ package TD.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import TD.config.ConfigModel;
 import TD.model.GridCell_Model;
@@ -10,7 +11,7 @@ import TD.model.GridCell_Model;
  * This is GUI class of Grid Cell Module.
  * @author peilin
  */
-public class GridCell_View {
+public class GridCell_View{
     
     /**
      * This is constructor.
@@ -59,10 +60,9 @@ public class GridCell_View {
         if(gcModel != null && gcModel.isFiring() && gcModel.getAirID() != -1){
         	//draw the special image to the critters.
             if(gcModel.getAirID() == 4){
-                g.drawImage(ConfigModel.fire[0], PlayScreen_View.Creatures[gcModel.getShotMob()].x, PlayScreen_View.Creatures[gcModel.getShotMob()].y, gcModel.width, gcModel.height, null);
+                //g.drawImage(ConfigModel.fire[0], PlayScreen_View.Creatures[gcModel.getShotMob()].x, PlayScreen_View.Creatures[gcModel.getShotMob()].y, gcModel.width, gcModel.height, null);
             } else if(gcModel.getAirID() == 5){
             	//g.drawImage(ConfigModel.ice[0], PlayScreen_View.Creatures[gcModel.getShotMob()].x, PlayScreen_View.Creatures[gcModel.getShotMob()].y, gcModel.width, gcModel.height, null);
-            	//PlayScreen_View.Creatures[gcModel.getShotMob()].walkSpeed = 50;
             } else if(gcModel.getAirID() == 6){
                 g.drawImage(ConfigModel.star[0], PlayScreen_View.Creatures[gcModel.getShotMob()].x, PlayScreen_View.Creatures[gcModel.getShotMob()].y, gcModel.width, gcModel.height, null);
             }
