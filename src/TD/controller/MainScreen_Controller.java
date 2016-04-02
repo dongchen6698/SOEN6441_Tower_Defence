@@ -6,10 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import TD.model.JavaShell_Model;
 import TD.model.LoadGameInfo_Model;
 import TD.model.MainScreen_Model;
 import TD.model.MapChooser_Model;
 import TD.model.MapCreation_Model;
+import TD.view.JavaShell_View;
 import TD.view.MainScreen_View;
 import TD.view.MapChooser_View;
 import TD.view.MapCreation_View;
@@ -82,6 +84,14 @@ public class MainScreen_Controller {
                 if(tempBtnStr.equals("EXIT GAME")){
                     theView.dispose();
                     System.exit(0);
+                }
+                
+                if(tempBtnStr.equals("Show Log")){
+                	JavaShell_Model jsModel = new JavaShell_Model();
+            		JavaShell_View jsView = new JavaShell_View();
+            		jsModel.addObserver(jsView);
+            		JavaShell_Controller jsc = new JavaShell_Controller(jsView, jsModel);
+            		
                 }
             }
         }
