@@ -107,8 +107,30 @@ public class GridCell_Model extends Rectangle{
                     {
                     	if(shotMob!=-1)
                     	{
-                    	System.out.println("Shot Mob "+cModel[shotMob].getHealth() + " other than shotmob" + cModel[i].getHealth() );
-                        		
+                    	
+                    		
+                    		
+                    	//System.out.println("Shot Mob "+cModel[shotMob].getHealth() + " other than shotmob" + cModel[i].getHealth() );
+                        
+                    	
+                    	//nearest to the tower	
+                    	int diff1 = this.y - cModel[shotMob].y;
+                    	
+                    	int diff2 = this.y - cModel[i].y;
+                    	
+                    	
+                    	System.out.println("Difference1 - "+Math.abs(diff1));
+                    	System.out.println("Difference2 - "+Math.abs(diff2));
+                    	
+                    	
+                    	if(Math.abs(diff2)<Math.abs(diff1))
+                    	{
+                    		shotMob=i;
+                    	}
+                    	
+                    	
+                    	
+                    	
 //                    	//weakest
 //                    	if(cModel[shotMob].getHealth()<cModel[i].getHealth())
 //                    	{
@@ -122,14 +144,14 @@ public class GridCell_Model extends Rectangle{
                     	
                     	
                     	//strongest
-                    	if(cModel[shotMob].getHealth()>cModel[i].getHealth())
-                    	{
-                    	//shotMob=i;	
-                    	}
-                    	else
-                    	{
-                    		shotMob=i;
-                    	}
+//                    	if(cModel[shotMob].getHealth()>cModel[i].getHealth())
+//                    	{
+//                    	//shotMob=i;	
+//                    	}
+//                    	else
+//                    	{
+//                    		shotMob=i;
+//                    	}
                     	
                     	// near to tht end
 //                    	if(shotMob<i)
