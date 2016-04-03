@@ -14,12 +14,13 @@ import TowerDefenceGame.GamePlay;
 
 public class SaveGameInfo_Model {
 	
-	public SaveGameInfo_Model(PlayScreen_View psView){
+	public SaveGameInfo_Model(Serialization_model slzModel){
+
 		try{
 			 FileOutputStream fileOut = new FileOutputStream("savegameinfo/savegameinfo.ser");
 			         ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			         
-			         out.writeObject(psView);
+			         out.writeObject(slzModel);
 			        
 			         out.close();
 			         fileOut.close();

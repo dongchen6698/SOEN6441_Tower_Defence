@@ -11,18 +11,10 @@ import TD.view.PlayScreen_View;
 import TowerDefenceGame.GamePlay;
 
 public class LoadGameInfo_Model {
-//	private File file;
-//	private PlayScreen_Model psModel;
-//	private GridCell_Model[][] gcModel;
-//	private CellContainer_Model ccModel;
-//	private Shop_Model sModel;
-//	private ConfigModel cModel;
-
 	
 	public LoadGameInfo_Model(){
-		//PlayScreen_Model psModel = null;
-		//GridCell_View gcView = null;
-		PlayScreen_View psView = null;
+
+		Serialization_model slzModel = null;
 		
 		System.out.println("start loadgame");
 		try
@@ -30,8 +22,8 @@ public class LoadGameInfo_Model {
 	         FileInputStream fileIn = new FileInputStream("savegameinfo/savegameinfo.ser");
 	         ObjectInputStream in = new ObjectInputStream(fileIn);
 	         
-	         psView = (PlayScreen_View) in.readObject();
-	         
+	         slzModel = (Serialization_model) in.readObject();
+	         System.out.println(slzModel.money);
 	         
 	         in.close();
 	         fileIn.close();

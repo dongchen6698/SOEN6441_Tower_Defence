@@ -23,6 +23,7 @@ import TD.model.Creature_Model;
 import TD.model.GridCell_Model;
 import TD.model.PlayScreen_Model;
 import TD.model.SaveGameInfo_Model;
+import TD.model.Serialization_model;
 import TD.model.Shop_Model;
 import TD.view.CellContainer_View;
 import TD.view.Creature_View;
@@ -37,7 +38,7 @@ import TD.view.Shop_View;
 public class GamePlay extends JFrame implements WindowListener{
     
     private PlayScreen_Controller psCont;
-    private SaveGameInfo_Model sgiModel;
+    private Serialization_model slzModel;
     
     private PlayScreen_View psView;
     private PlayScreen_Model psModel;
@@ -146,7 +147,7 @@ public class GamePlay extends JFrame implements WindowListener{
         	System.exit(0);
         }else if(reply == JOptionPane.YES_OPTION){
         	System.out.println("save game");
-        	sgiModel = new SaveGameInfo_Model(psView);
+        	slzModel = new Serialization_model(this.file,ConfigModel.money);
         	//sgiModel = new SaveGameInfo_Model(psModel, gcModel, ccModel, sModel,cModel,file);
         	
         }
