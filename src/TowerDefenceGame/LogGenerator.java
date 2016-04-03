@@ -6,12 +6,18 @@ import java.util.Date;
 public class LogGenerator {
 	
 	
-	public static void addLogInfo(){
+	public static void addLogInfo(String TowerID,String creatureID,String wave,String content){
+		getCurrentTime();
+		
 		
 	}
 	
-	public static void creatLogFile(){
-		
+	public static void creatLogFile(String logtype){
+		if(logtype == "creatmap"){
+			//creat creatmap log file
+		}else if(logtype == "game"){
+			//creat globol log file
+		}
 	}
 	
 	public static String getCurrentTime(){
