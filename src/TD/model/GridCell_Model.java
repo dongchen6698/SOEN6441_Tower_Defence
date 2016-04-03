@@ -20,6 +20,8 @@ import TD.view.PlayScreen_View;
  * @author peilin
  */
 public class GridCell_Model extends Rectangle{
+    public static int strategyno;
+    
     
     private Rectangle[] towerRange;
     public String[] towerLog;
@@ -116,54 +118,81 @@ public class GridCell_Model extends Rectangle{
                     		
                     	//System.out.println("Shot Mob "+cModel[shotMob].getHealth() + " other than shotmob" + cModel[i].getHealth() );
                         
+                    	//this.airID tower id
+                    	//cModel[shotMob] creature id	
+                    	//ConfigModel.waveLap  
+                    		
                     	
-                    	//nearest to the tower	
-                    	int diff1 = this.y - cModel[shotMob].y;
-                    	
-                    	int diff2 = this.y - cModel[i].y;
-                    	
-                    	
-                    	System.out.println("Difference1 - "+Math.abs(diff1));
-                    	System.out.println("Difference2 - "+Math.abs(diff2));
-                    	
-                    	
-                    	if(Math.abs(diff2)<Math.abs(diff1))
+                    		
+                    	switch(strategyno)	
                     	{
-                    		shotMob=i;
+                    	case 1:
+                    		//nearest to the tower	
+                        	int diff1 = this.y - cModel[shotMob].y;
+                        	
+                        	int diff2 = this.y - cModel[i].y;
+                        	
+                        	
+                        	
+                        	
+                        	if(Math.abs(diff2)<Math.abs(diff1))
+                        	{
+                        		shotMob=i;
+                        	}
+                    		
+                    		break;
+                    	case 2:
+                        	
+                    		
+                    		//weakest
+                        	if(cModel[shotMob].getHealth()<cModel[i].getHealth())
+                        	{
+                        	//shotMob=i;	
+                        	}
+                        	else
+                        	{
+                        		shotMob=i;
+                        	}
+                    		
+                    		break;
+                    	case 3:
+
+                    		//strongest
+                        	if(cModel[shotMob].getHealth()>cModel[i].getHealth())
+                        	{
+                        	//shotMob=i;	
+                        	}
+                        	else
+                        	{
+                        		shotMob=i;
+                        	}
+                        	break;
+                    	
+                    	case 4:
+
+                        	//near to tht end
+                        	if(shotMob<i)
+                        	{
+                        	shotMob=i;	
+                        	}
+                
+                    		
+                    		break;
+                    		default:
+                    		//near to tht end
+                            if(shotMob<i)
+                            {
+                            shotMob=i;	
+                            }	
                     	}
                     	
                     	
                     	
                     	
-//                    	//weakest
-//                    	if(cModel[shotMob].getHealth()<cModel[i].getHealth())
-//                    	{
-//                    	//shotMob=i;	
-//                    	}
-//                    	else
-//                    	{
-//                    		shotMob=i;
-//                    	}
                     	
+
                     	
-                    	
-                    	//strongest
-//                    	if(cModel[shotMob].getHealth()>cModel[i].getHealth())
-//                    	{
-//                    	//shotMob=i;	
-//                    	}
-//                    	else
-//                    	{
-//                    		shotMob=i;
-//                    	}
-                    	
-                    	// near to tht end
-//                    	if(shotMob<i)
-//                    	{
-//                    	shotMob=i;	
-//                    	}
-//                    	
-                    	
+      	
                     	
                     	
                     	}

@@ -31,7 +31,8 @@ public class Shop_View{
      * @param g the Graphics
      * @param sModel the shop model object
      */
-    public void draw(Shop_Model sModel, Graphics g){ 
+    public void draw(Shop_Model sModel, Graphics g)
+    { 
         
         g.setColor(new Color(255, 255, 255));
         g.drawRect(sModel.btn_health.x - 5, sModel.btn_health.y -5, 226, 50);
@@ -81,21 +82,40 @@ public class Shop_View{
             g.drawString("Special effects: "+ConfigModel.TowerSpecial[sModel.getTowerID()], sModel.btn_health.x - 30 + sModel.icon_space, sModel.btn_health.height + temp_Height + 120);
             g.setColor(new Color(255, 255, 255, 100));            
             
+            
+            
+            
+            g.drawString("Strategy 1", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 270);
+            g.drawString("Strategy 2", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 290);
+            g.drawString("Strategy 3", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 310);
+            g.drawString("Strategy 4", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 330);
+            
+            
+            //System.out.println("Y CO "+(sModel.btn_health.height + 270));
+            
             if(ConfigModel.TowerLevel[sModel.getTowerID()] < 5){
                 Rectangle wx = new Rectangle(sModel.button[0].x - 5, 255, 226, 20);
-                if(wx.contains(ConfigModel.mse)){
+                if(wx.contains(ConfigModel.mse))
+                {
                      g.setColor(new Color(200, 200, 200));
                      g.fillRect(wx.x, wx.y, wx.width, wx.height);
                      g.setColor(new Color(0, 0, 0));
-                 } else {
+                 } 
+                else 
+                {
                     g.fillRect(wx.x, wx.y, wx.width, wx.height);
                     g.setColor(new Color(255, 255, 255));
                 }
                 g.drawString("Upgrade Tower Level", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 250);
-            } else {
+            } 
+            else 
+            {
                 g.setColor(new Color(255, 255, 255));
                 g.drawString("Tower reached max Level", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 250);
             }
+            
+            
+        
         }
     }
 }

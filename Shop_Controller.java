@@ -48,7 +48,8 @@ public class Shop_Controller implements Observer {
      * @param sModel the showModel
      * @param g the Graphics
      */
-    public void getshopDraw(Shop_Model sModel, Graphics g){
+    public void getshopDraw(Shop_Model sModel, Graphics g)
+    {
         this.sView.draw(sModel, g);
     }
     

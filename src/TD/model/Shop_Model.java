@@ -72,6 +72,13 @@ public class Shop_Model{
             button[i] = new Rectangle( startX +(i * (cellSpace+getButtonSize())), startY+getButtonSize()+cellSpace, getButtonSize(), getButtonSize());
         }
         towerUpgrade = new Rectangle(startX - 5, 240, 226, 35);
+        
+        strategy1 = new Rectangle(startX - 5, 275, 226, 20);
+        strategy2 = new Rectangle(startX - 5, 295, 226, 20);
+        strategy3 = new Rectangle(startX - 5, 315, 226, 20);
+        strategy4 = new Rectangle(startX - 5, 335, 226, 20);
+        
+        
         savegameinfo = new Rectangle(startX-5,285,226,35);
         btn_health = new Rectangle(startX, 14, iconSize, iconSize);
         btn_coins = new Rectangle(startX + button[0].y + 60, 14, iconSize, iconSize);
