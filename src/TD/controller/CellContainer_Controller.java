@@ -1,6 +1,8 @@
 package TD.controller;
 
 import java.awt.Graphics;
+import java.io.Serializable;
+
 import TD.model.CellContainer_Model;
 import TD.model.GridCell_Model;
 import TD.view.CellContainer_View;
@@ -9,7 +11,7 @@ import TD.view.CellContainer_View;
  * This is controller class for Grid Cell Container.
  * @author peilin
  */
-public class CellContainer_Controller {
+public class CellContainer_Controller{
     CellContainer_Model theModel;
     CellContainer_View theView;
     private GridCell_Model[][] gcModel;

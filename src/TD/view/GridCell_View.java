@@ -2,6 +2,7 @@ package TD.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import TD.config.ConfigModel;
 import TD.model.GridCell_Model;
@@ -10,7 +11,7 @@ import TD.model.GridCell_Model;
  * This is GUI class of Grid Cell Module.
  * @author peilin
  */
-public class GridCell_View {
+public class GridCell_View{
     
     /**
      * This is constructor.

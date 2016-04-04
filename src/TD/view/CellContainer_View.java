@@ -1,7 +1,7 @@
 package TD.view;
 
 import java.awt.Graphics;
-
+import java.io.Serializable;
 
 import TD.controller.CellContainer_Controller;
 
@@ -9,7 +9,7 @@ import TD.controller.CellContainer_Controller;
  * This is GUI class of Cell Container Module.
  * @author peilin
  */
-public class CellContainer_View {
+public class CellContainer_View{
     private CellContainer_Controller ccCont;
     
     /**

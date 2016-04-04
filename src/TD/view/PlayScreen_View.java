@@ -7,11 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
-import java.awt.image.CropImageFilter;
-import java.awt.image.FilteredImageSource;
+import java.io.Serializable;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -26,19 +23,20 @@ import TowerDefenceGame.*;
   * This is GUI class of Play Screen Module.
  * @author peilin
  */
-public class PlayScreen_View extends JPanel implements Runnable {
+public class PlayScreen_View extends JPanel implements Runnable{
 
     public Thread gameLoop = new Thread(this);
     
     private static boolean isFirst = true;
     private static boolean isWon = false;
-    
+    private static int waveLap = ConfigModel.waveLap;
     public static boolean isWin = false;
     boolean rFlag =false;
     static PlayScreen_Controller psCont;
-    public static int wave = 1;
+    //public static int wave = 1;
+    private volatile boolean isRunning = true;
     
-    public static Creature_Model[] Creatures = CreatureFactory.getCreature(wave);
+    public static Creature_Model[] Creatures = CreatureFactory.getCreature(waveLap);
     //  public static Creature_Model[] Creatures = new Creature_Model[ConfigModel.creaturesNo];
       Creature_View cView = new Creature_View();
       
@@ -95,14 +93,12 @@ public class PlayScreen_View extends JPanel implements Runnable {
         //System.out.println("initCreatures");
    
         if(psCont != null){
-        	if(wave == 1){
-        		Creatures = CreatureFactory.getCreature(wave);
-        		wave++;
-        	}
+        		Creatures = CreatureFactory.getCreature(waveLap);
             for(int i=0;i<Creatures.length;i++){
                 Creatures[i] = new Creature_Model(psCont.getCcModel(),psCont.getCcCont());
             }
             isFirst = false;
+            
             return true;
         } else {
             //System.out.println("psCont not initialized");
@@ -120,24 +116,27 @@ public class PlayScreen_View extends JPanel implements Runnable {
             isWon = false;
         }
         if((ConfigModel.health > 0 && checkLiveCreatures()) && !isWon){
-        	if(wave == 2){        		
+        	
+        		//System.out.println(waveLap+"  "+ConfigModel.creaturesNo);
+        		ConfigModel.waveLap++;
+        		this.waveLap++;
+        	if(this.waveLap == 2){  
         		ConfigModel.killed = 0;
-                ConfigModel.waveLap++;
                 ConfigModel.level++;        
                 tileset_mob[0] = new ImageIcon("resources/critter_2.png").getImage();
-                Creatures = CreatureFactory.getCreature(wave);
+                Creatures = CreatureFactory.getCreature(waveLap);
+                //System.out.println(waveLap+"  "+ConfigModel.creaturesNo);
                 ConfigModel.killsToWin = ConfigModel.creaturesNo;
                 ConfigModel.walkSpeed = 12;
-                wave++;
-        	}else if(wave == 3){               
+        	}
+        	if(this.waveLap == 3){
                 ConfigModel.killed = 0;
-                ConfigModel.waveLap++;
                 ConfigModel.level++;
                 tileset_mob[0] = new ImageIcon("resources/critter_3.png").getImage();
-                Creatures = CreatureFactory.getCreature(wave);
+                Creatures = CreatureFactory.getCreature(waveLap);
+                //System.out.println(waveLap+"  "+ConfigModel.creaturesNo+"should be wave 3");
                 ConfigModel.killsToWin = 15;
-                ConfigModel.walkSpeed = 4;  
-                wave++;
+                ConfigModel.walkSpeed = 4;
         	}
             for(int i=0;i<Creatures.length;i++){
                 Creatures[i] = new Creature_Model(psCont.getCcModel(),psCont.getCcCont());
@@ -301,7 +300,7 @@ public class PlayScreen_View extends JPanel implements Runnable {
      */
     @Override
     public void run() {
-        while(true){
+        while(isRunning){
             
             if(isFirst){
                 initCreatures();
@@ -312,16 +311,17 @@ public class PlayScreen_View extends JPanel implements Runnable {
                     psCont.getCcModel().physic(Creatures);
                 } catch (ParseException ex) {
                 }
-                if(this.wave == 2){
-                	//System.out.println("wave 2");
-                	this.spawnTime = 1000;
-                	mobSpawner();
-                }else if(this.wave == 3){
-                	//System.out.println("wave 3");
+                if(this.waveLap == 2){
                 	this.spawnTime = 800;
+                	//System.out.println(waveLap+"  "+this.spawnTime);
+                	mobSpawner();
+                }else if(this.waveLap == 3){
+                	this.spawnTime = 400;
+                	//System.out.println(waveLap+"  "+this.spawnTime);
                 	mobSpawner();
                 }else{
-                	this.spawnTime = 400;
+                	this.spawnTime = 1000;
+                	//System.out.println(waveLap+"  "+this.spawnTime);
                 	mobSpawner();
                 }
                 for(int i=0;i<Creatures.length;i++){
@@ -352,4 +352,11 @@ public class PlayScreen_View extends JPanel implements Runnable {
         }
     }
     
+    public void killThread(){
+    	this.isRunning = false;
+    }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master

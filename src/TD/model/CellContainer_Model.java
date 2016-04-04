@@ -1,5 +1,6 @@
 package TD.model;
 
+import java.io.Serializable;
 import java.text.ParseException;
 
 import TD.config.ConfigModel;
@@ -9,7 +10,7 @@ import TD.controller.GridCell_Controller;
  * This is model class of Cell Container
  * @author peilin
  */
-public class CellContainer_Model {
+public class CellContainer_Model{
     private int xC = 10;
     private int yC = 10;
     private int cellPixels = 44;

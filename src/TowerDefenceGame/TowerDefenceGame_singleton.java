@@ -49,4 +49,8 @@ public class TowerDefenceGame_singleton {
 	}
 	
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master

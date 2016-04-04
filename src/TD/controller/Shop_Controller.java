@@ -2,6 +2,7 @@ package TD.controller;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Observable;
 import java.util.Observer;
@@ -9,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import TD.config.ConfigModel;
+import TD.model.GridCell_Model;
 import TD.model.Shop_Model;
 import TD.view.Shop_View;
 
@@ -16,7 +18,7 @@ import TD.view.Shop_View;
  * This Class will bind and initialize Model-View of Shop(Tower) Module.
  * 
  */
-public class Shop_Controller implements Observer {
+public class Shop_Controller implements Observer{
     static CellContainer_Controller ccCont;
     static Shop_Model sModel;
     Shop_View sView;
@@ -130,7 +132,8 @@ public class Shop_Controller implements Observer {
     public void update(Observable o, Object arg) {
          if (arg instanceof String) {
             int button = Integer.parseInt((String)arg);
-            if(button == 1){
+            if(button == 1)
+            {
                 for(int i=0;i<sModel.getbuttonLength();i++){
                     if(sModel.getButtonObj(i).contains(ConfigModel.mse)){
                         if(sModel.getButtonId(i) != ConfigModel.airAir)
@@ -163,19 +166,62 @@ public class Shop_Controller implements Observer {
                             }
                         }
             
+                        
+                        if(sModel.strategy1.contains(ConfigModel.mse)){
+                            if(sModel.isTowerInfo()){
+                                
+                            	GridCell_Model.strategyno=1;
+                            	
+                                
+                            }                
+                        }            
+                        
+                        if(sModel.strategy2.contains(ConfigModel.mse)){
+                            if(sModel.isTowerInfo()){
+                                
+                            	GridCell_Model.strategyno=2;
+                            	
+                                
+                            }                
+                        }       
+                        if(sModel.strategy3.contains(ConfigModel.mse)){
+                            if(sModel.isTowerInfo()){
+                                
+                            	GridCell_Model.strategyno=3;
+                            	
+                                
+                            }                
+                        }       
+                        if(sModel.strategy4.contains(ConfigModel.mse)){
+                            if(sModel.isTowerInfo()){
+                                
+                            	GridCell_Model.strategyno=4;
+                            	
+                                
+                            }                
+                        }       
+                        
+                        
+                        
             if(sModel.towerUpgrade.contains(ConfigModel.mse)){
                 if(sModel.isTowerInfo()){
                     //System.out.println("Tower Info");
-                    if(ConfigModel.TowerLevel[sModel.getTowerID()] < 5){
-                        if(ConfigModel.money >= ConfigModel.TowerPrice[sModel.getTowerID()]){
+                    if(ConfigModel.TowerLevel[sModel.getTowerID()] < 5)
+                    {
+                        if(ConfigModel.money >= ConfigModel.TowerPrice[sModel.getTowerID()])
+                        {
                             //System.out.println("Tower Upgrade: "+sModel.getTowerID());
                             ConfigModel.TowerFiringRate[sModel.getTowerID()] += 1;
                             ConfigModel.airTowerRanger[sModel.getTowerID()] += 20;
                             ConfigModel.TowerLevel[sModel.getTowerID()]++;
                             ConfigModel.money -= ConfigModel.TowerPrice[sModel.getTowerID()];
-                            for(int y=0;y<ccCont.getyC();y++){
-                                for(int x=0;x<ccCont.getxC();x++){
-                                    if(ccCont.getgcModelObj(y, x).getAirID() == (sModel.getTowerID()+3)){
+                            
+                            for(int y=0;y<ccCont.getyC();y++)
+                            {
+                                for(int x=0;x<ccCont.getxC();x++)
+                                {
+                                    if(ccCont.getgcModelObj(y, x).getAirID() == (sModel.getTowerID()+3))
+                                    {
                                         ccCont.getgcModelObj(y, x).setTowerRange(sModel.getTowerID(), new Rectangle(ccCont.getgcModelObj(y, x).x - ((ConfigModel.airTowerRanger[sModel.getTowerID()])/2), ccCont.getgcModelObj(y, x).y - ((ConfigModel.airTowerRanger[sModel.getTowerID()])/2), ccCont.getgcModelObj(y, x).width + ConfigModel.airTowerRanger[sModel.getTowerID()], ccCont.getgcModelObj(y, x).height + ConfigModel.airTowerRanger[sModel.getTowerID()]));
                                     }
                                 }
