@@ -356,7 +356,3 @@ public class PlayScreen_View extends JPanel implements Runnable{
     	this.isRunning = false;
     }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master

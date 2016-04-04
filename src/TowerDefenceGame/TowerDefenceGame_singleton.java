@@ -44,13 +44,7 @@ public class TowerDefenceGame_singleton {
 	 * 
 	 * @return mainscreenviewmodel
 	 */ 
-	public MainScreen_Model getMainscreenviewmodel() {
+	public MainScreen_Model getMainscreenviewmodel(){
 		return mainscreenviewmodel;
 	}
-	
-	
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master
