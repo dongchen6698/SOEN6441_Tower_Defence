@@ -27,8 +27,8 @@ public class PlayScreen_View extends JPanel implements Runnable{
 
     public Thread gameLoop = new Thread(this);
     
-    private static boolean isFirst = true;
-    private static boolean isWon = false;
+    private static boolean isFirst = ConfigModel.gameisFirst;
+    private static boolean isWon = ConfigModel.gameisWon;
     private static int waveLap = ConfigModel.waveLap;
     public static boolean isWin = false;
     boolean rFlag =false;
