@@ -122,7 +122,7 @@ public class GridCell_Model extends Rectangle{
                     	//this.airID tower id
                     	//cModel[shotMob] creature id	
                     	//ConfigModel.waveLap  
-                    	LogGenerator.addLogInfo(Integer.toString(this.airID), Integer.toString(shotMob),Integer.toString(ConfigModel.waveLap), "Tower_"+(this.airID-2)+" attacked creatur"+shotMob);	
+                    	//LogGenerator.addLogInfo(Integer.toString(this.airID), Integer.toString(shotMob),Integer.toString(ConfigModel.waveLap), "Tower_"+(this.airID-2)+" attacked creatur"+shotMob);	
                     	//
                     		
                     	switch(strategyno)	

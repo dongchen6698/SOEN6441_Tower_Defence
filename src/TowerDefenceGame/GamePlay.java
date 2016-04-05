@@ -57,6 +57,7 @@ public class GamePlay extends JFrame implements WindowListener{
      * @param w Width of Play screen based on map size
      * @param h Height of Play screen based on map size
      */
+    public GamePlay(){}
     public GamePlay(File file, int w, int h)
     {
         int width = w*40 + 350;
@@ -99,14 +100,14 @@ public class GamePlay extends JFrame implements WindowListener{
                                 this.sModel = sModel;
                                 
                                 CellContainer_View ccView = new CellContainer_View();
-                                CellContainer_Model ccModel = psModel.getCellContainer_Model();
+                                ccModel = psModel.getCellContainer_Model();
                                 this.ccView = ccView;
-                                this.ccModel = ccModel;
+                             //   this.ccModel = ccModel;
 
-                                GridCell_View gcView = new GridCell_View();
-                                GridCell_Model[][] gcModel = ccModel.getGcModel();
-                                this.gcView = gcView;
-                                this.gcModel = gcModel;
+                                gcView = new GridCell_View();
+                                gcModel = ccModel.getGcModel();
+                              //  this.gcView = gcView;
+                             //  this.gcModel = gcModel;
 
                                 PlayScreen_View psView = new PlayScreen_View(this);
                                 this.psView = psView;
@@ -137,7 +138,10 @@ public class GamePlay extends JFrame implements WindowListener{
     public void windowOpened(WindowEvent e) {
        
     }
-
+    
+    /**
+     * This method is closing game and save game
+     */
     @Override
     public void windowClosing(WindowEvent e) {
     	String message = "Do you want to save game information?";
@@ -147,8 +151,8 @@ public class GamePlay extends JFrame implements WindowListener{
         	System.exit(0);
         }else if(reply == JOptionPane.YES_OPTION){
         	System.out.println("save game");
-        	slzModel = new Serialization_model(this.file,ConfigModel.money);
-        	//sgiModel = new SaveGameInfo_Model(psModel, gcModel, ccModel, sModel,cModel,file);
+        	slzModel = new Serialization_model(this.file,ConfigModel.money, ConfigModel.killed, ConfigModel.total_killed, ConfigModel.health, ConfigModel.waveLap, ConfigModel.level, gcModel);
+        	System.exit(0);
         	
         }
 
