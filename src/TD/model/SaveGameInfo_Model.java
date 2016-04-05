@@ -5,6 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import TD.config.ConfigModel;
 import TD.view.CellContainer_View;
 import TD.view.GridCell_View;
@@ -12,12 +15,13 @@ import TD.view.PlayScreen_View;
 import TD.view.Shop_View;
 import TowerDefenceGame.GamePlay;
 
-public class SaveGameInfo_Model {
+public class SaveGameInfo_Model extends JFrame{
 	
 	public SaveGameInfo_Model(Serialization_model slzModel){
 
 		try{
-			 FileOutputStream fileOut = new FileOutputStream("savegameinfo/savegameinfo.ser");
+			 String str = JOptionPane.showInputDialog(this, "Enter File Name");
+			 FileOutputStream fileOut = new FileOutputStream("savegameinfo/"+str+ ".ser");
 			         ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			         
 			         out.writeObject(slzModel);
@@ -30,5 +34,6 @@ public class SaveGameInfo_Model {
 			         i.printStackTrace();
 			 }
 	}
+	
 
 }

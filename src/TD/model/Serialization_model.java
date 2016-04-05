@@ -42,7 +42,6 @@ public class Serialization_model implements Serializable{
 		this.wavelap = wavelap;
 		this.level = level;
 		this.gcModel = gcModel;
-
 		new SaveGameInfo_Model(this);
 	}
 }

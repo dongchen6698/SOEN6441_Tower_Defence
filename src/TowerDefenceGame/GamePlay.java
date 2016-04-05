@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.Serializable;
 
 import javax.swing.JButton;
@@ -51,13 +52,13 @@ public class GamePlay extends JFrame implements WindowListener{
     private ConfigModel cModel;
     private File file;
     
+    public GamePlay(){}
     /**
      * This method will initialize JFrame and set some basic properties(Title, Size, Background Color, Location).
      * @param f Map file which is selected by user from list box.
      * @param w Width of Play screen based on map size
      * @param h Height of Play screen based on map size
      */
-    public GamePlay(){}
     public GamePlay(File file, int w, int h)
     {
         int width = w*40 + 350;
@@ -150,8 +151,12 @@ public class GamePlay extends JFrame implements WindowListener{
         if (reply == JOptionPane.NO_OPTION){
         	System.exit(0);
         }else if(reply == JOptionPane.YES_OPTION){
-        	System.out.println("save game");
+        //	 String str = JOptionPane.showInputDialog(this, "Enter File Name");
+        //	new FileOutputStream("savegameinfo/"+str+".dat"), "utf-8"));
+        //	System.out.println("save game");
+        	
         	slzModel = new Serialization_model(this.file,ConfigModel.money, ConfigModel.killed, ConfigModel.total_killed, ConfigModel.health, ConfigModel.waveLap, ConfigModel.level, gcModel);
+        	this.dispose();
         	System.exit(0);
         	
         }

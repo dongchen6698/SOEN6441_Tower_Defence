@@ -8,10 +8,12 @@ import javax.swing.JButton;
 
 import TD.model.JavaShell_Model;
 import TD.model.LoadGameInfo_Model;
+import TD.model.LoadMapChooser_Model;
 import TD.model.MainScreen_Model;
 import TD.model.MapChooser_Model;
 import TD.model.MapCreation_Model;
 import TD.view.JavaShell_View;
+import TD.view.LoadMapChooser_View;
 import TD.view.MainScreen_View;
 import TD.view.MapChooser_View;
 import TD.view.MapCreation_View;
@@ -78,10 +80,14 @@ public class MainScreen_Controller {
                     MapChooser_Model mcModel = new MapChooser_Model();
                     MapChooser_View mcView = new MapChooser_View(theView, mcModel.getMapFileList());
                     MapChooser_Controller mp = new MapChooser_Controller(mcView,mcModel);
+                    
                 }
                 
                 if(tempBtnStr.equals("Load Game")){
-                	LoadGameInfo_Model lgiModel = new LoadGameInfo_Model();
+                	LoadMapChooser_Model lmcModel = new LoadMapChooser_Model();
+                	//LoadGameInfo_Model lgiModel = new LoadGameInfo_Model();
+                	LoadMapChooser_View lmcView = new LoadMapChooser_View(theView, lmcModel.getMapFileList());
+                	LoadGame_Controller mp = new LoadGame_Controller(lmcView,lmcModel);
                 }
 
                 if(tempBtnStr.equals("EXIT GAME")){

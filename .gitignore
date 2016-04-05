@@ -5,3 +5,6 @@
 *.class
 
 *.class
+*.dat
+savegameinfo/2222.ser
+*.ser

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
@@ -33,19 +34,19 @@ public class LoadGameInfo_Model extends GamePlay{
     private CellContainer_Model ccModel;
     private Shop_View sView;
     private Shop_Model sModel;
-	
-	public LoadGameInfo_Model(){
-
+	    
+	public LoadGameInfo_Model(String loadgame){
 		Serialization_model slzModel = null;
 		
 		System.out.println("start loadgame");
 		try
 	      {
-	         FileInputStream fileIn = new FileInputStream("savegameinfo/savegameinfo.ser");
+			
+	         FileInputStream fileIn = new FileInputStream("savegameinfo/" + loadgame);
 	         ObjectInputStream in = new ObjectInputStream(fileIn);
 	         
 	         slzModel = (Serialization_model) in.readObject();
-	         System.out.println(slzModel.money);
+	         
 	         
 	         in.close();
 	         fileIn.close();
