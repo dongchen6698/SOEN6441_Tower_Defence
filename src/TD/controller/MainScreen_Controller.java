@@ -15,6 +15,7 @@ import TD.view.JavaShell_View;
 import TD.view.MainScreen_View;
 import TD.view.MapChooser_View;
 import TD.view.MapCreation_View;
+import TowerDefenceGame.LogGenerator;
 
 /**
  * This Class will bind and initialize Model-View of Main Screen Module.
@@ -72,6 +73,8 @@ public class MainScreen_Controller {
                 }
             	
                 if(tempBtnStr.equals("Start Game")){
+                	LogGenerator.creatLogFile("game");
+                	LogGenerator.addLogInfo("Game", "0", "1", "user clicked the start game");
                     MapChooser_Model mcModel = new MapChooser_Model();
                     MapChooser_View mcView = new MapChooser_View(theView, mcModel.getMapFileList());
                     MapChooser_Controller mp = new MapChooser_Controller(mcView,mcModel);

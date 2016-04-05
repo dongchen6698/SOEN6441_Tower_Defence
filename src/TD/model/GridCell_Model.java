@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 import TD.config.ConfigModel;
 import TD.view.PlayScreen_View;
+import TowerDefenceGame.LogGenerator;
 
 /**
  * This is model for Grid Cells Module.
@@ -121,8 +122,8 @@ public class GridCell_Model extends Rectangle{
                     	//this.airID tower id
                     	//cModel[shotMob] creature id	
                     	//ConfigModel.waveLap  
-                    		
-                    	
+                    	LogGenerator.addLogInfo(Integer.toString(this.airID), Integer.toString(shotMob),Integer.toString(ConfigModel.waveLap), "Tower_"+(this.airID-2)+" attacked creatur"+shotMob);	
+                    	//
                     		
                     	switch(strategyno)	
                     	{
