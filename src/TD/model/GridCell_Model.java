@@ -132,6 +132,9 @@ public class GridCell_Model extends Rectangle{
                         	
                         	int diff2 = this.y - cModel[i].y;
                         	
+                        	
+                        	
+                        	
                         	if(Math.abs(diff2)<Math.abs(diff1))
                         	{
                         		shotMob=i;

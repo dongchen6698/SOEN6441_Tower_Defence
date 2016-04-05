@@ -18,11 +18,7 @@ public class ConfigModel{
     public static int maxLevel = 3;
     public static boolean roundSlot = true;
     public static int creaturesNo = 5;
-    
-    public static int waveLap = 1; 
-    public static boolean gameisFirst = true;
-    public static boolean gameisWon = false;
-    
+    public static int waveLap = 1;   
     public static int level = 1;    
     public static int gridX = 7;
     public static int gridY = 7;
@@ -56,6 +52,4 @@ public class ConfigModel{
     public static Image[] happy = new Image[1];
     public static Image[] sad = new Image[1];    
     public static boolean gameOberFlag = false;
-	
-	
 }

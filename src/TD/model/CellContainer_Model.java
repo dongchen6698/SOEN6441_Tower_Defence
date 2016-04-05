@@ -120,11 +120,4 @@ public class CellContainer_Model{
         gcModel[y][x].setgID(gVal);
         gcModel[y][x].setAirID(airVal);
     }
-    /**
-     * this method will set ccModel
-     * @param gcModel
-     */
-	public static void setGcModel(GridCell_Model[][] gcModel) {
-		CellContainer_Model.gcModel = gcModel;
-	}
 }

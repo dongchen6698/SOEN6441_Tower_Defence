@@ -12,11 +12,6 @@ import TD.view.PlayScreen_View;
 import TD.view.Shop_View;
 import TowerDefenceGame.GamePlay;
 
-/**
- * this method will save game information
- * @author peilin
- *
- */
 public class SaveGameInfo_Model {
 	
 	public SaveGameInfo_Model(Serialization_model slzModel){

@@ -140,12 +140,4 @@ public class PlayScreen_Model{
     public int[][] getGridCellArray() {
         return gridCellArray;
     }
-    
-    /**
-     * this method will set ccModel
-     * @param ccModel
-     */
-	public static void setCcModel(CellContainer_Model ccModel) {
-		PlayScreen_Model.ccModel = ccModel;
-	}
 }
