@@ -113,6 +113,7 @@ public class Creature_Model extends Rectangle{
      */
     public boolean loosHealth(){
         ConfigModel.health -= 1;
+        LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", " Player Lose Health");
         return true;
     }
     
