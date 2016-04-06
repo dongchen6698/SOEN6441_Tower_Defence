@@ -81,8 +81,6 @@ public class JavaShell_View extends JFrame implements Observer{
 			e.printStackTrace();
 		}
         jta.append("End of log"+"\n");
-        this.repaint();
-        
 		
 	}
 }

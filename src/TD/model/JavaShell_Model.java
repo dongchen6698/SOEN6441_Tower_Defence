@@ -10,16 +10,18 @@ import java.util.Observable;
  */
 public class JavaShell_Model extends Observable{
 	private BufferedReader br;
+	public String filepath;
 	
+	public JavaShell_Model(String new_filepath){
+		this.filepath = new_filepath;
+	}
 	/**
 	 * This is constructor for get specific log information.
 	 * @param type
 	 * @throws Exception
-	 */
-	
+	 */	
 	public void getSpecificLogInfo(String type) throws Exception{
 		Runtime rt = Runtime.getRuntime();
-		String filepath = "logfile/gamelog/GlobleGameLog.log";
 		if(type == "All"){
 			String[] cmd = { "/bin/sh", "-c", "cat "+filepath};
 		    Process proc = rt.exec(cmd);

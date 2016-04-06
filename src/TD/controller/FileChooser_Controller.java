@@ -6,9 +6,12 @@ import java.io.File;
 
 import javax.swing.JButton;
 
-import TD.model.MapChooser_Model;
+import TD.model.FileChooser_Model;
+import TD.model.JavaShell_Model;
+import TD.model.LoadGameInfo_Model;
 import TD.model.PlayScreen_Model;
-import TD.view.MapChooser_View;
+import TD.view.FileChooser_View;
+import TD.view.JavaShell_View;
 import TowerDefenceGame.GamePlay;
 import TowerDefenceGame.LogGenerator;
 
@@ -16,16 +19,16 @@ import TowerDefenceGame.LogGenerator;
  * This Class will bind and initialize Model-View of Map Chooser Module.
  * @author peilin
  */
-public class MapChooser_Controller {
-    MapChooser_View theView = new MapChooser_View();
-    MapChooser_Model theModel = new MapChooser_Model();
+public class FileChooser_Controller {
+    FileChooser_View theView;
+    FileChooser_Model theModel;
     
     /**
      * This is constructor of Map Chooser.
      * @param mcView the MapChooserView
      * @param mcModel the MapChooserModel
      */
-    MapChooser_Controller(MapChooser_View mcView, MapChooser_Model mcModel) {
+    FileChooser_Controller(FileChooser_View mcView, FileChooser_Model mcModel) {
         this.theView = mcView;
         this.theModel = mcModel;
         this.theView.addButtonClickEventListner(new ButtonActionDetector());
@@ -49,13 +52,12 @@ public class MapChooser_Controller {
             String tempBtnStr = e.getActionCommand();
             if(e.getSource() instanceof JButton)
             {
-                if(tempBtnStr.equals("Start game")){
+                if(tempBtnStr.equals("Start Game")){
                     if(theView.getSelectedFile().equals("NONE")){
                         theView.displayMessage("Please Select At least one file.");
                     }else{
                         PlayScreen_Model psModel = new PlayScreen_Model();
                         boolean temp = psModel.LoadMap(new File("MapFiles/"+theView.getSelectedFile()));
-                        //System.out.println(temp);
                         LogGenerator.addLogInfo("Global", "Global", "User choose the Map file of "+ theView.getSelectedFile());
                         if(temp){
                             GamePlay gp = new GamePlay(new File("MapFiles/"+theView.getSelectedFile()), psModel.getxC(), psModel.getyC());
@@ -64,10 +66,38 @@ public class MapChooser_Controller {
                         }
                         else{
                             theView.displayMessage("Incorrect Map File");
-                        }
-                        
+                        }  
                     }
                 }
+                
+                if(tempBtnStr.equals("Load File")){
+                	 if(theView.getSelectedFile().equals("NONE")){
+                         theView.displayMessage("Please Select At least one file.");
+                     }else{
+                     	String str = theView.getSelectedFile();                    
+                     	LoadGameInfo_Model lgiModel = new LoadGameInfo_Model(str);
+                     	theView.setMSTOp(false);
+                     	theView.dispose();     
+                         
+                     }
+                }
+                
+                if(tempBtnStr.equals("See Log")){
+               	 if(theView.getSelectedFile().equals("NONE")){
+                        theView.displayMessage("Please Select At least one file.");
+                    }else{
+                    	String str = theView.getSelectedFile();   
+                    	System.out.println(str);
+                    	JavaShell_Model jsModel = new JavaShell_Model("logfile/gamelog/"+str);
+                    	JavaShell_View jsView = new JavaShell_View();
+                		jsModel.addObserver(jsView);
+                		JavaShell_Controller jsc = new JavaShell_Controller(jsView, jsModel);
+                    	theView.setMSTOp(false);
+                    	theView.dispose();     
+                        
+                    }
+               }
+                
             }
         }
     }

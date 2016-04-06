@@ -19,15 +19,16 @@ import TD.view.MainScreen_View;
  * @author peilin
  *
  */
-public class LoadMapChooser_View extends JFrame {
+public class FileChooser_View extends JFrame {
     private JButton showButton;
     private JList fruitList;
     MainScreen_View msView;
+    String btnName;
     
     /**
      * This method is constructor.
      */
-    public LoadMapChooser_View(){
+    public FileChooser_View(){
     }
     
     /**
@@ -35,8 +36,9 @@ public class LoadMapChooser_View extends JFrame {
      * @param msView the view object Main Screen
      * @param fileList array of map files
      */
-    public LoadMapChooser_View(MainScreen_View msView, String[] fileList){
-        this.setTitle("Select Your Map");
+    public FileChooser_View(MainScreen_View msView, String[] fileList, String windowTitle, String btnName){
+        this.setTitle(windowTitle);
+        this.btnName = btnName;
         this.setSize(300,400);
         this.msView = msView;
         listMapFiles(fileList);
@@ -72,7 +74,7 @@ public class LoadMapChooser_View extends JFrame {
 
         JScrollPane fruitListScrollPane = new JScrollPane(fruitList);    
 
-        showButton = new JButton("Start game");
+        showButton = new JButton(btnName);
         this.add(fruitListScrollPane,BorderLayout.CENTER);  
         this.add(showButton,BorderLayout.SOUTH);
     }

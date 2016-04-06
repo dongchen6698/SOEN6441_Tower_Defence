@@ -8,3 +8,7 @@
 *.dat
 savegameinfo/2222.ser
 *.ser
+
+savegameinfo/savegameinfo.ser
+
+logfile/gamelog/GlobleGameLog.log

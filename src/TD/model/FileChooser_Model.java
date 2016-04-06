@@ -6,14 +6,14 @@ import java.io.File;
  * This is model for Map Chooser Module.
  * @author peilin
  */
-public class MapChooser_Model {
+public class FileChooser_Model {
     private String[] FileList;
     
     /**
       This is constructor method for Map Chooser. It will call Map Folder reader.
      */
-    public MapChooser_Model(){
-        listFilesForFolder(new File("MapFiles/"));
+    public FileChooser_Model(String path){
+        listFilesForFolder(new File(path));
     }
     
     /**
