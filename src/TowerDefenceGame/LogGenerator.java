@@ -7,9 +7,22 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * This class is for log generator.
+ * @author DanQiao
+ *
+ */
+
 public class LogGenerator {
 	private static File file;
 	private static BufferedWriter bfw;
+	
+	/**
+	 * This is a constructor for add log information.
+	 * @param waveNum
+	 * @param TowerID
+	 * @param content
+	 */
 	
 	public static void addLogInfo(String waveNum, String TowerID, String content){
 		String logcontent = getCurrentTime()+" : "+waveNum+" : "+TowerID+" : "+content;
@@ -27,6 +40,11 @@ public class LogGenerator {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * This is a constructor for create log file.
+	 * @param logtype
+	 */
 	
 	public static void creatLogFile(String logtype){
 		if(logtype == "creatmap"){
@@ -52,6 +70,10 @@ public class LogGenerator {
 		}
 	}
 	
+	/**
+	 * This is a constructor for close buffer writer.
+	 */
+	
 	public static void closeBufferedWriter(){
 		try {
 			bfw.close();
@@ -59,6 +81,11 @@ public class LogGenerator {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * This method is get current time.
+	 * @return
+	 */
 	
 	public static String getCurrentTime(){
         Date date = new Date();

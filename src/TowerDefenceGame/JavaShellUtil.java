@@ -3,7 +3,17 @@ package TowerDefenceGame;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/**
+ * This is a class for JavashellUtil.
+ * @author DanQiao
+ *
+ */
 public class JavaShellUtil {
+	/**
+	 * This is a constructor for JavaShellUtil.
+	 * @param type
+	 * @throws Exception
+	 */
 	
 	public JavaShellUtil(String type) throws Exception{
 		Runtime rt = Runtime.getRuntime();

@@ -7,10 +7,22 @@ import java.awt.event.ItemListener;
 import TD.model.JavaShell_Model;
 import TD.view.JavaShell_View;
 
+/**
+ * This is a class of Javashell_controller.
+ * @author DanQiao
+ *
+ */
+
 public class JavaShell_Controller {
 	JavaShell_Model thejsModel;
 	JavaShell_View thejsView;
 	String type = "All";	
+	
+	/**
+	 * This is a constructor of Javashell_Controller.
+	 * @param jsView
+	 * @param jsModel
+	 */
 	
 	public JavaShell_Controller(JavaShell_View jsView, JavaShell_Model jsModel) {
 		

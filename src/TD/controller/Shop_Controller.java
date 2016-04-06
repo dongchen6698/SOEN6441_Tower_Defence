@@ -16,7 +16,8 @@ import TD.view.Shop_View;
 
 /**
  * This Class will bind and initialize Model-View of Shop(Tower) Module.
- * 
+ * @author DanQiao
+ *
  */
 public class Shop_Controller implements Observer{
     static CellContainer_Controller ccCont;

@@ -19,11 +19,20 @@ import javax.swing.JTextArea;
 
 import TD.model.JavaShell_Model;
 
+/**This class is a view of JavaShell.
+ * @author DanQiao
+ *
+ */
+
 public class JavaShell_View extends JFrame implements Observer{
 	private JScrollPane jsp;
 	private JTextArea jta;
 	private JComboBox option;
 
+	/**
+	 * This is constructor of JavaSheel.
+	 */
+	
 	public JavaShell_View() {
 		this.setBackground(Color.BLACK);
 		this.setTitle("LogInformation");
@@ -40,15 +49,26 @@ public class JavaShell_View extends JFrame implements Observer{
 	    this.setVisible(true);
 	}
 	
+	/**
+	 * This method is addoption listener.
+	 * @param aListener
+	 */
 	public void addoptionListener(ActionListener aListener){
 		option.addActionListener(aListener);
 	}
 	
+	/**
+	 * This method is get option content.
+	 * @return
+	 */
 	public String getOptionContent(){
 		return (String) option.getSelectedItem();
 	}
 	
 	@Override
+	/**
+	 * This method is update.
+	 */
 	public void update(Observable arg0, Object arg1) {
 		jta.setText("");
 		BufferedReader br= ((JavaShell_Model) arg1).getBr();				

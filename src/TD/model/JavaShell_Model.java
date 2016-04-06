@@ -3,8 +3,19 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Observable;
 
+/**
+ * This is model for JavaSheel.
+ * @author DanQiao
+ *
+ */
 public class JavaShell_Model extends Observable{
 	private BufferedReader br;
+	
+	/**
+	 * This is constructor for get specific log information.
+	 * @param type
+	 * @throws Exception
+	 */
 	
 	public void getSpecificLogInfo(String type) throws Exception{
 		Runtime rt = Runtime.getRuntime();
@@ -24,6 +35,10 @@ public class JavaShell_Model extends Observable{
 	    
 	}
 
+/**
+ * This method is bufferedReader.
+ * @return
+ */
 
 	public BufferedReader getBr() {
 		return br;

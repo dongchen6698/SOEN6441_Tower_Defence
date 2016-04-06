@@ -15,7 +15,17 @@ import TD.view.PlayScreen_View;
 import TD.view.Shop_View;
 import TowerDefenceGame.GamePlay;
 
+/**
+ * This is a model for save game information.
+ * @author DanQiao
+ *
+ */
 public class SaveGameInfo_Model extends JFrame{
+	
+	/**
+	 * This is constructor for save game information.
+	 * @param slzModel
+	 */
 	
 	public SaveGameInfo_Model(Serialization_model slzModel){
 
