@@ -19,6 +19,12 @@ import TD.view.PlayScreen_View;
 import TD.view.Shop_View;
 import TowerDefenceGame.GamePlay;
 
+/**
+ * This is a Model for loading game information.
+ * @author DanQiao
+ *
+ */
+
 public class LoadGameInfo_Model extends GamePlay{
 	
 	private File file;
@@ -34,6 +40,10 @@ public class LoadGameInfo_Model extends GamePlay{
     private CellContainer_Model ccModel;
     private Shop_View sView;
     private Shop_Model sModel;
+    /**
+     * This method for loading game
+     * @param loadgame
+     */
 	    
 	public LoadGameInfo_Model(String loadgame){
 		Serialization_model slzModel = null;
@@ -73,7 +83,11 @@ public class LoadGameInfo_Model extends GamePlay{
 		//this.psModel.setCcModel(slzModel.ccModel);
 		gamePlay(20,15);
 	}
-	
+	/**
+	 * This is a method for game play
+	 * @param w width
+	 * @param h height
+	 */
 	public void gamePlay(int w, int h)
     {
         int width = w*40 + 350;
