@@ -19,7 +19,7 @@ public class JavaShell_Model extends Observable{
 	
 	public void getSpecificLogInfo(String type) throws Exception{
 		Runtime rt = Runtime.getRuntime();
-		String filepath = "logfile/logtest";
+		String filepath = "logfile/gamelog/GlobleGameLog.log";
 		if(type == "All"){
 			String[] cmd = { "/bin/sh", "-c", "cat "+filepath};
 		    Process proc = rt.exec(cmd);
