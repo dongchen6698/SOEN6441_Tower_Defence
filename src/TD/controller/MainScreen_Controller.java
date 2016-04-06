@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import TD.config.ConfigModel;
 import TD.model.JavaShell_Model;
 import TD.model.LoadGameInfo_Model;
 import TD.model.LoadMapChooser_Model;
@@ -76,7 +77,7 @@ public class MainScreen_Controller {
             	
                 if(tempBtnStr.equals("Start Game")){
                 	LogGenerator.creatLogFile("game");
-                	LogGenerator.addLogInfo("Game", "0", "1", "user clicked the start game");
+                	LogGenerator.addLogInfo("Global", "Global", "User clicked the start game");
                     MapChooser_Model mcModel = new MapChooser_Model();
                     MapChooser_View mcView = new MapChooser_View(theView, mcModel.getMapFileList());
                     MapChooser_Controller mp = new MapChooser_Controller(mcView,mcModel);

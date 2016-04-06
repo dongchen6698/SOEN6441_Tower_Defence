@@ -91,6 +91,7 @@ public class PlayScreen_View extends JPanel implements Runnable{
      */
     public boolean initCreatures(){
         //System.out.println("initCreatures");
+    	LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", "Initial the creature.");
    
         if(psCont != null){
         		Creatures = CreatureFactory.getCreature(waveLap);

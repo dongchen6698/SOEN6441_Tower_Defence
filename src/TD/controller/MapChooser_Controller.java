@@ -10,6 +10,7 @@ import TD.model.MapChooser_Model;
 import TD.model.PlayScreen_Model;
 import TD.view.MapChooser_View;
 import TowerDefenceGame.GamePlay;
+import TowerDefenceGame.LogGenerator;
 
 /**
  * This Class will bind and initialize Model-View of Map Chooser Module.
@@ -55,6 +56,7 @@ public class MapChooser_Controller {
                         PlayScreen_Model psModel = new PlayScreen_Model();
                         boolean temp = psModel.LoadMap(new File("MapFiles/"+theView.getSelectedFile()));
                         //System.out.println(temp);
+                        LogGenerator.addLogInfo("Global", "Global", "User choose the Map file of "+ theView.getSelectedFile());
                         if(temp){
                             GamePlay gp = new GamePlay(new File("MapFiles/"+theView.getSelectedFile()), psModel.getxC(), psModel.getyC());
                             theView.setMSTOp(false);

@@ -186,20 +186,10 @@ public class GridCell_Model extends Rectangle{
                             shotMob=i;	
                             }	
                     	}
-                    	
-                    	
-                    	
-                    	
-                    	
-
-                    	
-      	
-                    	
-                    	
+                   	
                     	}
-                    }
-                    
-                    
+                    }                  
+          
                 }
             }
         }
@@ -245,10 +235,9 @@ public class GridCell_Model extends Rectangle{
         if(isFiring() && getAirID() != -1){
             if(loseFrame >= loseTime){
             	if(getAirID() == 3){
-            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[0]);			
+            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[0]);
             	}else if(getAirID() == 4){
             		cModel[getShotMob()].setFire(true);
-            		
             		for(int i=0;i<cModel.length;i++){
             			if(cModel[i].isInGame()){
             				if(cModel[i].isFire()){

@@ -11,8 +11,8 @@ public class LogGenerator {
 	private static File file;
 	private static BufferedWriter bfw;
 	
-	public static void addLogInfo(String TowerID,String creatureID,String waveNum,String content){
-		String logcontent = getCurrentTime()+" : "+TowerID+" : "+creatureID+" : "+waveNum+" : "+content;
+	public static void addLogInfo(String waveNum, String TowerID, String content){
+		String logcontent = getCurrentTime()+" : "+waveNum+" : "+TowerID+" : "+content;
 		
 		try {
 			bfw = new BufferedWriter(new FileWriter(file,true));
@@ -30,11 +30,9 @@ public class LogGenerator {
 	
 	public static void creatLogFile(String logtype){
 		if(logtype == "creatmap"){
-			//creat creatmap log file
 			File maplogfile = new File("logfile/maplog/MapLogFile.log");
 			file = maplogfile;
 		}else if(logtype == "game"){
-			//creat globol log file
 			File gamelogfile = new File("logfile/gamelog/GlobleGameLog.log");
 			if(!gamelogfile.exists()){
 				try {
