@@ -1,3 +1,75 @@
-[05/04/2016 09:12:46 PM] : Global : Global : User clicked the start game
-[05/04/2016 09:12:49 PM] : Global : Global : User choose the Map file of MAX.dat
-[05/04/2016 09:12:49 PM] : WAVE_1 : Null : Initial the creature.
+[05/04/2016 10:37:58 PM] : Global : Global : User clicked the start game
+[05/04/2016 10:38:01 PM] : Global : Global : User choose the Map file of MAX.dat
+[05/04/2016 10:38:01 PM] : WAVE_1 : Null : Initial the creature.
+[05/04/2016 10:38:05 PM] : WAVE_1 : Tower_1 :  was placed 
+[05/04/2016 10:38:09 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:09 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:09 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:10 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:10 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:10 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:10 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:10 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:10 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:11 PM] : WAVE_1 : Tower_1 :  attack creature.1
+[05/04/2016 10:38:11 PM] : WAVE_1 : Tower_1 :  attack creature.1
+[05/04/2016 10:38:11 PM] : WAVE_1 : Tower_1 :  attack creature.1
+[05/04/2016 10:38:11 PM] : WAVE_1 : Tower_1 :  attack creature.1
+[05/04/2016 10:38:11 PM] : WAVE_1 : Tower_1 :  attack creature.1
+[05/04/2016 10:38:11 PM] : WAVE_1 : Tower_1 :  attack creature.1
+[05/04/2016 10:38:12 PM] : WAVE_1 : Tower_1 :  attack creature.1
+[05/04/2016 10:38:12 PM] : WAVE_1 : Tower_1 :  attack creature.1
+[05/04/2016 10:38:12 PM] : WAVE_1 : Tower_1 :  attack creature.1
+[05/04/2016 10:38:12 PM] : WAVE_1 : Tower_1 :  attack creature.1
+[05/04/2016 10:38:12 PM] : WAVE_1 : Tower_1 :  attack creature.2
+[05/04/2016 10:38:12 PM] : WAVE_1 : Tower_1 :  attack creature.2
+[05/04/2016 10:38:13 PM] : WAVE_1 : Tower_1 :  attack creature.2
+[05/04/2016 10:38:13 PM] : WAVE_1 : Tower_1 :  attack creature.2
+[05/04/2016 10:38:13 PM] : WAVE_1 : Tower_1 :  attack creature.2
+[05/04/2016 10:38:13 PM] : WAVE_1 : Tower_1 :  attack creature.2
+[05/04/2016 10:38:13 PM] : WAVE_1 : Tower_1 :  attack creature.2
+[05/04/2016 10:38:13 PM] : WAVE_1 : Tower_1 :  attack creature.2
+[05/04/2016 10:38:13 PM] : WAVE_1 : Tower_1 :  attack creature.2
+[05/04/2016 10:38:14 PM] : WAVE_1 : Tower_1 :  attack creature.2
+[05/04/2016 10:38:14 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:14 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:14 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:14 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:14 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:14 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:15 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:15 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:15 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:15 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:15 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:15 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:15 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:16 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:16 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:16 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:16 PM] : WAVE_1 : Tower_1 :  was placed 
+[05/04/2016 10:38:16 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:16 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:16 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:16 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:16 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:17 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:17 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:17 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:17 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:17 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:17 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:17 PM] : WAVE_1 : Null : creature.1 is dead
+[05/04/2016 10:38:17 PM] : WAVE_1 : Tower_1 :  attack creature.0
+[05/04/2016 10:38:17 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:17 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:17 PM] : WAVE_1 : Null : creature.5 is dead
+[05/04/2016 10:38:17 PM] : WAVE_1 : Tower_1 :  attack creature.4
+[05/04/2016 10:38:18 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:18 PM] : WAVE_1 : Tower_1 :  was sold 
+[05/04/2016 10:38:18 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:18 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:18 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:18 PM] : WAVE_1 : Null : creature.4 is dead
+[05/04/2016 10:38:18 PM] : WAVE_1 : Tower_1 :  attack creature.3
+[05/04/2016 10:38:19 PM] : WAVE_1 : Tower_1 :  was sold 

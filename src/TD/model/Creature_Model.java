@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import TD.config.ConfigModel;
 import TD.controller.CellContainer_Controller;
+import TowerDefenceGame.LogGenerator;
 
 /**
  * This class is model of creature
@@ -81,6 +82,7 @@ public class Creature_Model extends Rectangle{
          
         }
         this.setHealth(0);
+        LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", "creature."+(mobID+1)+" is dead");
         return true;
     }
 

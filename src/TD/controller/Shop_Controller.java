@@ -13,6 +13,7 @@ import TD.config.ConfigModel;
 import TD.model.GridCell_Model;
 import TD.model.Shop_Model;
 import TD.view.Shop_View;
+import TowerDefenceGame.LogGenerator;
 
 /**
  * This Class will bind and initialize Model-View of Shop(Tower) Module.
@@ -74,7 +75,7 @@ public class Shop_Controller implements Observer{
         if(ccCont.getgcModelObj(y, x).getgID() != 11 && ccCont.getgcModelObj(y, x).getgID() != ConfigModel.groundRoad && ccCont.getgcModelObj(y, x).getAirID() == ConfigModel.airAir){
             ccCont.getgcModelObj(y, x).setAirID(sModel.getHeldID());
             ConfigModel.money = ConfigModel.money - sModel.getButtonPrice(priceID);
-            //System.out.println("Tower Placed"+sModel.getHeldID());
+            LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Tower_"+Integer.toString(ccCont.getgcModelObj(y, x).getAirID()-2), " was placed ");
             ccCont.getgcModelObj(y, x).setTowerRange(sModel.getTowerID(), new Rectangle(ccCont.getgcModelObj(y, x).x - ((ConfigModel.airTowerRanger[sModel.getTowerID()])/2), ccCont.getgcModelObj(y, x).y - ((ConfigModel.airTowerRanger[sModel.getTowerID()])/2), ccCont.getgcModelObj(y, x).width + ConfigModel.airTowerRanger[sModel.getTowerID()], ccCont.getgcModelObj(y, x).height + ConfigModel.airTowerRanger[sModel.getTowerID()]));
             sModel.setHoldsItem(false);
             return true;
@@ -98,6 +99,7 @@ public class Shop_Controller implements Observer{
                     double refund_amount = sModel.getButtonPrice(i) * 0.8;
                     sModel.setMoney(ConfigModel.money + (int)refund_amount );
                     ConfigModel.money = ConfigModel.money + (int)refund_amount;
+                    LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Tower_"+Integer.toString(ccCont.getgcModelObj(y, x).getAirID()+2), " was sold ");
                     return true;
                 }
         }

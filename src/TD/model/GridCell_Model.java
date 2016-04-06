@@ -236,12 +236,14 @@ public class GridCell_Model extends Rectangle{
             if(loseFrame >= loseTime){
             	if(getAirID() == 3){
             		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[0]);
+            		LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Tower_1", " attack creature." + this.getShotMob() );
             	}else if(getAirID() == 4){
             		cModel[getShotMob()].setFire(true);
             		for(int i=0;i<cModel.length;i++){
             			if(cModel[i].isInGame()){
             				if(cModel[i].isFire()){
             						cModel[i].loseHealth(1);
+            						LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Tower_2", " attack creature." + this.getShotMob());
             				}
             				if(!getTowerRange()[1].contains(cModel[i])){	
             					cModel[i].setFire(false);
@@ -254,12 +256,14 @@ public class GridCell_Model extends Rectangle{
             		cModel[getShotMob()].walkSpeed = 30;
             		for(int i=0;i<cModel.length;i++){
             			if(cModel[i].isInGame()){
+            				LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Tower_3", " attack creature." + this.getShotMob());
             				if(!getTowerRange()[2].contains(cModel[i])){
             					cModel[i].walkSpeed = ConfigModel.walkSpeed;
             				}
                     	}
             		}
             	}else if(getAirID() == 6){
+            		LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Tower_4", " attack creature." + this.getShotMob());
             		if(getShotMob()==0){
             			cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
                 		cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[0]);

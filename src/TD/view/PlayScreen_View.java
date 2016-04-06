@@ -113,28 +113,33 @@ public class PlayScreen_View extends JPanel implements Runnable{
     public void newCreatures(){
         if((ConfigModel.level > ConfigModel.maxLevel) && health != 0){
             isWon = true;
+            LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", "win the game");
         }else{
             isWon = false;
         }
         if((ConfigModel.health > 0 && checkLiveCreatures()) && !isWon){
-        	
+        		
         		//System.out.println(waveLap+"  "+ConfigModel.creaturesNo);
         		ConfigModel.waveLap++;
         		this.waveLap++;
         	if(this.waveLap == 2){  
+        		LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", "move to next wave");
         		ConfigModel.killed = 0;
                 ConfigModel.level++;        
                 tileset_mob[0] = new ImageIcon("resources/critter_2.png").getImage();
                 Creatures = CreatureFactory.getCreature(waveLap);
+                LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", "create new creatures");
                 //System.out.println(waveLap+"  "+ConfigModel.creaturesNo);
                 ConfigModel.killsToWin = ConfigModel.creaturesNo;
                 ConfigModel.walkSpeed = 12;
         	}
         	if(this.waveLap == 3){
+        		LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", "move to next wave");
                 ConfigModel.killed = 0;
                 ConfigModel.level++;
                 tileset_mob[0] = new ImageIcon("resources/critter_3.png").getImage();
                 Creatures = CreatureFactory.getCreature(waveLap);
+                LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", "create new creatures");
                 //System.out.println(waveLap+"  "+ConfigModel.creaturesNo+"should be wave 3");
                 ConfigModel.killsToWin = 15;
                 ConfigModel.walkSpeed = 4;
@@ -254,7 +259,7 @@ public class PlayScreen_View extends JPanel implements Runnable{
                 money = 0;
             }
             gameOberFlag = true;
-            //System.out.println("Game Over");
+            LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", "game over");
             Point Cp= GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
             for(int i=0; i< Creatures.length;i++){
                 Creatures[i].setHealth(0);
