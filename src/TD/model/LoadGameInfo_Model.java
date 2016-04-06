@@ -2,6 +2,7 @@ package TD.model;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -149,6 +150,24 @@ public class LoadGameInfo_Model extends GamePlay{
                             this.dispose();
                             JOptionPane.showMessageDialog(this, "Invalid Map File", null, WIDTH);
                         }
+    }
+	
+	/**
+     * This method is closing game and save game
+     */
+    @Override
+    public void windowClosing(WindowEvent e) {
+    	String message = "Do you want to save game information?";
+        String title = "Save Game?";
+        int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.NO_OPTION){
+        	System.exit(0);
+        }else if(reply == JOptionPane.YES_OPTION){        	
+        	slzModel = new Serialization_model(this.file,ConfigModel.money, ConfigModel.killed, ConfigModel.total_killed, ConfigModel.health, ConfigModel.waveLap, ConfigModel.level, gcModel);
+        	this.dispose();
+        	System.exit(0);
+        	
+        }
     }
 
     /**
