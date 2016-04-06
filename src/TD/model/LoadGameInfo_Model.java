@@ -67,7 +67,7 @@ public class LoadGameInfo_Model extends GamePlay{
 	         return;
 	      }catch(ClassNotFoundException c)
 	      {
-	         System.out.println("Employee class not found");
+	         System.out.println("class not found");
 	         c.printStackTrace();
 	         return;
 	      }

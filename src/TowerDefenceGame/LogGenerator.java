@@ -14,7 +14,7 @@ import java.util.Date;
  */
 
 public class LogGenerator {
-	private static File file;
+	private static File file = new File("logfile/gamelog/GlobleGameLog.log");
 	private static BufferedWriter bfw;
 	
 	/**
