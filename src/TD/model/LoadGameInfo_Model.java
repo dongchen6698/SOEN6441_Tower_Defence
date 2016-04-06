@@ -41,11 +41,18 @@ public class LoadGameInfo_Model extends GamePlay{
     private CellContainer_Model ccModel;
     private Shop_View sView;
     private Shop_Model sModel;
+    
+    /**
+     * this is a default constructor 
+     */
+    public LoadGameInfo_Model(){
+    	
+    }
+    
     /**
      * This method for loading game
      * @param loadgame
-     */
-	    
+     */   
 	public LoadGameInfo_Model(String loadgame){
 		Serialization_model slzModel = null;
 		
@@ -176,5 +183,34 @@ public class LoadGameInfo_Model extends GamePlay{
     public PlayScreen_Controller getPsCont() {
         return psCont;
     }
-	
+    
+    
+    /**
+     * Load game info test function
+     */
+	public Serialization_model LoadGameInfoTest(){
+		Serialization_model slzModel = null;
+		System.out.println("start loadgame");
+		try
+	      {
+			
+	         FileInputStream fileIn = new FileInputStream("savegameinfo/testsaveinfo.ser");
+	         ObjectInputStream in = new ObjectInputStream(fileIn);
+	         
+	         slzModel = (Serialization_model) in.readObject();
+	         
+	         
+	         in.close();
+	         fileIn.close();
+	         
+	      }catch(IOException i)
+	      {
+	         i.printStackTrace();
+	      }catch(ClassNotFoundException c)
+	      {
+	         System.out.println("class not found");
+	         c.printStackTrace();
+	      }
+		return slzModel;
+	}
 }

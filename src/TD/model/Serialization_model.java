@@ -24,6 +24,13 @@ public class Serialization_model implements Serializable{
 	public PlayScreen_Model psModel;
 	
 	/**
+	 * this is a default function of Serialization_model;
+	 */
+	public Serialization_model(){
+		
+	}
+	
+	/**
 	 * this is constructor of the class
 	 * @param new_file
 	 * @param new_money
@@ -43,5 +50,23 @@ public class Serialization_model implements Serializable{
 		this.level = level;
 		this.gcModel = gcModel;
 		new SaveGameInfo_Model(this);
+	}
+	
+	/**
+	 * this is a test of Serialization_model
+	 * @param new_money
+	 * @param killed
+	 * @param total_killed
+	 * @param health
+	 * @param wavelap
+	 * @param level
+	 */
+	public void Serialization_model_test(int new_money, int killed, int total_killed, int health, int wavelap, int level){
+		this.money = new_money;
+		this.killed = killed;
+		this.total_killed = total_killed;
+		this.health = health;
+		this.wavelap = wavelap;
+		this.level = level;
 	}
 }
