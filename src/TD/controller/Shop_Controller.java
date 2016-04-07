@@ -193,7 +193,26 @@ public class Shop_Controller implements Observer{
                             if(sModel.isTowerInfo()){
                             	GridCell_Model.strategyno=4;
                             }                
-                        }       
+                        }  
+                        
+                        if(sModel.showTowerLog.contains(ConfigModel.mse)){
+                        	if(sModel.isTowerInfo()){
+                        		System.out.println(sModel.getTowerID());
+                        		switch(sModel.getTowerID()){
+                        		case 0:
+                        			
+                        		case 1:
+                        			
+                        		case 2:
+                        			
+                        		case 3:
+                        			
+                        		
+               		
+                        		
+                        		}
+                        	}
+                        }
                          
             if(sModel.towerUpgrade.contains(ConfigModel.mse)){
                 if(sModel.isTowerInfo()){

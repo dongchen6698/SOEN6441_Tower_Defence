@@ -86,6 +86,7 @@ public class Shop_View{
             g.drawString("Strategy 2", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 290);
             g.drawString("Strategy 3", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 310);
             g.drawString("Strategy 4", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 330);
+            g.drawString("Show Tower log", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 350);
             
             //System.out.println("Y CO "+(sModel.btn_health.height + 270));
             

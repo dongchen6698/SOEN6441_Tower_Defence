@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 import TD.model.GridCell_Model;
 
 @RunWith(Suite.class)
-@SuiteClasses({CellContainer_ModelTest.class, Creature_ModelTest.class, Creature_ViewTest.class, MapCreation_ModelTest.class, MapBox_ViewTest.class, MapCreation_ViewTest.class, PlayScreen_ViewTest.class, Shop_ControllerTest.class, MapValidationTest.class,SaveGameInfo_ModelTest.class,LoadGameInfo_ModelTest.class,GridCell_Model.class})
+@SuiteClasses({CellContainer_ModelTest.class, Creature_ModelTest.class, Creature_ViewTest.class, MapCreation_ModelTest.class, MapBox_ViewTest.class, MapCreation_ViewTest.class, PlayScreen_ViewTest.class, Shop_ControllerTest.class, MapValidationTest.class,SaveGameInfo_ModelTest.class,LoadGameInfo_ModelTest.class,GridCell_ModelTest.class})
 public class TDSuite {
   //nothing
 }

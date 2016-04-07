@@ -40,6 +40,7 @@ public class Shop_Model{
     public Rectangle strategy2;
     public Rectangle strategy3;
     public Rectangle strategy4;   
+    public Rectangle showTowerLog;
     private boolean holdsItem = false;    
     private int towerID = 0;
     private boolean towerInfo = false;
@@ -67,7 +68,8 @@ public class Shop_Model{
         strategy1 = new Rectangle(startX - 5, 275, 226, 20);
         strategy2 = new Rectangle(startX - 5, 295, 226, 20);
         strategy3 = new Rectangle(startX - 5, 315, 226, 20);
-        strategy4 = new Rectangle(startX - 5, 335, 226, 20);      
+        strategy4 = new Rectangle(startX - 5, 335, 226, 20);  
+        showTowerLog = new Rectangle(startX - 5, 355, 226, 20);
         
         savegameinfo = new Rectangle(startX-5,285,226,35);
         btn_health = new Rectangle(startX, 14, iconSize, iconSize);
