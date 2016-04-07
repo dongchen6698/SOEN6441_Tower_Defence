@@ -82,8 +82,7 @@ public class FileChooser_Controller {
                      	String str = theView.getSelectedFile();                    
                      	LoadGameInfo_Model lgiModel = new LoadGameInfo_Model(str);
                      	theView.setMSTOp(false);
-                     	theView.dispose();     
-                         
+                     	theView.dispose();  
                      }
                 }
                 

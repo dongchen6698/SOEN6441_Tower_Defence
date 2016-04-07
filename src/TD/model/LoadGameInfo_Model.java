@@ -81,8 +81,6 @@ public class LoadGameInfo_Model extends GamePlay{
 		this.cModel.waveLap = slzModel.wavelap;
 		this.cModel.level = slzModel.level;
 		this.gcModel = slzModel.gcModel;
-		//this.ccModel.gcModel = slzModel.gcModel;
-		//this.psModel.setCcModel(slzModel.ccModel);
 		gamePlay(20,15);
 	}
 	/**
