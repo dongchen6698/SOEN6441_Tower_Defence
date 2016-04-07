@@ -39,6 +39,12 @@ public class LogGenerator {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * This is a constructor for create map log.
+	 * @param str
+	 * @param content
+	 * @param score
+	 */
 	
 	public static void creatMapLog(String str, String content, int score){
 		File maplog = new File("logfile/" + str+ ".log");

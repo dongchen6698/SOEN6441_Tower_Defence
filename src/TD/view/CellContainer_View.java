@@ -37,7 +37,7 @@ public class CellContainer_View{
         }
     }
 
-    /**
+    /**This is a method for set Cccount.
      * @param ccCont the ccCont to set
      */
     public void setCcCont(CellContainer_Controller ccCont) {

@@ -100,6 +100,9 @@ public class LoadGameInfo_Model extends GamePlay{
         init_elements();
         this.addWindowListener(this);
     }
+	/**
+	 * This is a method for initial the elements.
+	 */
 	public void init_elements()
     {
         this.setLayout(new GridLayout(1, 1, 0, 0));
@@ -162,7 +165,7 @@ public class LoadGameInfo_Model extends GamePlay{
         }
     }
 
-    /**
+    /**this method is get ps count in game play.
      * @return the psCont
      */
     public PlayScreen_Controller getPsCont() {

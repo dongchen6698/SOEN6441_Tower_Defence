@@ -72,11 +72,16 @@ public class MainScreen_View extends JFrame implements WindowListener{
     }
     
 	@Override
+	/**
+	 * This method is for activate the window.
+	 */
 	public void windowActivated(WindowEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * This method is for closed the window.
+	 */
 	@Override
 	public void windowClosed(WindowEvent arg0) {
 		// TODO Auto-generated method stub
@@ -89,6 +94,7 @@ public class MainScreen_View extends JFrame implements WindowListener{
 		System.exit(0);
 	}
 
+	
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {
 		// TODO Auto-generated method stub

@@ -271,35 +271,35 @@ public class GridCell_Model extends Rectangle{
                 startFlag = false;
     }
 
-    /**
+    /**This is a method for set gID.
      * @param gID the gID to set
      */
     public void setgID(int gID) {
         this.gID = gID;
     }
 
-    /**
+    /**This is a method for set AirID.
      * @param airID the airID to set
      */
     public void setAirID(int airID) {
         this.airID = airID;
     }
 
-    /**
+    /**This is a method for get gID.
      * @return the gID
      */
     public int getgID() {
         return gID;
     }
 
-    /**
+    /**This is a method for get AirID.
      * @return the airID
      */
     public int getAirID() {
         return airID;
     }
 
-    /**
+    /**This is a method for get the range of tower.
      * @return the towerRange
      * @param x x index
      */
@@ -308,7 +308,7 @@ public class GridCell_Model extends Rectangle{
     }
     
     /**
-     * 
+     * This is a method for get money.
      * @param mobID
      */
     public void getMoney(int mobID){
@@ -316,35 +316,35 @@ public class GridCell_Model extends Rectangle{
         ConfigModel.money += ConfigModel.deathReward[0];
     }
 
-    /**
+    /**This is a method for get shot mob.
      * @return the shotMob
      */
     public int getShotMob() {
         return shotMob;
     }
 
-    /**
+    /**This is a method for firing .
      * @return the firing
      */
     public boolean isFiring() {
         return firing;
     }
 
-    /**
+    /**This is a method for set firing.
      * @param firing the firing to set
      */
     public void setFiring(boolean firing) {
         this.firing = firing;
     }
 
-    /**
+    /**This is a method for get the range of tower.
      * @return the towerRange
      */
     public Rectangle[] getTowerRange() {
         return towerRange;
     }
 
-    /**
+    /**This is a method for set the range of tower.
      * @param towerRange the towerRange to set
      * @param i the towerRange ID
      */
@@ -362,17 +362,34 @@ public class GridCell_Model extends Rectangle{
     	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
     	return sdf.format(cal.getTime());
     }
+    /**
+     * This is a method for confirm the status of freeze.
+     * @return
+     */
 	public boolean isFreeze() {
 		freeze =true;
 		return freeze;
 	}
+	
+	/**
+	 * This is a method for set freeze.
+	 * @param freeze
+	 */
 	public void setFreeze(boolean freeze) {
 		this.freeze = freeze;
 	}
+	/**
+	 * This is a method for confirm the status of fire.
+	 * @return
+	 */
 	public boolean isFire() {
 		fire = true;
 		return fire;
 	}
+	/**
+	 * This is a method for set fire.
+	 * @param fire
+	 */
 	public void setFire(boolean fire) {
 		this.fire = fire;
 	}

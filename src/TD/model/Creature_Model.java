@@ -156,6 +156,9 @@ public class Creature_Model extends Rectangle{
      * Creatures movement
      */
     public int walkFrame = ConfigModel.walkFrame, walkSpeed = ConfigModel.walkSpeed;
+    /**
+     * This is a  method for physic.
+     */
     public void physic(){
         if(walkFrame >= walkSpeed){
             if(direction == right){
