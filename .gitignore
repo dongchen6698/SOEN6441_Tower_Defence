@@ -12,3 +12,5 @@ savegameinfo/2222.ser
 savegameinfo/savegameinfo.ser
 
 logfile/gamelog/GlobleGameLog.log
+*.log
+MapFiles/test1.dat

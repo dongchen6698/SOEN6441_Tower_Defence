@@ -8,8 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import TD.config.ConfigModel;
 import TD.model.MapCreation_Model;
 import TD.view.MapCreation_View;
+import TowerDefenceGame.LogGenerator;
 /**
  * This class is a controller of Mapcreation
  * @author peilin
@@ -96,6 +98,10 @@ public class MapCreation_Controller {
                         theView.addGridMap(mbCon);
                         theView.disableSubmitButton();
                         theView.disableLoadButton();
+                        String content = "was edited";
+                        String[] mapname = file.getName().split("\\.");
+                        File loadmap = new File("maplogfile/"+mapname[0]+".log");
+                        LogGenerator.addMapLog(loadmap, mapname[0], content, ConfigModel.money);
                        }else{
                            theView.displayMessage("Invalid Map File");
                        }
@@ -110,6 +116,9 @@ public class MapCreation_Controller {
                             
                         }else{
                             mbCon.saveMap(file_name);
+                            String content = "was created ";
+                            LogGenerator.creatMapLog(file_name,content,ConfigModel.money);
+                           // LogGenerator.addMapLog(file_name, content, ConfigModel.money);
                             theView.displayMessage("Thank You, Your Map is successfully saved with "+file_name);
                             theView.dispose();
                             msCon.setTopEnabled();

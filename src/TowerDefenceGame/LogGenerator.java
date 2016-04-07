@@ -16,7 +16,7 @@ import java.util.Date;
 public class LogGenerator {
 	private static File file = new File("logfile/gamelog/GlobleGameLog.log");
 	private static BufferedWriter bfw;
-	
+	//private static File maplog;
 	/**
 	 * This is a constructor for add log information.
 	 * @param waveNum
@@ -40,6 +40,52 @@ public class LogGenerator {
 		}
 	}
 	
+	public static void creatMapLog(String str, String content, int score){
+		File maplog = new File("maplogfile/" + str+ ".log");
+		if(!maplog.exists()){
+			try{
+				maplog.createNewFile();
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		String maploginfo = getCurrentTime()+ ":" + "Map: "+ str+ " "+content;  
+		try {
+			bfw = new BufferedWriter(new FileWriter(maplog,true));
+			bfw.write(maploginfo+"\n");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			bfw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * this method is for adding map log
+	 * @param str
+	 * @param score
+	 */
+	public static void addMapLog(File map, String mapname, String content, int score){
+		
+		String maploginfo = getCurrentTime()+ ":" + "Map: "+ mapname+ " "+content;  
+		try {
+			bfw = new BufferedWriter(new FileWriter(map,true));
+			bfw.write(maploginfo+"\n");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			bfw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	/**
 	 * This is a constructor for create log file.
 	 * @param logtype
@@ -49,7 +95,7 @@ public class LogGenerator {
 			File maplogfile = new File("logfile/maplog/MapLogFile.log");
 			file = maplogfile;
 		}else if(logtype == "game"){
-			File gamelogfile = new File("logfile/gamelog/GlobleGameLog.log");
+			File gamelogfile = new File("logfile/GlobleGameLog.log");
 			if(!gamelogfile.exists()){
 				try {
 					gamelogfile.createNewFile();
