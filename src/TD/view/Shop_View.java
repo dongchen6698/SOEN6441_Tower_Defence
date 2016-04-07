@@ -82,10 +82,10 @@ public class Shop_View{
             g.drawString("Special effects: "+ConfigModel.TowerSpecial[sModel.getTowerID()], sModel.btn_health.x - 30 + sModel.icon_space, sModel.btn_health.height + temp_Height + 120);
             g.setColor(new Color(255, 255, 255, 100));      
             
-            g.drawString("Strategy 1", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 270);
-            g.drawString("Strategy 2", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 290);
-            g.drawString("Strategy 3", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 310);
-            g.drawString("Strategy 4", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 330);
+            g.drawString("Nearest to Tower", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 270);
+            g.drawString("Weakest", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 290);
+            g.drawString("Strongest", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 310);
+            g.drawString("Near to END", sModel.btn_health.x + sModel.icon_space - 25, sModel.btn_health.height + 330);
             
             //System.out.println("Y CO "+(sModel.btn_health.height + 270));
             

@@ -38,6 +38,11 @@ public class ConfigModel{
     public static int[] airTowerRanger = new int[]{88,132,88,88};
     public static int[] TowerFiringRate= new int[]{3,1,0,3};
     public static int[] Towerhealth    = new int[]{10,15,20,25};
+    public static int tower1strategy=1;
+    public static int tower2strategy=1;
+    public static int tower3strategy=1;
+    public static int tower4strategy=1;
+    
     public static String[] TowerSpecial= new String[]{"Normal","Fire","Freeze","Big gun"};
     public static int mobAir = -1;
     public static int mobGreeny = 0;    

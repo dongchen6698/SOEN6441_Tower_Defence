@@ -102,8 +102,20 @@ public class GridCell_Model extends Rectangle{
                     	//cModel[shotMob] creature id	
                     	//ConfigModel.waveLap  
                     	//LogGenerator.addLogInfo(Integer.toString(this.airID), Integer.toString(shotMob),Integer.toString(ConfigModel.waveLap), "Tower_"+(this.airID-2)+" attacked creatur"+shotMob);	
-                    	//	
-        							switch(strategyno){
+                    		
+        							if(this.airID==3)
+        								strategyno=ConfigModel.tower1strategy;
+        							if(this.airID==4)
+        								strategyno=ConfigModel.tower2strategy;
+        							if(this.airID==5)
+        								strategyno=ConfigModel.tower3strategy;
+        							if(this.airID==6)
+        								strategyno=ConfigModel.tower4strategy;
+        							
+        							
+        							System.out.println(this.airID);
+        							switch(strategyno)
+        							{
         							case 1://nearest to the tower	
         								int diff1 = this.y - cModel[shotMob].y;
         								int diff2 = this.y - cModel[i].y;

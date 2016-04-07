@@ -175,23 +175,51 @@ public class Shop_Controller implements Observer{
                         
                         if(sModel.strategy1.contains(ConfigModel.mse)){
                             if(sModel.isTowerInfo()){
-                            	GridCell_Model.strategyno=1;    
+                            	if(sModel.getTowerID()==1)
+                            	ConfigModel.tower1strategy=1;
+                            	if(sModel.getTowerID()==2)
+                                	ConfigModel.tower2strategy=1; 
+                            	if(sModel.getTowerID()==3)
+                                	ConfigModel.tower3strategy=1; 
+                            	if(sModel.getTowerID()==4)
+                                	ConfigModel.tower4strategy=1; 
                             }                
                         }            
                         
                         if(sModel.strategy2.contains(ConfigModel.mse)){
                             if(sModel.isTowerInfo()){
-                            	GridCell_Model.strategyno=2;  
+                            	if(sModel.getTowerID()==1)
+                                	ConfigModel.tower1strategy=2;
+                                	if(sModel.getTowerID()==2)
+                                    	ConfigModel.tower2strategy=2; 
+                                	if(sModel.getTowerID()==3)
+                                    	ConfigModel.tower3strategy=2; 
+                                	if(sModel.getTowerID()==4)
+                                    	ConfigModel.tower4strategy=2; 
                             }                
                         }       
                         if(sModel.strategy3.contains(ConfigModel.mse)){
                             if(sModel.isTowerInfo()){
-                            	GridCell_Model.strategyno=3;   
+                            		if(sModel.getTowerID()==1)
+                                	ConfigModel.tower1strategy=3;
+                                	if(sModel.getTowerID()==2)
+                                    	ConfigModel.tower2strategy=3; 
+                                	if(sModel.getTowerID()==3)
+                                    	ConfigModel.tower3strategy=3; 
+                                	if(sModel.getTowerID()==4)
+                                    	ConfigModel.tower4strategy=3;  
                             }                
                         }       
                         if(sModel.strategy4.contains(ConfigModel.mse)){
                             if(sModel.isTowerInfo()){
-                            	GridCell_Model.strategyno=4;
+                            	if(sModel.getTowerID()==1)
+                                	ConfigModel.tower1strategy=4;
+                                	if(sModel.getTowerID()==2)
+                                    	ConfigModel.tower2strategy=4; 
+                                	if(sModel.getTowerID()==3)
+                                    	ConfigModel.tower3strategy=4; 
+                                	if(sModel.getTowerID()==4)
+                                    	ConfigModel.tower4strategy=4; 
                             }                
                         }       
                          
