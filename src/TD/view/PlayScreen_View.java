@@ -135,7 +135,7 @@ public class PlayScreen_View extends JPanel implements Runnable{
                 LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", "create new creatures");
                 //System.out.println(waveLap+"  "+ConfigModel.creaturesNo);
                 ConfigModel.killsToWin = ConfigModel.creaturesNo;
-                ConfigModel.walkSpeed = 12;
+                ConfigModel.walkSpeed = 15;
         	}
         	if(this.waveLap == 3){
         		LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", "move to next wave");
@@ -146,7 +146,7 @@ public class PlayScreen_View extends JPanel implements Runnable{
                 LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Null", "create new creatures");
                 //System.out.println(waveLap+"  "+ConfigModel.creaturesNo+"should be wave 3");
                 ConfigModel.killsToWin = 15;
-                ConfigModel.walkSpeed = 4;
+                ConfigModel.walkSpeed = 10;
         	}
             for(int i=0;i<Creatures.length;i++){
                 Creatures[i] = new Creature_Model(psCont.getCcModel(),psCont.getCcCont());

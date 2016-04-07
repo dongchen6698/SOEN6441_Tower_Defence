@@ -36,9 +36,9 @@ public class ConfigModel{
     public static int[] TowerPrice 	   = new int[]{10,20,30,40};
     public static int[] TowerLevel     = new int[]{1,1,1,1};
     public static int[] airTowerRanger = new int[]{88,132,88,88};
-    public static int[] TowerFiringRate= new int[]{3,1,0,3};
+    public static int[] TowerFiringRate= new int[]{1,5,2,2};
     public static int[] Towerhealth    = new int[]{10,15,20,25};
-    public static String[] TowerSpecial= new String[]{"Normal","Fire","Freeze","Big gun"};
+    public static String[] TowerSpecial= new String[]{"Normal","Fire","Freeze","Splash"};
     public static int mobAir = -1;
     public static int mobGreeny = 0;    
     public static int[] deathReward = {10};    

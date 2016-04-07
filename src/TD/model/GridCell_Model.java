@@ -195,6 +195,7 @@ public class GridCell_Model extends Rectangle{
             		
             	}else if(getAirID() == 5){
             		cModel[getShotMob()].walkSpeed = 30;
+            		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[2]);
             		for(int i=0;i<cModel.length;i++){
             			if(cModel[i].isInGame()){
             				LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Tower_3", " attack creature." + this.getShotMob());
@@ -207,22 +208,22 @@ public class GridCell_Model extends Rectangle{
             		LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Tower_4", " attack creature." + this.getShotMob());
             		if(getShotMob()==0){
             			cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
-                		cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[0]);
+                		cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[1]);
             		}else if(getShotMob()==(cModel.length-1)){
             			if(cModel[getShotMob()-1].checkDeath()){
             				cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
             			}else{
-            			cModel[getShotMob()-1].loseHealth(ConfigModel.TowerFiringRate[0]);
+            			cModel[getShotMob()-1].loseHealth(ConfigModel.TowerFiringRate[1]);
                 		cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
             			}
             		}else{
             			if(cModel[getShotMob()-1].checkDeath()){
             				cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
-            				cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[0]);
+            				cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[1]);
             				}else{
-            					cModel[getShotMob()-1].loseHealth(ConfigModel.TowerFiringRate[0]);
+            					cModel[getShotMob()-1].loseHealth(ConfigModel.TowerFiringRate[1]);
             					cModel[getShotMob()].loseHealth(ConfigModel.TowerFiringRate[3]);
-            					cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[0]);
+            					cModel[getShotMob()+1].loseHealth(ConfigModel.TowerFiringRate[1]);
             				}
             		}
             	}
