@@ -60,7 +60,7 @@ public class FileChooser_Controller {
                         PlayScreen_Model psModel = new PlayScreen_Model();
                         boolean temp = psModel.LoadMap(new File("MapFiles/"+theView.getSelectedFile()));
                         String[] mapname = theView.getSelectedFile().split("\\.");
-                        File loadmap = new File("maplogfile/"+mapname[0]+".log");
+                        File loadmap = new File("logfile/"+mapname[0]+".log");
                         String content = "is played";
                         LogGenerator.addMapLog(loadmap, mapname[0], content, ConfigModel.money);
                         LogGenerator.addLogInfo("Global", "Global", "User choose the Map file of "+ theView.getSelectedFile());

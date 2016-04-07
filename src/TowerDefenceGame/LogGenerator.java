@@ -41,7 +41,7 @@ public class LogGenerator {
 	}
 	
 	public static void creatMapLog(String str, String content, int score){
-		File maplog = new File("maplogfile/" + str+ ".log");
+		File maplog = new File("logfile/" + str+ ".log");
 		if(!maplog.exists()){
 			try{
 				maplog.createNewFile();
@@ -92,7 +92,7 @@ public class LogGenerator {
 	 */	
 	public static void creatLogFile(String logtype){
 		if(logtype == "creatmap"){
-			File maplogfile = new File("logfile/maplog/MapLogFile.log");
+			File maplogfile = new File("logfile/MapLogFile.log");
 			file = maplogfile;
 		}else if(logtype == "game"){
 			File gamelogfile = new File("logfile/GlobleGameLog.log");

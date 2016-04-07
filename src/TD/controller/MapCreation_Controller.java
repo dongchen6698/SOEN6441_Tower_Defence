@@ -100,7 +100,7 @@ public class MapCreation_Controller {
                         theView.disableLoadButton();
                         String content = "was edited";
                         String[] mapname = file.getName().split("\\.");
-                        File loadmap = new File("maplogfile/"+mapname[0]+".log");
+                        File loadmap = new File("logfile/"+mapname[0]+".log");
                         LogGenerator.addMapLog(loadmap, mapname[0], content, ConfigModel.money);
                        }else{
                            theView.displayMessage("Invalid Map File");
