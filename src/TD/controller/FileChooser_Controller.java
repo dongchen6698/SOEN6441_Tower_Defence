@@ -95,7 +95,7 @@ public class FileChooser_Controller {
                     	ShowLog_Model jsModel = new ShowLog_Model("logfile/"+str);
                     	ShowLog_View jsView = new ShowLog_View();
                 		jsModel.addObserver(jsView);
-                		ShowLog_Controller jsc = new ShowLog_Controller(jsView, jsModel);
+                		ShowLog_Controller jsc = new ShowLog_Controller(jsView, jsModel,"All");
                     	theView.setMSTOp(false);
                     	theView.dispose();   
                     }

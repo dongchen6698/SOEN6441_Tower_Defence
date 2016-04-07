@@ -12,7 +12,9 @@ import java.util.logging.Logger;
 import TD.config.ConfigModel;
 import TD.model.GridCell_Model;
 import TD.model.Shop_Model;
+import TD.model.ShowLog_Model;
 import TD.view.Shop_View;
+import TD.view.ShowLog_View;
 import TowerDefenceGame.LogGenerator;
 
 /**
@@ -196,19 +198,43 @@ public class Shop_Controller implements Observer{
                         }  
                         
                         if(sModel.showTowerLog.contains(ConfigModel.mse)){
+                        	String towerNum;
+                        	ShowLog_Model jsModel;
+                        	ShowLog_View jsView;
+                        	ShowLog_Controller jsc;
+                        	
                         	if(sModel.isTowerInfo()){
-                        		System.out.println(sModel.getTowerID());
+                        		//System.out.println(sModel.getTowerID());
                         		switch(sModel.getTowerID()){
                         		case 0:
-                        			
+                        			 towerNum = "Tower_1";
+                        			 jsModel = new ShowLog_Model("logfile/GlobleGameLog.log");
+                                 	 jsView = new ShowLog_View();
+                                 	 jsModel.addObserver(jsView);
+                        			 jsc = new ShowLog_Controller(jsView, jsModel,towerNum);
+                        			 break;
                         		case 1:
-                        			
+                        			 towerNum = "Tower_2";
+                        			 jsModel = new ShowLog_Model("logfile/GlobleGameLog.log");
+                                 	 jsView = new ShowLog_View();
+                                 	 jsModel.addObserver(jsView);
+                        			 jsc = new ShowLog_Controller(jsView, jsModel,towerNum);
+                        			 break;
+                        			 
                         		case 2:
-                        			
+                        			 towerNum = "Tower_3";
+                        			 jsModel = new ShowLog_Model("logfile/GlobleGameLog.log");
+                                 	 jsView = new ShowLog_View();
+                                 	 jsModel.addObserver(jsView);
+                        			 jsc = new ShowLog_Controller(jsView, jsModel,towerNum);
+                        			 break;
                         		case 3:
-                        			
-                        		
-               		
+                        			 towerNum = "Tower_4";
+                        			 jsModel = new ShowLog_Model("logfile/GlobleGameLog.log");
+                                 	 jsView = new ShowLog_View();
+                                 	 jsModel.addObserver(jsView);
+                        			 jsc = new ShowLog_Controller(jsView, jsModel,towerNum);
+                        			 break;
                         		
                         		}
                         	}

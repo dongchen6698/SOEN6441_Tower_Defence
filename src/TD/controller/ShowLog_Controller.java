@@ -13,16 +13,15 @@ import TD.view.ShowLog_View;
  *
  */
 public class ShowLog_Controller {
-	ShowLog_Model thejsModel;
-	ShowLog_View thejsView;
-	String type = "All";	
+	public ShowLog_Model thejsModel;
+	public ShowLog_View thejsView;	
 	
 	/**
 	 * This is a constructor of Javashell_Controller.
 	 * @param jsView
 	 * @param jsModel
 	 */
-	public ShowLog_Controller(ShowLog_View jsView, ShowLog_Model jsModel) {
+	public ShowLog_Controller(ShowLog_View jsView, ShowLog_Model jsModel, String type) {
 		this.thejsModel = jsModel;
 		this.thejsView = jsView;
 		try {
@@ -42,5 +41,5 @@ public class ShowLog_Controller {
 				
 			}
 		});	
-	}	
+	}
 }
