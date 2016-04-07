@@ -15,6 +15,11 @@ import java.util.logging.Logger;
 import TD.config.ConfigModel;
 import TD.view.PlayScreen_View;
 import TowerDefenceGame.LogGenerator;
+import strategy_pattern.Context;
+import strategy_pattern.NearToEnd;
+import strategy_pattern.NearestToTower;
+import strategy_pattern.Strongest;
+import strategy_pattern.Weakest;
 
 /**
  * This is model for Grid Cells Module.
@@ -110,31 +115,26 @@ public class GridCell_Model extends Rectangle{
                     	//LogGenerator.addLogInfo(Integer.toString(this.airID), Integer.toString(shotMob),Integer.toString(ConfigModel.waveLap), "Tower_"+(this.airID-2)+" attacked creatur"+shotMob);	
                     	//	
         							switch(strategyno){
-        							case 1://nearest to the tower	
-        								int diff1 = this.y - cModel[shotMob].y;
-        								int diff2 = this.y - cModel[i].y;
-        								if(Math.abs(diff2)<Math.abs(diff1)){
-        									shotMob=i;
-        								}
+        							case 1://nearest to the tower
+        								
+        								Context context = new Context(new NearestToTower());
+        								shotMob=context.killCreateure(cModel, shotMob, i, this.y);
+        								
         								break;
         							case 2://weakest
-        								if(cModel[shotMob].getHealth()<cModel[i].getHealth()){
-        									//shotMob=i;	
-        								}else{
-        									shotMob=i;
-        								}
+        								Context context1 = new Context(new Weakest());
+        								shotMob=context1.killCreateure(cModel, shotMob, i, this.y);
+        								
         								break;
         							case 3://strongest
-        								if(cModel[shotMob].getHealth()>cModel[i].getHealth()){
-        									//shotMob=i;	
-        								}else{
-        									shotMob=i;
-        								}
+        								Context context2 = new Context(new Strongest());
+        								shotMob=context2.killCreateure(cModel, shotMob, i, this.y);
+        								
         								break;
         							case 4://near to tht end
-        								if(shotMob<i){
-        									shotMob=i;	
-        								}
+        								Context context3 = new Context(new NearToEnd());
+        								shotMob=context3.killCreateure(cModel, shotMob, i, this.y);
+        								
         								break;
         							default:
                     		//near to tht end
