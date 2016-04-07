@@ -47,6 +47,12 @@ public class GridCell_Model extends Rectangle{
     public static int creature_xprev=0;
     public static int difference=0;
     
+   /**
+    * this is constructor of the class 
+    */
+   public  GridCell_Model(){
+    	
+    }
     /**
      * * This is constructor method for Grid Cell. It will set different properties for each grid cell.
      * @param x x point
@@ -197,6 +203,7 @@ public class GridCell_Model extends Rectangle{
             				if(cModel[i].isFire()){
             						cModel[i].loseHealth(1);
             						LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Tower_2", " attack creature." + this.getShotMob());
+            						this.setFire(true);
             				}
             				if(!getTowerRange()[1].contains(cModel[i])){	
             					cModel[i].setFire(false);
@@ -211,6 +218,7 @@ public class GridCell_Model extends Rectangle{
             		for(int i=0;i<cModel.length;i++){
             			if(cModel[i].isInGame()){
             				LogGenerator.addLogInfo("WAVE_"+Integer.toString(ConfigModel.waveLap), "Tower_3", " attack creature." + this.getShotMob());
+            				this.setFreeze(true);
             				if(!getTowerRange()[2].contains(cModel[i])){
             					cModel[i].walkSpeed = ConfigModel.walkSpeed;
             				}
@@ -366,5 +374,19 @@ public class GridCell_Model extends Rectangle{
     	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
     	return sdf.format(cal.getTime());
     }
+	public boolean isFreeze() {
+		freeze =true;
+		return freeze;
+	}
+	public void setFreeze(boolean freeze) {
+		this.freeze = freeze;
+	}
+	public boolean isFire() {
+		fire = true;
+		return fire;
+	}
+	public void setFire(boolean fire) {
+		this.fire = fire;
+	}
  
 }
