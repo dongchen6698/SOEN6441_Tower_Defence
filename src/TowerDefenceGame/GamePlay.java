@@ -155,13 +155,20 @@ public class GamePlay extends JFrame implements WindowListener{
         String title = "Save Game?";
         int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.NO_OPTION){
+        	String[] mapname = this.file.getName().split("\\.");
+        	File loadmap = new File("maplogfile/"+mapname[0]+".log");
+            String content = "is played";
+            LogGenerator.addMapLog(loadmap, mapname[0], content, ConfigModel.money);
         	System.exit(0);
         }else if(reply == JOptionPane.YES_OPTION){
         //	 String str = JOptionPane.showInputDialog(this, "Enter File Name");
         //	new FileOutputStream("savegameinfo/"+str+".dat"), "utf-8"));
         //	System.out.println("save game");
-        	
         	slzModel = new Serialization_model(this.file,ConfigModel.money, ConfigModel.killed, ConfigModel.total_killed, ConfigModel.health, ConfigModel.waveLap, ConfigModel.level, gcModel);
+        	String[] mapname = this.file.getName().split("\\.");
+        	File loadmap = new File("maplogfile/"+mapname[0]+".log");
+            String content = "is saved";
+            LogGenerator.addMapLog(loadmap, mapname[0], content, ConfigModel.money);
         	this.dispose();
         	System.exit(0);
         	

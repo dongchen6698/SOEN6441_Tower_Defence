@@ -49,7 +49,7 @@ public class LogGenerator {
 				e.printStackTrace();
 			}
 		}
-		String maploginfo = getCurrentTime()+ ":" + "Map: "+ str+ " "+content;  
+		String maploginfo = getCurrentTime()+ ":" + "Map: "+ str+ " "+content;
 		try {
 			bfw = new BufferedWriter(new FileWriter(maplog,true));
 			bfw.write(maploginfo+"\n");
@@ -70,7 +70,7 @@ public class LogGenerator {
 	 */
 	public static void addMapLog(File map, String mapname, String content, int score){
 		
-		String maploginfo = getCurrentTime()+ ":" + "Map: "+ mapname+ " "+content;  
+		String maploginfo = getCurrentTime()+ ":" + "Map: "+ mapname+ " "+content+". the score: "+score; 
 		try {
 			bfw = new BufferedWriter(new FileWriter(map,true));
 			bfw.write(maploginfo+"\n");
