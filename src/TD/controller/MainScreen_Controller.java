@@ -92,7 +92,7 @@ public class MainScreen_Controller {
                 }
                 
                 if(tempBtnStr.equals("Show Log")){
-                	FileChooser_Model mcModel = new FileChooser_Model("logfile/gamelog");
+                	FileChooser_Model mcModel = new FileChooser_Model("logfile/");
                     FileChooser_View mcView = new FileChooser_View(theView, mcModel.getMapFileList(),"Choose Log File", "See Log");
                     FileChooser_Controller mp = new FileChooser_Controller(mcView,mcModel);
                 }

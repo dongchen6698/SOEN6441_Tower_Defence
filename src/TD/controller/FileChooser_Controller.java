@@ -88,7 +88,7 @@ public class FileChooser_Controller {
                     }else{
                     	String str = theView.getSelectedFile();   
                     	System.out.println(str);
-                    	ShowLog_Model jsModel = new ShowLog_Model("logfile/gamelog/"+str);
+                    	ShowLog_Model jsModel = new ShowLog_Model("logfile/"+str);
                     	ShowLog_View jsView = new ShowLog_View();
                 		jsModel.addObserver(jsView);
                 		ShowLog_Controller jsc = new ShowLog_Controller(jsView, jsModel);
