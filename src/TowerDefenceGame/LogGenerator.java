@@ -14,7 +14,7 @@ import java.util.Date;
  */
 
 public class LogGenerator {
-	private static File file = new File("logfile/gamelog/GlobleGameLog.log");
+	private static File file = new File("logfile/GlobleGameLog.log");
 	private static BufferedWriter bfw;
 	//private static File maplog;
 	/**
@@ -41,7 +41,7 @@ public class LogGenerator {
 	}
 	
 	public static void creatMapLog(String str, String content, int score){
-		File maplog = new File("maplogfile/" + str+ ".log");
+		File maplog = new File("logfile/" + str+ ".log");
 		if(!maplog.exists()){
 			try{
 				maplog.createNewFile();
@@ -49,7 +49,7 @@ public class LogGenerator {
 				e.printStackTrace();
 			}
 		}
-		String maploginfo = getCurrentTime()+ ":" + "Map: "+ str+ " "+content;  
+		String maploginfo = getCurrentTime()+ ":" + "Map: "+ str+ " "+content;
 		try {
 			bfw = new BufferedWriter(new FileWriter(maplog,true));
 			bfw.write(maploginfo+"\n");
@@ -70,7 +70,7 @@ public class LogGenerator {
 	 */
 	public static void addMapLog(File map, String mapname, String content, int score){
 		
-		String maploginfo = getCurrentTime()+ ":" + "Map: "+ mapname+ " "+content;  
+		String maploginfo = getCurrentTime()+ ":" + "Map: "+ mapname+ " "+content+". the score: "+score; 
 		try {
 			bfw = new BufferedWriter(new FileWriter(map,true));
 			bfw.write(maploginfo+"\n");
@@ -92,7 +92,7 @@ public class LogGenerator {
 	 */	
 	public static void creatLogFile(String logtype){
 		if(logtype == "creatmap"){
-			File maplogfile = new File("logfile/maplog/MapLogFile.log");
+			File maplogfile = new File("logfile/MapLogFile.log");
 			file = maplogfile;
 		}else if(logtype == "game"){
 			File gamelogfile = new File("logfile/GlobleGameLog.log");

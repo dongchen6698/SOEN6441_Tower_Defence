@@ -6,6 +6,7 @@ import java.io.File;
 
 import javax.swing.JButton;
 
+import TD.config.ConfigModel;
 import TD.model.FileChooser_Model;
 import TD.model.ShowLog_Model;
 import TD.model.LoadGameInfo_Model;
@@ -58,6 +59,10 @@ public class FileChooser_Controller {
                     }else{
                         PlayScreen_Model psModel = new PlayScreen_Model();
                         boolean temp = psModel.LoadMap(new File("MapFiles/"+theView.getSelectedFile()));
+                        String[] mapname = theView.getSelectedFile().split("\\.");
+                        File loadmap = new File("logfile/"+mapname[0]+".log");
+                        String content = "is played";
+                        LogGenerator.addMapLog(loadmap, mapname[0], content, ConfigModel.money);
                         LogGenerator.addLogInfo("Global", "Global", "User choose the Map file of "+ theView.getSelectedFile());
                         if(temp){
                             GamePlay gp = new GamePlay(new File("MapFiles/"+theView.getSelectedFile()), psModel.getxC(), psModel.getyC());
@@ -77,8 +82,7 @@ public class FileChooser_Controller {
                      	String str = theView.getSelectedFile();                    
                      	LoadGameInfo_Model lgiModel = new LoadGameInfo_Model(str);
                      	theView.setMSTOp(false);
-                     	theView.dispose();     
-                         
+                     	theView.dispose();  
                      }
                 }
                 
