@@ -8,11 +8,15 @@ import java.util.Observable;
  * @author DanQiao
  *
  */
-public class JavaShell_Model extends Observable{
+public class ShowLog_Model extends Observable{
 	private BufferedReader br;
 	public String filepath;
 	
-	public JavaShell_Model(String new_filepath){
+	/**
+	 * this is a default show log constructor.
+	 * @param new_filepath
+	 */
+	public ShowLog_Model(String new_filepath){
 		this.filepath = new_filepath;
 	}
 	/**
@@ -38,10 +42,9 @@ public class JavaShell_Model extends Observable{
 	}
 
 /**
- * This method is bufferedReader.
+ * This method is to get new bufferedReader.
  * @return
  */
-
 	public BufferedReader getBr() {
 		return br;
 	}

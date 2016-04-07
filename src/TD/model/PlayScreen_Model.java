@@ -13,30 +13,23 @@ import java.util.Scanner;
 public class PlayScreen_Model{
     
     private int xC;
-    private int yC;
-    
+    private int yC;    
     private static int myWidth, myHeight;
     private static int money = 20, health = 50;
     private static int killed =0, killsToWin =0, Level =1, maxLevel =3;
-    private static int winTime = 4000, winFrame =0;
-    
-    public static int test = 1000;
-    
+    private static int winTime = 4000, winFrame =0;    
+    public static int test = 1000;    
     private static boolean isFirst = true;
     private static boolean isDebug = false;
     private static boolean isDead = false;
-    private static boolean isWin = false;
-    
+    private static boolean isWin = false;   
     private static Image[] ground_level = new Image[100];
     private static Image[] air_level = new Image[100];
     private static Image[] tileset_res = new Image[100];
     private static Image[] tileset_mob = new Image[100];
-    private static Image[] tileset_air = new Image[100];
-    
-    private static Point mse = new Point(0, 0);
-    
-    private static CellContainer_Model ccModel;
-    
+    private static Image[] tileset_air = new Image[100];    
+    private static Point mse = new Point(0, 0);    
+    private static CellContainer_Model ccModel;    
     private int[][] gridCellArray;
     
     /**

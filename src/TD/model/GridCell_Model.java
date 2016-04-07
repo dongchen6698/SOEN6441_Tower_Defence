@@ -22,13 +22,10 @@ import TowerDefenceGame.LogGenerator;
  */
 public class GridCell_Model extends Rectangle{
     public static int strategyno;
-    
-    
     private Rectangle[] towerRange;
     public String[] towerLog;
     public int[] towerActiveTime;
     public int[] towerCKilled;
-    
     private int towerRangeSize = 100;
     private int gID;
     private int airID;
@@ -39,21 +36,16 @@ public class GridCell_Model extends Rectangle{
     private boolean freeze = false;
     private boolean fire = false;
     private boolean firing = false;
-    
     private int xC=0,yC=0;
-    
     private String startTime;
     private boolean startFlag = false;
     private String endTime;
     public static int creature_id=0;
     public static int creature_y=0;
     public static int creature_x=0;
-
     public static int creature_yprev=0;
     public static int creature_xprev=0;
-    
     public static int difference=0;
-    
     
     /**
      * * This is constructor method for Grid Cell. It will set different properties for each grid cell.
@@ -78,8 +70,7 @@ public class GridCell_Model extends Rectangle{
             towerCKilled[i] = 0;
         }
         this.gID = gID;
-        this.airID = airID;
-        
+        this.airID = airID;   
     }
     
     /**
@@ -91,123 +82,73 @@ public class GridCell_Model extends Rectangle{
         
         for(int i=0;i<ConfigModel.airTowerLaser.length;i++)
         {
-        	
                 if(getShotMob() != -1 && getTowerRange()[gID].intersects(cModel[getShotMob()])){
-                    //setFiring(true);
                 }
                 else{
                     setFiring(false);
                 }
         }
         
-        
         for(int tid=0;tid<ConfigModel.airTowerLaser.length;tid++){
-
         	if(getAirID() == ConfigModel.airTowerLaser[tid]){
-        for(int i=0;i<cModel.length;i++){
-            if(cModel[i].isInGame()){
-                if(getTowerRange()[tid].intersects(cModel[i]))
-                {
-                   
-                    
-                    if(shotMob!=i)
-                    {
-                    	if(shotMob!=-1)
-                    	{
-                    	
-                    		
-                    		
+        		for(int i=0;i<cModel.length;i++){
+        			if(cModel[i].isInGame()){
+        				if(getTowerRange()[tid].intersects(cModel[i])){
+        					if(shotMob!=i) {
+        						if(shotMob!=-1){	
                     	//System.out.println("Shot Mob "+cModel[shotMob].getHealth() + " other than shotmob" + cModel[i].getHealth() );
                         
                     	//this.airID tower id
                     	//cModel[shotMob] creature id	
                     	//ConfigModel.waveLap  
                     	//LogGenerator.addLogInfo(Integer.toString(this.airID), Integer.toString(shotMob),Integer.toString(ConfigModel.waveLap), "Tower_"+(this.airID-2)+" attacked creatur"+shotMob);	
-                    	//
-                    		
-                    	switch(strategyno)	
-                    	{
-                    	case 1:
-                    		//nearest to the tower	
-                        	int diff1 = this.y - cModel[shotMob].y;
-                        	
-                        	int diff2 = this.y - cModel[i].y;
-                        	
-                        	
-                        	
-                        	
-                        	if(Math.abs(diff2)<Math.abs(diff1))
-                        	{
-                        		shotMob=i;
-                        	}
-                    		
-                    		break;
-                    	case 2:
-                        	
-                    		
-                    		//weakest
-                        	if(cModel[shotMob].getHealth()<cModel[i].getHealth())
-                        	{
-                        	//shotMob=i;	
-                        	}
-                        	else
-                        	{
-                        		shotMob=i;
-                        	}
-                    		
-                    		break;
-                    	case 3:
-
-                    		//strongest
-                        	if(cModel[shotMob].getHealth()>cModel[i].getHealth())
-                        	{
-                        	//shotMob=i;	
-                        	}
-                        	else
-                        	{
-                        		shotMob=i;
-                        	}
-                        	break;
-                    	
-                    	case 4:
-
-                        	//near to tht end
-                        	if(shotMob<i)
-                        	{
-                        	shotMob=i;	
-                        	}
-                
-                    		
-                    		break;
-                    		default:
+                    	//	
+        							switch(strategyno){
+        							case 1://nearest to the tower	
+        								int diff1 = this.y - cModel[shotMob].y;
+        								int diff2 = this.y - cModel[i].y;
+        								if(Math.abs(diff2)<Math.abs(diff1)){
+        									shotMob=i;
+        								}
+        								break;
+        							case 2://weakest
+        								if(cModel[shotMob].getHealth()<cModel[i].getHealth()){
+        									//shotMob=i;	
+        								}else{
+        									shotMob=i;
+        								}
+        								break;
+        							case 3://strongest
+        								if(cModel[shotMob].getHealth()>cModel[i].getHealth()){
+        									//shotMob=i;	
+        								}else{
+        									shotMob=i;
+        								}
+        								break;
+        							case 4://near to tht end
+        								if(shotMob<i){
+        									shotMob=i;	
+        								}
+        								break;
+        							default:
                     		//near to tht end
-                            if(shotMob<i)
-                            {
-                            shotMob=i;	
-                            }	
-                    	}
-                   	
-                    	}
-                    }                  
-          
-                }
-            }
+        								if(shotMob<i){
+        									shotMob=i;	
+        								}	
+        							}
+        						}
+        					}  
+        				}
+        			}
+        		}
+        	}
         }
-        }
-        }
-        
-        
-        
         
         if(!isFiring()){
-
             for(int tid=0;tid<ConfigModel.airTowerLaser.length;tid++){
             	if(airID == ConfigModel.airTowerLaser[tid]){
             		//System.out.println("Tower Id "+airID);
-            		
-            		
-                    
-                    for(int i=0;i<cModel.length;i++){
+            		for(int i=0;i<cModel.length;i++){
                         if(cModel[i].isInGame()){
                             if(getTowerRange()[tid].intersects(cModel[i]))
                             {
@@ -285,8 +226,6 @@ public class GridCell_Model extends Rectangle{
             				}
             		}
             	}
-            	
-            	
             	loseFrame = 0;
             }else {
                 loseFrame +=1;
@@ -305,6 +244,10 @@ public class GridCell_Model extends Rectangle{
             }
     }
     
+    /**
+     * this is a method to measure end time 
+     * @throws ParseException
+     */
     public void endTime() throws ParseException
     {
         endTime = getCurrentTime();

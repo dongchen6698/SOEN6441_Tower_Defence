@@ -52,7 +52,13 @@ public class GamePlay extends JFrame implements WindowListener{
     private ConfigModel cModel;
     private File file;
     
-    public GamePlay(){}
+    /**
+     * this is a default empty gameplay constructor
+     */
+    public GamePlay(){
+    	
+    }
+    
     /**
      * This method will initialize JFrame and set some basic properties(Title, Size, Background Color, Location).
      * @param f Map file which is selected by user from list box.

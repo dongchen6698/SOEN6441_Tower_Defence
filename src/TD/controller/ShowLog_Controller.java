@@ -4,18 +4,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import TD.model.JavaShell_Model;
-import TD.view.JavaShell_View;
+import TD.model.ShowLog_Model;
+import TD.view.ShowLog_View;
 
 /**
  * This is a class of Javashell_controller.
  * @author DanQiao
  *
  */
-
-public class JavaShell_Controller {
-	JavaShell_Model thejsModel;
-	JavaShell_View thejsView;
+public class ShowLog_Controller {
+	ShowLog_Model thejsModel;
+	ShowLog_View thejsView;
 	String type = "All";	
 	
 	/**
@@ -23,9 +22,7 @@ public class JavaShell_Controller {
 	 * @param jsView
 	 * @param jsModel
 	 */
-	
-	public JavaShell_Controller(JavaShell_View jsView, JavaShell_Model jsModel) {
-		
+	public ShowLog_Controller(ShowLog_View jsView, ShowLog_Model jsModel) {
 		this.thejsModel = jsModel;
 		this.thejsView = jsView;
 		try {
@@ -34,11 +31,9 @@ public class JavaShell_Controller {
 			e2.printStackTrace();
 		}
 		this.thejsView.addoptionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String t = thejsView.getOptionContent();
-				//System.out.println(t);	
 				try {
 					thejsModel.getSpecificLogInfo(t);
 				} catch (Exception e1) {
@@ -47,6 +42,5 @@ public class JavaShell_Controller {
 				
 			}
 		});	
-	}
-	
+	}	
 }

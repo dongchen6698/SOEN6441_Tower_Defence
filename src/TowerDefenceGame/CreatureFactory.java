@@ -27,7 +27,9 @@ public class CreatureFactory{
 			   return new Creature_Model[ConfigModel.creaturesNo];
 		   default: return null;
 		   }
-	/*	   if(wave == 1){
+		   
+		   /*	  
+		  if(wave == 1){
 	         return new Creature_Model[ConfigModel.creaturesNo];
 	      }	else if(wave == 2){
 	    	 ConfigModel.creaturesNo=ConfigModel.creaturesNo+5;

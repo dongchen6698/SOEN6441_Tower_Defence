@@ -35,6 +35,9 @@ public class Shop_Controller implements Observer{
         this.sView = sView;
     }
 
+    /**
+     * This is a public shop_Controller constructor.
+     */
     public Shop_Controller() {
         
     }
@@ -172,40 +175,26 @@ public class Shop_Controller implements Observer{
                         
                         if(sModel.strategy1.contains(ConfigModel.mse)){
                             if(sModel.isTowerInfo()){
-                                
-                            	GridCell_Model.strategyno=1;
-                            	
-                                
+                            	GridCell_Model.strategyno=1;    
                             }                
                         }            
                         
                         if(sModel.strategy2.contains(ConfigModel.mse)){
                             if(sModel.isTowerInfo()){
-                                
-                            	GridCell_Model.strategyno=2;
-                            	
-                                
+                            	GridCell_Model.strategyno=2;  
                             }                
                         }       
                         if(sModel.strategy3.contains(ConfigModel.mse)){
                             if(sModel.isTowerInfo()){
-                                
-                            	GridCell_Model.strategyno=3;
-                            	
-                                
+                            	GridCell_Model.strategyno=3;   
                             }                
                         }       
                         if(sModel.strategy4.contains(ConfigModel.mse)){
                             if(sModel.isTowerInfo()){
-                                
                             	GridCell_Model.strategyno=4;
-                            	
-                                
                             }                
                         }       
-                        
-                        
-                        
+                         
             if(sModel.towerUpgrade.contains(ConfigModel.mse)){
                 if(sModel.isTowerInfo()){
                     //System.out.println("Tower Info");
@@ -246,7 +235,5 @@ public class Shop_Controller implements Observer{
                         }
             }
         }
-    }
-
-    
+    }    
 }

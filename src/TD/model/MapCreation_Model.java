@@ -65,13 +65,12 @@ public class MapCreation_Model {
                 mbCon.setXBlockCount(xC);
                 mbCon.setYBlockCount(yC);
                 mbCon.setGridArray();
-                 Thread.sleep(100);
+                Thread.sleep(100);
                  
                 for(int y=0;y<yC;y++){
                     for(int x=0;x<xC;x++){
                         int val = loadScanner.nextInt();
-                        mbCon.setmapGirdArrayElementF(y, x, val);
-                        
+                        mbCon.setmapGirdArrayElementF(y, x, val);  
                     }
                 }
              }

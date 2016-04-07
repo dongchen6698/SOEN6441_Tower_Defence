@@ -17,13 +17,10 @@ public class Shop_Model{
     public static int getButtonSize() {
         return buttonSize;
     }
-    
     private int health = 5;
-    private int money = 150;
-    
+    private int money = 150;   
     private int startX = 0;
-    private int startY = 0;
-    
+    private int startY = 0;    
     public static int shopWidth = 4;
     private static int buttonSize = 52;
     public static int cellSpace = 3;
@@ -33,23 +30,17 @@ public class Shop_Model{
     private static int heldID = -1;
     private static int realID = -1;
     public static int[] buttonID = {ConfigModel.airTowerLaser[0], ConfigModel.airTowerLaser[1], ConfigModel.airTowerLaser[2], ConfigModel.airTowerLaser[3]};
-    private static int[] buttonPrice = {10, 20, 30, 40};
-    
+    private static int[] buttonPrice = {10, 20, 30, 40};   
     public Rectangle[] button  = new Rectangle[shopWidth];
     public Rectangle btn_health;
-    public Rectangle btn_coins;
-    
+    public Rectangle btn_coins;    
     public Rectangle towerUpgrade;
-    public Rectangle savegameinfo;
-    
-    
+    public Rectangle savegameinfo;    
     public Rectangle strategy1;
     public Rectangle strategy2;
     public Rectangle strategy3;
-    public Rectangle strategy4;
-    
-    private boolean holdsItem = false;
-    
+    public Rectangle strategy4;   
+    private boolean holdsItem = false;    
     private int towerID = 0;
     private boolean towerInfo = false;
     
@@ -76,8 +67,7 @@ public class Shop_Model{
         strategy1 = new Rectangle(startX - 5, 275, 226, 20);
         strategy2 = new Rectangle(startX - 5, 295, 226, 20);
         strategy3 = new Rectangle(startX - 5, 315, 226, 20);
-        strategy4 = new Rectangle(startX - 5, 335, 226, 20);
-        
+        strategy4 = new Rectangle(startX - 5, 335, 226, 20);      
         
         savegameinfo = new Rectangle(startX-5,285,226,35);
         btn_health = new Rectangle(startX, 14, iconSize, iconSize);
@@ -91,6 +81,7 @@ public class Shop_Model{
     public int getbuttonLength(){
         return button.length;
     }
+    
     /**
      * this method will send id of tower.
      * @param x id of tower.
@@ -99,6 +90,7 @@ public class Shop_Model{
     public int getButtonId(int x){
         return buttonID[x];
     }
+    
     /**
      * this method will return tower properties.
      * @param x tower id.

@@ -280,10 +280,18 @@ public class Creature_Model extends Rectangle{
         this.inGame = inGame;
     }
 
+    /**
+     * 
+     * @return get creature flag of Fire.
+     */
 	public boolean isFire() {
 		return isFire;
 	}
 
+	/**
+	 * 
+	 * @param isFire set creature flag of fire.
+	 */
 	public void setFire(boolean isFire) {
 		this.isFire = isFire;
 	}

@@ -17,14 +17,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import TD.model.JavaShell_Model;
+import TD.model.ShowLog_Model;
 
 /**This class is a view of JavaShell.
  * @author DanQiao
  *
  */
 
-public class JavaShell_View extends JFrame implements Observer{
+public class ShowLog_View extends JFrame implements Observer{
 	private JScrollPane jsp;
 	private JTextArea jta;
 	private JComboBox option;
@@ -32,8 +32,7 @@ public class JavaShell_View extends JFrame implements Observer{
 	/**
 	 * This is constructor of JavaSheel.
 	 */
-	
-	public JavaShell_View() {
+	public ShowLog_View() {
 		this.setBackground(Color.BLACK);
 		this.setTitle("LogInformation");
         this.setSize(600,400);
@@ -71,7 +70,7 @@ public class JavaShell_View extends JFrame implements Observer{
 	 */
 	public void update(Observable arg0, Object arg1) {
 		jta.setText("");
-		BufferedReader br= ((JavaShell_Model) arg1).getBr();				
+		BufferedReader br= ((ShowLog_Model) arg1).getBr();				
         String line;
         try {
 			while ((line = br.readLine()) != null) {

@@ -26,13 +26,11 @@ import TowerDefenceGame.GamePlay;
  *
  */
 
-public class LoadGameInfo_Model extends GamePlay{
-	
+public class LoadGameInfo_Model extends GamePlay{	
 	private File file;
 	private ConfigModel cModel;
 	private PlayScreen_Controller psCont;
     private Serialization_model slzModel;
-    
     private PlayScreen_View psView;
     private PlayScreen_Model psModel;
     private GridCell_View gcView;
@@ -59,13 +57,9 @@ public class LoadGameInfo_Model extends GamePlay{
 		System.out.println("start loadgame");
 		try
 	      {
-			
 	         FileInputStream fileIn = new FileInputStream("savegameinfo/" + loadgame);
 	         ObjectInputStream in = new ObjectInputStream(fileIn);
-	         
 	         slzModel = (Serialization_model) in.readObject();
-	         
-	         
 	         in.close();
 	         fileIn.close();
 	      }catch(IOException i)
@@ -111,7 +105,6 @@ public class LoadGameInfo_Model extends GamePlay{
 	public void init_elements()
     {
         this.setLayout(new GridLayout(1, 1, 0, 0));
-        
         PlayScreen_Model psModel = new PlayScreen_Model();
         this.psModel = psModel;
                         boolean temp = psModel.LoadMap(file);
@@ -134,16 +127,10 @@ public class LoadGameInfo_Model extends GamePlay{
                                 ccModel = psModel.getCellContainer_Model();
                                 ccModel.setGcModel(gcModel);
                                 this.ccView = ccView;
-                           //     this.ccModel = ccModel;
-
                                 GridCell_View gcView = new GridCell_View();
-                          //      gcModel = ccModel.getGcModel();
                                 this.gcView = gcView;
-                             //   this.gcModel = gcModel;
-
                                 PlayScreen_View psView = new PlayScreen_View(this);
                                 this.psView = psView;
-                                
                                 this.add(psView);
                                 psCont = new PlayScreen_Controller(psView, psModel, gcView, gcModel, ccView, ccModel, sView, sModel);
                                 psView.setController(getPsCont());
@@ -193,16 +180,11 @@ public class LoadGameInfo_Model extends GamePlay{
 		System.out.println("start loadgame");
 		try
 	      {
-			
 	         FileInputStream fileIn = new FileInputStream("savegameinfo/testsaveinfo.ser");
 	         ObjectInputStream in = new ObjectInputStream(fileIn);
-	         
-	         slzModel = (Serialization_model) in.readObject();
-	         
-	         
+	         slzModel = (Serialization_model) in.readObject();	         
 	         in.close();
-	         fileIn.close();
-	         
+	         fileIn.close();	         
 	      }catch(IOException i)
 	      {
 	         i.printStackTrace();

@@ -33,7 +33,6 @@ public class PlayScreen_View extends JPanel implements Runnable{
     public static boolean isWin = false;
     boolean rFlag =false;
     static PlayScreen_Controller psCont;
-    //public static int wave = 1;
     private volatile boolean isRunning = true;
     
     public static Creature_Model[] Creatures = CreatureFactory.getCreature(waveLap);
@@ -42,6 +41,11 @@ public class PlayScreen_View extends JPanel implements Runnable{
       
     public static int winTime = 2000, winFrame =0;
     public Graphics w;
+    
+    /**
+     * get graph function
+     * @return
+     */
     public Graphics getGraph(){
         return w;
     }
@@ -358,6 +362,9 @@ public class PlayScreen_View extends JPanel implements Runnable{
         }
     }
     
+    /**
+     * this function for stop the Thread.
+     */
     public void killThread(){
     	this.isRunning = false;
     }

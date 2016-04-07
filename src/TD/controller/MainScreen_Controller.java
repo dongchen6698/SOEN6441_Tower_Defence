@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import TD.config.ConfigModel;
-import TD.model.JavaShell_Model;
+import TD.model.ShowLog_Model;
 import TD.model.LoadGameInfo_Model;
 import TD.model.MainScreen_Model;
 import TD.model.FileChooser_Model;
 import TD.model.MapCreation_Model;
-import TD.view.JavaShell_View;
+import TD.view.ShowLog_View;
 import TD.view.MainScreen_View;
 import TD.view.FileChooser_View;
 import TD.view.MapCreation_View;
@@ -25,8 +25,7 @@ import TowerDefenceGame.LogGenerator;
 public class MainScreen_Controller {
 	MainScreen_View theView;
 	MainScreen_Model theModel;
-	
-	
+		
 	/**
      * This method initialize view and model object.
      * @param view MainScreen_View object
@@ -74,35 +73,28 @@ public class MainScreen_Controller {
                 }
             	
                 if(tempBtnStr.equals("Start Game")){
-                	
                 	LogGenerator.creatLogFile("game");
                 	LogGenerator.addLogInfo("Global", "Global", "User clicked the start game");
                     FileChooser_Model mcModel = new FileChooser_Model("MapFiles/");
                     FileChooser_View mcView = new FileChooser_View(theView, mcModel.getMapFileList(),"Select Game Map.", "Start Game");
                     FileChooser_Controller mp = new FileChooser_Controller(mcView,mcModel);
-                    
                 }
                 
                 if(tempBtnStr.equals("Load Game")){
-                	
                 	FileChooser_Model mcModel = new FileChooser_Model("savegameinfo/");
                     FileChooser_View mcView = new FileChooser_View(theView, mcModel.getMapFileList(),"Load Game", "Load File");
                     FileChooser_Controller mp = new FileChooser_Controller(mcView,mcModel);
                 }
 
                 if(tempBtnStr.equals("EXIT GAME")){
-                	
                     theView.dispose();
                     System.exit(0);
                 }
                 
                 if(tempBtnStr.equals("Show Log")){
-                	
                 	FileChooser_Model mcModel = new FileChooser_Model("logfile/gamelog");
                     FileChooser_View mcView = new FileChooser_View(theView, mcModel.getMapFileList(),"Choose Log File", "See Log");
                     FileChooser_Controller mp = new FileChooser_Controller(mcView,mcModel);
-            		
-            		
                 }
             }
         }

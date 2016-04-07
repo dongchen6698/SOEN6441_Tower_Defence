@@ -14,6 +14,7 @@ public class TowerDefenceGame_singleton {
 	private MainScreen_Model mainscreenviewmodel;
 	
 	private static TowerDefenceGame_singleton singletonInstence = new TowerDefenceGame_singleton();
+	
 	/**
 	 * This is a constructor of the class
 	 */
@@ -21,6 +22,7 @@ public class TowerDefenceGame_singleton {
 		this.mainscreenview = new MainScreen_View();
 		this.mainscreenviewmodel = new MainScreen_Model();
 	}
+	
 	/**
 	 * This method is get a instance of TowerDefenceGame_sigleton
 	 * 
@@ -33,6 +35,7 @@ public class TowerDefenceGame_singleton {
 			return singletonInstence;
 		}
 	}
+	
 	/**
 	 * 
 	 * @return mainscreenview
@@ -40,13 +43,12 @@ public class TowerDefenceGame_singleton {
 	public MainScreen_View getMainscreenview() {
 		return mainscreenview;
 	}
+	
 	/**
 	 * 
 	 * @return mainscreenviewmodel
 	 */ 
 	public MainScreen_Model getMainscreenviewmodel() {
 		return mainscreenviewmodel;
-	}
-	
-	
+	}	
 }

@@ -7,11 +7,11 @@ import java.io.File;
 import javax.swing.JButton;
 
 import TD.model.FileChooser_Model;
-import TD.model.JavaShell_Model;
+import TD.model.ShowLog_Model;
 import TD.model.LoadGameInfo_Model;
 import TD.model.PlayScreen_Model;
 import TD.view.FileChooser_View;
-import TD.view.JavaShell_View;
+import TD.view.ShowLog_View;
 import TowerDefenceGame.GamePlay;
 import TowerDefenceGame.LogGenerator;
 
@@ -24,11 +24,11 @@ public class FileChooser_Controller {
     FileChooser_Model theModel;
     
     /**
-     * This is constructor of Map Chooser.
+     * This is default constructor of Map Chooser.
      * @param mcView the MapChooserView
      * @param mcModel the MapChooserModel
      */
-    FileChooser_Controller(FileChooser_View mcView, FileChooser_Model mcModel) {
+    public FileChooser_Controller(FileChooser_View mcView, FileChooser_Model mcModel) {
         this.theView = mcView;
         this.theModel = mcModel;
         this.theView.addButtonClickEventListner(new ButtonActionDetector());
@@ -88,18 +88,15 @@ public class FileChooser_Controller {
                     }else{
                     	String str = theView.getSelectedFile();   
                     	System.out.println(str);
-                    	JavaShell_Model jsModel = new JavaShell_Model("logfile/gamelog/"+str);
-                    	JavaShell_View jsView = new JavaShell_View();
+                    	ShowLog_Model jsModel = new ShowLog_Model("logfile/gamelog/"+str);
+                    	ShowLog_View jsView = new ShowLog_View();
                 		jsModel.addObserver(jsView);
-                		JavaShell_Controller jsc = new JavaShell_Controller(jsView, jsModel);
+                		ShowLog_Controller jsc = new ShowLog_Controller(jsView, jsModel);
                     	theView.setMSTOp(false);
-                    	theView.dispose();     
-                        
+                    	theView.dispose();   
                     }
-               }
-                
+               } 
             }
         }
     }
-
 }

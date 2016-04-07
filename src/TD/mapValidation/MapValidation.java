@@ -22,6 +22,7 @@ public class MapValidation {
     public int[][] getFinal_array() {
         return final_array;
     }
+    
     String flag = "f";
     public static int[][] GridArray;
     public static int[][] GridArray_temp;

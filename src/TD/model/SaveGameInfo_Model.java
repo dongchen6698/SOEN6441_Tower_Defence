@@ -23,6 +23,7 @@ import TowerDefenceGame.GamePlay;
 public class SaveGameInfo_Model extends JFrame{
 	
 	public Serialization_model smodel;
+	
 	/**
 	 * this is a default constructor.
 	 * 
@@ -34,8 +35,7 @@ public class SaveGameInfo_Model extends JFrame{
 	/**
 	 * This is constructor for save game information.
 	 * @param slzModel
-	 */
-	
+	 */	
 	public SaveGameInfo_Model(Serialization_model slzModel){
 		this.smodel = slzModel;
 
@@ -55,6 +55,10 @@ public class SaveGameInfo_Model extends JFrame{
 			 }
 	}
 	
+	/**
+	 * this is a method for test of save game information.
+	 * @param slzModel
+	 */
 	public void SaveGameInfo_test(Serialization_model slzModel){
 		this.smodel = slzModel;
 

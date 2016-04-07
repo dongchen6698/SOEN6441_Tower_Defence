@@ -19,7 +19,6 @@ import TD.view.MapBox_View;
  * @author peilin
  */
 public class MapBox_Controller {
-    
     MapBox_View theView;
     MapBox_Model theModel;
     

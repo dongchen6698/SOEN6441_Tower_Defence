@@ -22,8 +22,7 @@ public class LogGenerator {
 	 * @param waveNum
 	 * @param TowerID
 	 * @param content
-	 */
-	
+	 */	
 	public static void addLogInfo(String waveNum, String TowerID, String content){
 		String logcontent = getCurrentTime()+" : "+waveNum+" : "+TowerID+" : "+content;
 		
@@ -44,8 +43,7 @@ public class LogGenerator {
 	/**
 	 * This is a constructor for create log file.
 	 * @param logtype
-	 */
-	
+	 */	
 	public static void creatLogFile(String logtype){
 		if(logtype == "creatmap"){
 			File maplogfile = new File("logfile/maplog/MapLogFile.log");
@@ -72,8 +70,7 @@ public class LogGenerator {
 	
 	/**
 	 * This is a constructor for close buffer writer.
-	 */
-	
+	 */	
 	public static void closeBufferedWriter(){
 		try {
 			bfw.close();
@@ -85,12 +82,10 @@ public class LogGenerator {
 	/**
 	 * This method is get current time.
 	 * @return
-	 */
-	
+	 */	
 	public static String getCurrentTime(){
         Date date = new Date();
         SimpleDateFormat ft =  new SimpleDateFormat ("dd/MM/yyyy hh:mm:ss a");
         return "["+ft.format(date)+"]";
-    }
-	
+    }	
 }
